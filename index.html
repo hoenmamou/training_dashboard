@@ -212,7 +212,7 @@ function render(){
       <td>${r.attempts??''}</td>
       <td>${escapeHtml(fmtDate(r.completed_at))}</td>
       <td>${escapeHtml(r.certificate_number||'')}</td>
-      <td><button class="smallbtn" onclick='printCertificate(${JSON.stringify(r).replace(/'/g,"&#39;")})'>Print Certificate</button></td>
+      <td><button class="smallbtn print-cert-btn" data-id="${r.id}">Print Certificate</button></td>
     </tr>`).join('');
   $('empty').classList.toggle('hidden', rows.length!==0);
 
@@ -232,6 +232,18 @@ $('clearBtn').addEventListener('click',()=>{
   $('search').value='';$('trainingFilter').value='';$('passFilter').value='';render();
 });
 $('refreshBtn').addEventListener('click',loadData);
+
+$('tbody').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.print-cert-btn');
+  if(!btn) return;
+  const id = Number(btn.dataset.id);
+  const record = allRows.find(r => Number(r.id) === id);
+  if(!record){
+    alert('Could not find this completion record. Please refresh the dashboard and try again.');
+    return;
+  }
+  printCertificate(record);
+});
 
 function printCertificate(r){
   const w=window.open('','_blank','width=1000,height=750');
