@@ -6,299 +6,39 @@
 <title>HOENM Training Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{
-  --bg:#f6f7f8;--card:#fff;--text:#1d2529;--muted:#66727a;--line:#d9dee2;
-  --accent:#0f6f6c;--accent2:#0a4b49;--good:#0b6b4f;--bad:#9c3b2c;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-.wrap{max-width:1200px;margin:0 auto;padding:24px}
-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
-h1{margin:0;font-size:30px}
-.sub{color:var(--muted);margin-top:6px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
-.login{max-width:470px;margin:70px auto}
-label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
-input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff}
-button{border:0;border-radius:8px;padding:10px 15px;font-weight:700;cursor:pointer}
-.primary{background:var(--accent);color:#fff}
-.primary:hover{background:var(--accent2)}
-.secondary{background:#eef1f2;color:var(--text)}
-.danger{background:#f6e1dc;color:var(--bad)}
-.row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end}
-@media(max-width:850px){.row{grid-template-columns:1fr}.actions-right{justify-content:flex-start}}
-.toolbar{margin-bottom:18px}
-.actions-right{display:flex;gap:10px;justify-content:flex-end}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#fafbfb;position:sticky;top:0}
-.pill{display:inline-block;padding:4px 8px;border-radius:99px;font-size:12px;font-weight:700}
-.pass{background:#dceee5;color:var(--good)}
-.fail{background:#f6e1dc;color:var(--bad)}
-.smallbtn{padding:7px 10px;font-size:12px;background:#eef4f4;color:var(--accent2)}
-.hidden{display:none!important}
-.status{font-size:13px;color:var(--muted);margin-top:10px}
-.empty{padding:36px;text-align:center;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
-.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
-.stat b{display:block;font-size:26px}
-.stat span{color:var(--muted);font-size:13px}
-@media(max-width:700px){.stats{grid-template-columns:1fr}}
-@media print{
-  body>*{display:none!important}
-}
+:root{--bg:#f6f7f8;--card:#fff;--text:#1d2529;--muted:#66727a;--line:#d9dee2;--accent:#0f6f6c;--accent2:#0a4b49;--good:#0b6b4f;--bad:#9c3b2c}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}.wrap{max-width:1200px;margin:0 auto;padding:24px}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}h1{margin:0;font-size:30px}.sub{color:var(--muted);margin-top:6px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 6px 20px rgba(0,0,0,.05)}.login{max-width:470px;margin:70px auto}label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff}button{border:0;border-radius:8px;padding:10px 15px;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff}.primary:hover{background:var(--accent2)}.secondary{background:#eef1f2;color:var(--text)}.danger{background:#f6e1dc;color:var(--bad)}.row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end}@media(max-width:850px){.row{grid-template-columns:1fr}.actions-right{justify-content:flex-start}}.toolbar{margin-bottom:18px}.actions-right{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.log-actions{display:flex;justify-content:flex-end;margin-top:14px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#fafbfb;position:sticky;top:0}.pill{display:inline-block;padding:4px 8px;border-radius:99px;font-size:12px;font-weight:700}.pass{background:#dceee5;color:var(--good)}.fail{background:#f6e1dc;color:var(--bad)}.smallbtn{padding:7px 10px;font-size:12px;background:#eef4f4;color:var(--accent2)}.hidden{display:none!important}.status{font-size:13px;color:var(--muted);margin-top:10px}.empty{padding:36px;text-align:center;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}.stat b{display:block;font-size:26px}.stat span{color:var(--muted);font-size:13px}@media(max-width:700px){.stats{grid-template-columns:1fr}}@media print{body>*{display:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <section id="loginView" class="card login">
-    <h1>Supervisor Training Dashboard</h1>
-    <p class="sub">Heaven-On-Earth Network of Mamou, LLC</p>
-    <label for="email">Supervisor email</label>
-    <input id="email" type="email" autocomplete="username">
-    <label for="password">Password</label>
-    <input id="password" type="password" autocomplete="current-password">
-    <button id="loginBtn" class="primary" style="width:100%;margin-top:16px">Sign in</button>
-    <div id="loginStatus" class="status"></div>
-  </section>
-
-  <section id="dashView" class="hidden">
-    <header>
-      <div>
-        <h1>Training Completions</h1>
-        <div class="sub">Search records and reprint employee certificates.</div>
-      </div>
-      <div class="actions-right">
-        <button id="refreshBtn" class="secondary">Refresh</button>
-        <button id="logoutBtn" class="danger">Sign out</button>
-      </div>
-    </header>
-
-    <div class="stats">
-      <div class="stat"><b id="statTotal">0</b><span>Total completions</span></div>
-      <div class="stat"><b id="statEmployees">0</b><span>Unique employees</span></div>
-      <div class="stat"><b id="statTrainings">0</b><span>Training courses</span></div>
-    </div>
-
-    <div class="card toolbar">
-      <div class="row">
-        <div>
-          <label for="search">Employee name</label>
-          <input id="search" type="text" placeholder="Search by employee name">
-        </div>
-        <div>
-          <label for="trainingFilter">Training</label>
-          <select id="trainingFilter"><option value="">All trainings</option></select>
-        </div>
-        <div>
-          <label for="passFilter">Status</label>
-          <select id="passFilter">
-            <option value="">All</option>
-            <option value="true">Passed</option>
-            <option value="false">Failed</option>
-          </select>
-        </div>
-        <div>
-          <button id="clearBtn" class="secondary">Clear filters</button>
-        </div>
-      </div>
-      <div id="dataStatus" class="status"></div>
-    </div>
-
-    <div class="card" style="padding:0;overflow:auto;max-height:68vh">
-      <table>
-        <thead>
-          <tr>
-            <th>Employee</th>
-            <th>Training</th>
-            <th>Score</th>
-            <th>Status</th>
-            <th>Attempts</th>
-            <th>Completed</th>
-            <th>Certificate #</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-      <div id="empty" class="empty hidden">No completion records match your filters.</div>
-    </div>
-  </section>
-</div>
-
+<section id="loginView" class="card login"><h1>Supervisor Training Dashboard</h1><p class="sub">Heaven-On-Earth Network of Mamou, LLC</p><label for="email">Supervisor email</label><input id="email" type="email" autocomplete="username"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password"><button id="loginBtn" class="primary" style="width:100%;margin-top:16px">Sign in</button><div id="loginStatus" class="status"></div></section>
+<section id="dashView" class="hidden">
+<header><div><h1>Training Completions</h1><div class="sub">Search records, print employee training logs, and reprint certificates.</div></div><div class="actions-right"><button id="refreshBtn" class="secondary">Refresh</button><button id="logoutBtn" class="danger">Sign out</button></div></header>
+<div class="stats"><div class="stat"><b id="statTotal">0</b><span>Total completions</span></div><div class="stat"><b id="statEmployees">0</b><span>Unique employees</span></div><div class="stat"><b id="statTrainings">0</b><span>Training courses</span></div></div>
+<div class="card toolbar"><div class="row"><div><label for="search">Employee name</label><input id="search" type="text" placeholder="Search by employee name"></div><div><label for="trainingFilter">Training</label><select id="trainingFilter"><option value="">All trainings</option></select></div><div><label for="passFilter">Status</label><select id="passFilter"><option value="">All</option><option value="true">Passed</option><option value="false">Failed</option></select></div><div><button id="clearBtn" class="secondary">Clear filters</button></div></div><div class="log-actions"><button id="printLogBtn" class="primary">Print Employee Training Log</button></div><div id="dataStatus" class="status"></div></div>
+<div class="card" style="padding:0;overflow:auto;max-height:68vh"><table><thead><tr><th>Employee</th><th>Training</th><th>Score</th><th>Status</th><th>Attempts</th><th>Completed</th><th>Certificate #</th><th></th></tr></thead><tbody id="tbody"></tbody></table><div id="empty" class="empty hidden">No completion records match your filters.</div></div>
+</section></div>
 <script>
-const SUPABASE_URL = 'https://hubvxtzwmgigmvhyygae.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1YnZ4dHp3bWdpZ212aHl5Z2FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDk5MjQsImV4cCI6MjEwMzQyNTkyNH0.UJSW_ibGs3G5OK-9iI80lDMLD7IXD9c9-lk5L_Wpc6M';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-let allRows = [];
-
-const $ = id => document.getElementById(id);
-const fmtDate = iso => {
-  if(!iso) return '';
-  return new Date(iso).toLocaleString([], {year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-};
-
-async function showSession(){
-  const { data:{ session } } = await sb.auth.getSession();
-  $('loginView').classList.toggle('hidden', !!session);
-  $('dashView').classList.toggle('hidden', !session);
-  if(session) await loadData();
-}
-showSession();
-
-$('loginBtn').addEventListener('click', async()=>{
-  $('loginStatus').textContent='Signing in...';
-  const email=$('email').value.trim();
-  const password=$('password').value;
-  const { error } = await sb.auth.signInWithPassword({email,password});
-  if(error){ $('loginStatus').textContent=error.message; return; }
-  $('loginStatus').textContent='';
-  await showSession();
-});
-
-$('logoutBtn').addEventListener('click', async()=>{
-  await sb.auth.signOut();
-  allRows=[];
-  await showSession();
-});
-
-async function loadData(){
-  $('dataStatus').textContent='Loading completions...';
-  const { data, error } = await sb
-    .from('training_completions')
-    .select('id,employee_name,training_name,score,passed,attempts,completed_at,certificate_number')
-    .order('completed_at',{ascending:false});
-  if(error){
-    $('dataStatus').textContent='Could not load records: '+error.message;
-    allRows=[];
-    render();
-    return;
-  }
-  allRows = data || [];
-  populateTrainingFilter();
-  render();
-  $('dataStatus').textContent=`Loaded ${allRows.length} completion record${allRows.length===1?'':'s'}.`;
-}
-
-function populateTrainingFilter(){
-  const current=$('trainingFilter').value;
-  const names=[...new Set(allRows.map(r=>r.training_name).filter(Boolean))].sort();
-  $('trainingFilter').innerHTML='<option value="">All trainings</option>'+
-    names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
-  if(names.includes(current)) $('trainingFilter').value=current;
-}
-
-function filteredRows(){
-  const q=$('search').value.trim().toLowerCase();
-  const t=$('trainingFilter').value;
-  const p=$('passFilter').value;
-  return allRows.filter(r=>{
-    const okName=!q || (r.employee_name||'').toLowerCase().includes(q);
-    const okTraining=!t || r.training_name===t;
-    const okPass=!p || String(!!r.passed)===p;
-    return okName && okTraining && okPass;
-  });
-}
-
-function render(){
-  const rows=filteredRows();
-  $('tbody').innerHTML = rows.map(r=>`
-    <tr>
-      <td><b>${escapeHtml(r.employee_name||'')}</b></td>
-      <td>${escapeHtml(r.training_name||'')}</td>
-      <td>${Number(r.score)||0}%</td>
-      <td><span class="pill ${r.passed?'pass':'fail'}">${r.passed?'Passed':'Failed'}</span></td>
-      <td>${r.attempts??''}</td>
-      <td>${escapeHtml(fmtDate(r.completed_at))}</td>
-      <td>${escapeHtml(r.certificate_number||'')}</td>
-      <td><button class="smallbtn print-cert-btn" data-id="${r.id}">Print Certificate</button></td>
-    </tr>`).join('');
-  $('empty').classList.toggle('hidden', rows.length!==0);
-
-  $('statTotal').textContent=allRows.length;
-  $('statEmployees').textContent=new Set(allRows.map(r=>(r.employee_name||'').trim().toLowerCase()).filter(Boolean)).size;
-  $('statTrainings').textContent=new Set(allRows.map(r=>r.training_name).filter(Boolean)).size;
-}
-
-function escapeHtml(s){
-  return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-}
-
-$('search').addEventListener('input',render);
-$('trainingFilter').addEventListener('change',render);
-$('passFilter').addEventListener('change',render);
-$('clearBtn').addEventListener('click',()=>{
-  $('search').value='';$('trainingFilter').value='';$('passFilter').value='';render();
-});
-$('refreshBtn').addEventListener('click',loadData);
-
-$('tbody').addEventListener('click', (e)=>{
-  const btn = e.target.closest('.print-cert-btn');
-  if(!btn) return;
-  const id = Number(btn.dataset.id);
-  const record = allRows.find(r => Number(r.id) === id);
-  if(!record){
-    alert('Could not find this completion record. Please refresh the dashboard and try again.');
-    return;
-  }
-  printCertificate(record);
-});
-
-function printCertificate(r){
-  const completed = r.completed_at ? new Date(r.completed_at).toLocaleDateString([], {year:'numeric',month:'long',day:'numeric'}) : '';
-  const trainingName = (r.training_name || '').toLowerCase();
-  const trainingHours = trainingName.includes('progress note') ? 1 : trainingName.includes('infection control') ? 2 : '';
-  let frame = document.getElementById('certificatePrintFrame');
-  if(!frame){
-    frame = document.createElement('iframe');
-    frame.id = 'certificatePrintFrame';
-    frame.style.position = 'fixed';
-    frame.style.right = '0';
-    frame.style.bottom = '0';
-    frame.style.width = '1px';
-    frame.style.height = '1px';
-    frame.style.border = '0';
-    frame.style.opacity = '0';
-    document.body.appendChild(frame);
-  }
-  const doc = frame.contentWindow.document;
-  doc.open();
-  doc.write(`<!doctype html><html><head><title>Certificate - ${escapeHtml(r.employee_name)}</title>
-  <style>
-    @page{size:landscape;margin:.4in}
-    body{font-family:Georgia,serif;margin:0;background:white;color:#18302c}
-    .cert{border:8px double #0f6f6c;padding:55px 60px;text-align:center;min-height:620px;display:flex;flex-direction:column;justify-content:center}
-    .ey{font:700 14px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#0f6f6c}
-    h1{font-size:44px;margin:18px 0 8px}
-    .name{font-size:50px;font-weight:700;margin:28px 0 10px}
-    .line{width:55%;height:1px;background:#8aa5a2;margin:0 auto 22px}
-    .body{font:18px Arial,sans-serif;line-height:1.6;max-width:760px;margin:0 auto}
-    .meta{display:flex;justify-content:center;gap:60px;margin-top:38px;font:15px Arial,sans-serif}
-    .meta b{display:block;margin-top:5px}
-    .footer{margin-top:34px;font:700 15px Arial,sans-serif}
-  </style></head><body>
-  <div class="cert">
-    <div class="ey">Certificate of Completion</div>
-    <h1>${escapeHtml(r.training_name||'Training')}</h1>
-    <div class="name">${escapeHtml(r.employee_name||'')}</div>
-    <div class="line"></div>
-    <div class="body">has successfully completed the required training and competency assessment for Heaven-On-Earth Network of Mamou, LLC.</div>
-    <div class="meta">
-      <div>Completion Date<b>${escapeHtml(completed)}</b></div>
-      <div>Final Score<b>${Number(r.score)||0}%</b></div>
-      <div>Training Hours<b>${trainingHours}</b></div>
-      <div>Certificate Number<b>${escapeHtml(r.certificate_number||'')}</b></div>
-    </div>
-    <div class="footer">Heaven-On-Earth Network of Mamou, LLC</div>
-  </div>
-  </body></html>`);
-  doc.close();
-  setTimeout(()=>{
-    frame.contentWindow.focus();
-    frame.contentWindow.print();
-  }, 250);
-}
+const SUPABASE_URL='https://hubvxtzwmgigmvhyygae.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1YnZ4dHp3bWdpZ212aHl5Z2FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDk5MjQsImV4cCI6MjEwMzQyNTkyNH0.UJSW_ibGs3G5OK-9iI80lDMLD7IXD9c9-lk5L_Wpc6M';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let allRows=[];const $=id=>document.getElementById(id);
+const fmtDate=iso=>iso?new Date(iso).toLocaleString([],{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'';
+const fmtDateOnly=iso=>iso?new Date(iso).toLocaleDateString([],{year:'numeric',month:'2-digit',day:'2-digit'}):'';
+function getTrainingHours(name){const n=(name||'').toLowerCase();if(n.includes('progress note'))return 1;if(n.includes('infection control'))return 2;return 0}
+async function showSession(){const{data:{session}}=await sb.auth.getSession();$('loginView').classList.toggle('hidden',!!session);$('dashView').classList.toggle('hidden',!session);if(session)await loadData()}showSession();
+$('loginBtn').addEventListener('click',async()=>{$('loginStatus').textContent='Signing in...';const{error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){$('loginStatus').textContent=error.message;return}$('loginStatus').textContent='';await showSession()});
+$('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();allRows=[];await showSession()});
+async function loadData(){$('dataStatus').textContent='Loading completions...';const{data,error}=await sb.from('training_completions').select('id,employee_name,training_name,score,passed,attempts,completed_at,certificate_number').order('completed_at',{ascending:false});if(error){$('dataStatus').textContent='Could not load records: '+error.message;allRows=[];render();return}allRows=data||[];populateTrainingFilter();render();$('dataStatus').textContent=`Loaded ${allRows.length} completion record${allRows.length===1?'':'s'}.`}
+function populateTrainingFilter(){const current=$('trainingFilter').value;const names=[...new Set(allRows.map(r=>r.training_name).filter(Boolean))].sort();$('trainingFilter').innerHTML='<option value="">All trainings</option>'+names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');if(names.includes(current))$('trainingFilter').value=current}
+function filteredRows(){const q=$('search').value.trim().toLowerCase(),t=$('trainingFilter').value,p=$('passFilter').value;return allRows.filter(r=>(!q||(r.employee_name||'').toLowerCase().includes(q))&&(!t||r.training_name===t)&&(!p||String(!!r.passed)===p))}
+function render(){const rows=filteredRows();$('tbody').innerHTML=rows.map(r=>`<tr><td><b>${escapeHtml(r.employee_name||'')}</b></td><td>${escapeHtml(r.training_name||'')}</td><td>${Number(r.score)||0}%</td><td><span class="pill ${r.passed?'pass':'fail'}">${r.passed?'Passed':'Failed'}</span></td><td>${r.attempts??''}</td><td>${escapeHtml(fmtDate(r.completed_at))}</td><td>${escapeHtml(r.certificate_number||'')}</td><td><button class="smallbtn print-cert-btn" data-id="${r.id}">Print Certificate</button></td></tr>`).join('');$('empty').classList.toggle('hidden',rows.length!==0);$('statTotal').textContent=allRows.length;$('statEmployees').textContent=new Set(allRows.map(r=>(r.employee_name||'').trim().toLowerCase()).filter(Boolean)).size;$('statTrainings').textContent=new Set(allRows.map(r=>r.training_name).filter(Boolean)).size}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+$('search').addEventListener('input',render);$('trainingFilter').addEventListener('change',render);$('passFilter').addEventListener('change',render);$('clearBtn').addEventListener('click',()=>{$('search').value='';$('trainingFilter').value='';$('passFilter').value='';render()});$('refreshBtn').addEventListener('click',loadData);
+$('tbody').addEventListener('click',e=>{const btn=e.target.closest('.print-cert-btn');if(!btn)return;const record=allRows.find(r=>Number(r.id)===Number(btn.dataset.id));if(!record){alert('Could not find this completion record. Please refresh the dashboard and try again.');return}printCertificate(record)});
+$('printLogBtn').addEventListener('click',()=>{const q=$('search').value.trim().toLowerCase();if(!q){alert('Enter an employee name in the Employee name search box first.');return}const matches=[...new Set(allRows.filter(r=>(r.employee_name||'').toLowerCase().includes(q)).map(r=>(r.employee_name||'').trim()).filter(Boolean))];if(matches.length===0){alert('No employee was found with that name.');return}if(matches.length>1){alert('More than one employee matches that search. Enter more of the employee’s name so only one employee remains.');return}printTrainingLog(matches[0])});
+function getPrintFrame(){let frame=document.getElementById('certificatePrintFrame');if(!frame){frame=document.createElement('iframe');frame.id='certificatePrintFrame';frame.style.position='fixed';frame.style.right='0';frame.style.bottom='0';frame.style.width='1px';frame.style.height='1px';frame.style.border='0';frame.style.opacity='0';document.body.appendChild(frame)}return frame}
+function printCertificate(r){const completed=r.completed_at?new Date(r.completed_at).toLocaleDateString([],{year:'numeric',month:'long',day:'numeric'}):'';const trainingHours=getTrainingHours(r.training_name);const frame=getPrintFrame(),doc=frame.contentWindow.document;doc.open();doc.write(`<!doctype html><html><head><title>Certificate - ${escapeHtml(r.employee_name)}</title><style>@page{size:landscape;margin:.4in}body{font-family:Georgia,serif;margin:0;background:white;color:#18302c}.cert{border:8px double #0f6f6c;padding:55px 60px;text-align:center;min-height:620px;display:flex;flex-direction:column;justify-content:center}.ey{font:700 14px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#0f6f6c}h1{font-size:44px;margin:18px 0 8px}.name{font-size:50px;font-weight:700;margin:28px 0 10px}.line{width:55%;height:1px;background:#8aa5a2;margin:0 auto 22px}.body{font:18px Arial,sans-serif;line-height:1.6;max-width:760px;margin:0 auto}.meta{display:flex;justify-content:center;gap:45px;margin-top:38px;font:15px Arial,sans-serif}.meta b{display:block;margin-top:5px}.footer{margin-top:34px;font:700 15px Arial,sans-serif}</style></head><body><div class="cert"><div class="ey">Certificate of Completion</div><h1>${escapeHtml(r.training_name||'Training')}</h1><div class="name">${escapeHtml(r.employee_name||'')}</div><div class="line"></div><div class="body">has successfully completed the required training and competency assessment for Heaven-On-Earth Network of Mamou, LLC.</div><div class="meta"><div>Completion Date<b>${escapeHtml(completed)}</b></div><div>Final Score<b>${Number(r.score)||0}%</b></div><div>Training Hours<b>${trainingHours}</b></div><div>Certificate Number<b>${escapeHtml(r.certificate_number||'')}</b></div></div><div class="footer">Heaven-On-Earth Network of Mamou, LLC</div></div></body></html>`);doc.close();setTimeout(()=>{frame.contentWindow.focus();frame.contentWindow.print()},250)}
+function printTrainingLog(employeeName){const key=employeeName.trim().toLowerCase();const rows=allRows.filter(r=>(r.employee_name||'').trim().toLowerCase()===key&&r.passed).sort((a,b)=>new Date(a.completed_at)-new Date(b.completed_at));if(!rows.length){alert('No passed training completions were found for this employee.');return}const totalHours=rows.reduce((sum,r)=>sum+getTrainingHours(r.training_name),0);const courseRows=rows.map(r=>`<tr><td>${escapeHtml(r.training_name||'')}</td><td>${escapeHtml(fmtDateOnly(r.completed_at))}</td><td class="num">${getTrainingHours(r.training_name).toFixed(1)}</td><td class="num">${Number(r.score)||0}%</td><td>${escapeHtml(r.certificate_number||'')}</td></tr>`).join('');const frame=getPrintFrame(),doc=frame.contentWindow.document;doc.open();doc.write(`<!doctype html><html><head><title>Training Log - ${escapeHtml(employeeName)}</title><style>@page{size:portrait;margin:.55in}body{font-family:Arial,Helvetica,sans-serif;color:#1d2529;margin:0}.head{text-align:center;border-bottom:3px solid #0f6f6c;padding-bottom:14px;margin-bottom:24px}.head h1{font-size:24px;margin:0 0 5px;color:#0a4b49}.head h2{font-size:18px;margin:0}.employee{font-size:17px;margin:18px 0}.employee b{font-size:19px}table{width:100%;border-collapse:collapse;font-size:13px}th{background:#eef4f4;color:#0a4b49;text-align:left;padding:9px;border:1px solid #bfc9c8}td{padding:9px;border:1px solid #cfd5d7;vertical-align:top}.num{text-align:center;white-space:nowrap}.total{margin-top:18px;text-align:right;font-size:17px}.total b{display:inline-block;border-bottom:2px solid #0f6f6c;padding:4px 12px}.note{font-size:11px;color:#66727a;margin-top:10px}.signatures{display:grid;grid-template-columns:1fr 1fr;gap:45px;margin-top:70px}.sigline{border-top:1px solid #333;padding-top:7px;font-size:12px}.date{margin-top:28px}.footer{text-align:center;margin-top:40px;font-size:11px;color:#66727a}</style></head><body><div class="head"><h1>Heaven-On-Earth Network of Mamou, LLC</h1><h2>Employee Training Record</h2></div><div class="employee">Employee: <b>${escapeHtml(employeeName)}</b></div><table><thead><tr><th>Training Course</th><th>Date Completed</th><th>Hours</th><th>Score</th><th>Certificate Number</th></tr></thead><tbody>${courseRows}</tbody></table><div class="total">Total Training Hours Earned: <b>${totalHours.toFixed(1)}</b></div><div class="note">This record reflects passed training completions recorded in the agency training system as of ${escapeHtml(new Date().toLocaleDateString())}.</div><div class="signatures"><div><div class="sigline">Employee Signature</div><div class="sigline date">Date</div></div><div><div class="sigline">Supervisor/Administrator Signature</div><div class="sigline date">Date</div></div></div><div class="footer">Maintain this record with supporting certificates in the employee personnel/training file.</div></body></html>`);doc.close();setTimeout(()=>{frame.contentWindow.focus();frame.contentWindow.print()},250)}
 </script>
-</body>
-</html>
+</body></html>
