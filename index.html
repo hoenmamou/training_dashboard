@@ -1,0 +1,920 @@
+<title>Infection Control &amp; Incident Reporting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F7F6F2;--surface:#FFFFFF;--surface-2:#EFEFE9;--matte:#12211F;
+  --line:#DCDCD3;--line-strong:#C3C4B9;
+  --text:#16211F;--text-2:#4E5B58;--text-3:#78837F;
+  --accent:#0F6F6C;--accent-soft:#DDEDEB;--accent-ink:#0A4B49;
+  --good:#0B6B4F;--good-soft:#DCEEE5;
+  --warn:#9A6410;--warn-soft:#F5E8D2;
+  --bad:#9C3B2C;--bad-soft:#F6E1DC;
+  --new:#6B4A9E;--new-soft:#EAE3F5;
+  --shadow:0 1px 2px rgba(18,33,31,.06),0 8px 24px rgba(18,33,31,.07);
+  --radius:10px;
+  --f-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0D1615;--surface:#152220;--surface-2:#1D2C29;--matte:#080F0E;
+  --line:#2A3A37;--line-strong:#3C4E4A;
+  --text:#E7EDEB;--text-2:#AEBCB8;--text-3:#83918D;
+  --accent:#4FB3AE;--accent-soft:#16302E;--accent-ink:#8FD3CF;
+  --good:#5FBE97;--good-soft:#132C24;
+  --warn:#D2A253;--warn-soft:#2E2415;
+  --bad:#DE8878;--bad-soft:#31201C;
+  --new:#B49AE0;--new-soft:#231C33;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}}
+:root[data-theme="dark"]{
+  --ground:#0D1615;--surface:#152220;--surface-2:#1D2C29;--matte:#080F0E;
+  --line:#2A3A37;--line-strong:#3C4E4A;
+  --text:#E7EDEB;--text-2:#AEBCB8;--text-3:#83918D;
+  --accent:#4FB3AE;--accent-soft:#16302E;--accent-ink:#8FD3CF;
+  --good:#5FBE97;--good-soft:#132C24;
+  --warn:#D2A253;--warn-soft:#2E2415;
+  --bad:#DE8878;--bad-soft:#31201C;
+  --new:#B49AE0;--new-soft:#231C33;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--text);font-family:var(--f-sans);
+     font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:var(--f-display);font-weight:700;text-wrap:balance;margin:0;line-height:1.2}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.screen{display:none}.screen.on{display:block}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--text);
+  padding:.7em 1.2em;border-radius:8px;font-weight:600;font-size:15px;
+  transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.btn[disabled]{cursor:not-allowed;pointer-events:none}
+.btn-primary[disabled]{background:var(--surface-2);border-color:var(--line);color:var(--text-3)}
+.btn .lock{width:13px;height:13px;fill:currentColor;opacity:.85}
+.btn-lg{padding:.85em 1.6em;font-size:16px}
+
+/* welcome */
+.hero{padding:clamp(30px,6vw,64px) 0 44px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:start}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(32px,4.8vw,50px);margin:.35em 0 .3em;letter-spacing:-.015em}
+.hero .lede{font-size:18px;color:var(--text-2);max-width:56ch}
+.rule{height:1px;background:var(--line);margin:26px 0}
+.facts{display:grid;border-top:1px solid var(--line)}
+.fact{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.fact dt{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);white-space:nowrap}
+.fact dd{margin:0;font-size:15px;color:var(--text-2)}
+.card0{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+.card0 h2{font-size:20px;margin-bottom:6px}
+.card0 p.s{font-size:14px;color:var(--text-2);margin-bottom:18px}
+label.fld{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px}
+input[type=text]{width:100%;padding:.75em .85em;font:inherit;font-size:16px;background:var(--ground);
+  color:var(--text);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:16px}
+input[type=text]:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.note-small{font-size:13px;color:var(--text-3);margin-top:14px;line-height:1.45}
+.updatebox{background:var(--new-soft);border-left:3px solid var(--new);border-radius:8px;
+  padding:15px 18px;margin-top:26px;font-size:14.5px;line-height:1.6;color:var(--text-2)}
+.updatebox b{color:var(--text)}
+
+/* player chrome */
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brandmark{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:-.01em}
+.pip{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;flex:none}
+.pip svg{width:14px;height:14px;fill:currentColor}
+.topmeta{margin-left:auto;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--text-2)}
+.who{font-size:13px;color:var(--text-3);max-width:22ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rail{display:flex;gap:2px;width:100%;padding:0 20px 9px;max-width:1240px;margin:0 auto}
+.seg{flex:1;height:5px;border-radius:2px;background:var(--line);position:relative;transition:background .2s}
+.seg.done{background:var(--accent)}
+.seg.cur{background:var(--text)}
+.seg.gate::after{content:"";position:absolute;left:50%;top:-5px;width:3px;height:3px;margin-left:-1.5px;border-radius:50%;background:var(--warn)}
+
+/* stage */
+.stage-wrap{max-width:1180px;margin:0 auto;padding:22px 20px 0}
+.slide{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:clamp(24px,3.6vw,44px);min-height:430px}
+.slide .s-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.slide h2.s-title{font-size:clamp(24px,3.3vw,36px);letter-spacing:-.015em;margin-bottom:22px}
+.slide .lead{font-size:17.5px;color:var(--text-2);line-height:1.6;max-width:74ch;margin-bottom:20px}
+.slide .lead.center{text-align:center;margin-left:auto;margin-right:auto}
+.tagline{font-family:var(--f-display);font-style:italic;font-size:19px;color:var(--accent-ink);margin-top:22px}
+:root[data-theme="dark"] .tagline,:root:not([data-theme="light"]) .tagline{color:var(--accent)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .tagline{color:var(--accent-ink)}}
+
+/* updated-since banner */
+.changed{background:var(--new-soft);border-left:3px solid var(--new);border-radius:8px;
+  padding:14px 17px;margin-bottom:22px;font-size:14.5px;line-height:1.6;color:var(--text-2)}
+.changed .clabel{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;
+  font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--new);margin-bottom:7px}
+.changed b{color:var(--text)}
+
+/* slide content pieces */
+.blist{margin:0;padding-left:1.15em;display:grid;gap:7px;font-size:15.5px;line-height:1.55;color:var(--text-2)}
+.blist li::marker{color:var(--accent)}
+.blist.tight{font-size:14.5px;gap:5px}
+.blist.fine{font-size:13.5px;color:var(--text-3)}
+.slide h3{font-family:var(--f-sans);font-size:12px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--text-3);margin:0 0 10px}
+.slide h3.mt{margin-top:20px}
+.note{background:var(--surface-2);border-radius:8px;padding:14px 17px;margin-top:20px;
+  font-size:14.5px;line-height:1.6;color:var(--text-2)}
+.note.tight{margin-top:12px;font-size:13.5px;padding:12px 14px}
+.note.big{font-size:16px;background:var(--accent-soft);color:var(--text)}
+.note b{color:var(--text)}
+.fine{font-size:13px;color:var(--text-3);margin-top:10px;line-height:1.5}
+
+.agenda{margin:0;padding:0;list-style:none;counter-reset:ag;display:grid;gap:13px}
+.agenda li{counter-increment:ag;display:grid;grid-template-columns:22px 1fr;column-gap:16px;row-gap:2px;
+  align-items:baseline;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.agenda li:last-child{border-bottom:none;padding-bottom:0}
+.agenda li::before{content:counter(ag);grid-column:1;grid-row:1;font-family:var(--f-mono);font-size:13px;
+  font-weight:600;color:var(--accent)}
+.agenda b{grid-column:2;grid-row:1;font-size:16px}
+.agenda span{grid-column:2;grid-row:2;font-size:14.5px;color:var(--text-2);line-height:1.5}
+
+.cards{display:grid;gap:14px}
+.cards.c2{grid-template-columns:repeat(2,1fr)}
+.cards.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:820px){.cards.c2,.cards.c3{grid-template-columns:1fr}}
+.card{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:17px 19px}
+.card .num{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--accent);margin-bottom:7px}
+.card h3{margin-bottom:7px;font-size:12px}
+.card p{font-size:14.5px;color:var(--text-2);line-height:1.55}
+
+.defs{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.defs>div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:11px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.defs.two>div{grid-template-columns:210px 1fr}
+@media(max-width:760px){.defs>div,.defs.two>div{grid-template-columns:1fr;gap:3px}}
+.defs dt{font-weight:600;font-size:15px;color:var(--text)}
+.defs dd{margin:0;font-size:14.5px;color:var(--text-2);line-height:1.55}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,38px)}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.panelbox{border-radius:9px;padding:17px 19px;border-left:3px solid var(--line-strong);background:var(--ground)}
+.panelbox.good{background:var(--good-soft);border-left-color:var(--good)}
+.panelbox.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+.panelbox.tight{padding:14px 16px}
+.panelbox h3{color:var(--text);font-size:12px}
+.panelbox p{font-size:14.5px;color:var(--text-2);line-height:1.55}
+
+.steps{margin:0;padding:0;list-style:none;counter-reset:st;display:grid;gap:11px}
+.steps.tight{gap:8px}
+.steps li{counter-increment:st;position:relative;padding-left:36px;
+  font-size:15.5px;line-height:1.55;color:var(--text-2)}
+.steps.tight li{font-size:14.5px;padding-left:33px}
+.steps li::before{content:counter(st);position:absolute;left:0;top:.05em;
+  font-family:var(--f-mono);font-size:11.5px;font-weight:600;
+  color:var(--accent);background:var(--accent-soft);border-radius:50%;width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center}
+.steps b{color:var(--text)}
+
+.moments{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+@media(max-width:860px){.moments{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.moments{grid-template-columns:1fr}}
+.moment{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:15px 17px}
+.moment .mk{display:block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.moment p{font-size:14px;color:var(--text-2);line-height:1.5}
+
+.orderbox{display:grid;gap:14px}
+.orderbox>div{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:14px 17px}
+.orderbox .ol{display:block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+ol.inline{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px;counter-reset:oi}
+ol.inline li{counter-increment:oi;font-size:14.5px;font-weight:600;background:var(--surface);
+  border:1px solid var(--line-strong);border-radius:6px;padding:5px 11px}
+ol.inline li::before{content:counter(oi) ". ";font-family:var(--f-mono);font-size:11px;color:var(--accent)}
+
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:820px){.catgrid{grid-template-columns:repeat(2,1fr)}}
+.cat{background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent-ink);
+  border-radius:7px;padding:11px 13px;font-size:14px;font-weight:600;text-align:center}
+:root[data-theme="dark"] .cat,:root:not([data-theme="light"]) .cat{color:var(--accent-ink)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .cat{color:var(--accent-ink)}}
+
+.timeline{display:grid;gap:0;border-top:1px solid var(--line)}
+.tl{display:grid;grid-template-columns:190px 1fr;gap:22px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+@media(max-width:720px){.tl{grid-template-columns:1fr;gap:4px}}
+.tl .when{font-family:var(--f-mono);font-size:12.5px;font-weight:600;color:var(--bad);
+  text-transform:uppercase;letter-spacing:.06em}
+.tl div{font-size:15px;color:var(--text-2);line-height:1.55}
+.tl b{color:var(--text)}
+
+.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.contacts{grid-template-columns:1fr}}
+.contact{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:17px 19px;text-align:center}
+.contact .age{display:block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.contact b{display:block;font-size:15px;margin-bottom:8px}
+.contact .num{display:block;font-family:var(--f-mono);font-size:19px;font-weight:600;color:var(--accent);
+  margin-bottom:8px;font-variant-numeric:tabular-nums}
+.contact p{font-size:13.5px;color:var(--text-3);line-height:1.5}
+
+.cmprow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.cmprow{grid-template-columns:1fr}}
+.cmp{border-radius:9px;padding:17px 19px;border-left:3px solid var(--line-strong);background:var(--ground)}
+.cmp.good{background:var(--good-soft);border-left-color:var(--good)}
+.cmp.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+.cmp.bad{background:var(--bad-soft);border-left-color:var(--bad)}
+.cmp .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;margin-bottom:11px}
+.cmp.good .tag{color:var(--good)}.cmp.warn .tag{color:var(--warn)}.cmp.bad .tag{color:var(--bad)}
+
+.exhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.badge{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 11px;border-radius:99px}
+.badge.good{background:var(--good-soft);color:var(--good)}
+.exhead .meta{font-size:13px;color:var(--text-3);font-family:var(--f-mono)}
+.quote{font-family:var(--f-display);font-size:16.5px;line-height:1.7;color:var(--text);
+  background:var(--good-soft);border-left:3px solid var(--good);border-radius:8px;padding:19px 22px}
+.quote.small{font-size:15px;background:transparent;border:none;padding:0 0 12px;font-style:italic}
+.why{font-size:14.5px;color:var(--text-2);margin-top:16px;line-height:1.6}
+.why b{color:var(--text)}
+
+.scenario{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:22px 24px;
+  font-size:16.5px;line-height:1.7;color:var(--text-2)}
+.qbox{background:var(--warn-soft);border-left:3px solid var(--warn);border-radius:8px;padding:16px 19px;
+  margin-top:20px;font-size:15.5px;line-height:1.6;color:var(--text-2)}
+.qbox b{color:var(--text)}
+.ansgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.ansgrid{grid-template-columns:1fr}}
+.ans{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:16px 18px}
+.ans h3{color:var(--text);font-size:14.5px;text-transform:none;letter-spacing:0;font-weight:600;margin-bottom:7px}
+.ans p{font-size:14.5px;color:var(--text-2);line-height:1.55}
+
+.check{margin:0;padding:0;list-style:none;counter-reset:ck;display:grid;gap:0;border-top:1px solid var(--line)}
+.check li{counter-increment:ck;position:relative;padding:11px 0 11px 37px;
+  border-bottom:1px solid var(--line);font-size:15px;color:var(--text-2);line-height:1.55}
+.check li::before{content:counter(ck);position:absolute;left:0;top:11px;
+  font-family:var(--f-mono);font-size:11.5px;font-weight:600;
+  color:var(--accent);background:var(--accent-soft);border-radius:50%;width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center}
+
+.qr{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+@media(max-width:1000px){.qr{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.qr{grid-template-columns:1fr}}
+.qrbox{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:14px 16px}
+.qrbox h3{color:var(--accent);font-size:10.5px;margin-bottom:8px}
+.qrbox p{font-size:13.5px;color:var(--text-2);line-height:1.6}
+.qrbox b{color:var(--text)}
+
+.closerow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+@media(max-width:760px){.closerow{grid-template-columns:1fr}}
+.closerow>div{background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:17px 19px}
+.closerow b{display:block;font-size:15px;margin-bottom:6px}
+.closerow span{font-size:14.5px;color:var(--text-2);line-height:1.55}
+.banner{background:var(--new-soft);border-left:3px solid var(--new);border-radius:8px;padding:15px 18px;
+  margin-top:20px;font-size:14.5px;line-height:1.6;color:var(--text-2)}
+.banner b{color:var(--text)}
+
+/* controls */
+.controls{max-width:1180px;margin:0 auto;padding:14px 20px 0;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+@media(max-width:760px){.controls{grid-template-columns:1fr}}
+.playgroup{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.iconbtn{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;width:42px;height:42px;
+  display:grid;place-items:center;padding:0}
+.iconbtn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.iconbtn svg{width:17px;height:17px;fill:currentColor}
+.speed{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:.55em .75em;
+  font-family:var(--f-mono);font-size:13px;font-weight:600}
+.voicesel{font-family:var(--f-sans);max-width:190px;color:var(--text);cursor:pointer}
+.voicesel:hover{border-color:var(--accent)}
+.gatepill{display:inline-flex;align-items:center;gap:7px;background:var(--surface-2);color:var(--text-2);
+  padding:7px 13px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);white-space:nowrap}
+.gatepill.ready{background:var(--good-soft);color:var(--good);border-color:var(--good)}
+.gatepill.hold{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.dot.live{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.dot.live{animation:none}}
+.status{font-size:13px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.navgroup{display:flex;gap:10px;justify-content:flex-end}
+
+.transcript{max-width:1180px;margin:16px auto 0;padding:0 20px 40px}
+.tbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.tbox h3{font-family:var(--f-sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);margin:0 0 10px}
+.tbody{font-size:16px;line-height:1.7;color:var(--text-2);max-width:74ch}
+.sent{transition:color .2s,background .2s;border-radius:3px}
+.sent.on{color:var(--text);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.sent.past{color:var(--text-3)}
+
+/* overlay */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(8,15,14,.62);display:none;align-items:center;
+  justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(3px)}
+.overlay.on{display:flex}
+.qcard{background:var(--surface);border-radius:14px;max-width:640px;width:100%;border:1px solid var(--line);
+  box-shadow:0 24px 60px rgba(0,0,0,.35);padding:28px;margin:auto}
+.qcard .eyebrow{color:var(--warn)}
+.qcard h2{font-size:23px;margin:8px 0 20px}
+.opts{display:grid;gap:9px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1px solid var(--line-strong);
+  background:var(--ground);border-radius:9px;padding:13px 15px;font-size:15px;line-height:1.45;
+  transition:border-color .15s,background .15s}
+.opt:hover:not([disabled]){border-color:var(--accent);background:var(--accent-soft)}
+.opt .key{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--text-3);border:1px solid var(--line-strong);
+  border-radius:5px;width:22px;height:22px;display:grid;place-items:center;flex:none;margin-top:1px}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.right .key{border-color:var(--good);color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .key{border-color:var(--bad);color:var(--bad)}
+.feedback{margin-top:18px;padding:15px 17px;border-radius:9px;font-size:14.5px;line-height:1.6;display:none}
+.feedback.on{display:block}
+.feedback.ok{background:var(--good-soft);border-left:3px solid var(--good)}
+.feedback.no{background:var(--bad-soft);border-left:3px solid var(--bad)}
+.qfoot{display:flex;justify-content:flex-end;margin-top:18px}
+
+/* test */
+.testhead{padding:44px 0 26px;border-bottom:1px solid var(--line)}
+.testhead h1{font-size:clamp(30px,4.4vw,42px);margin:.3em 0 .35em;letter-spacing:-.015em}
+.testhead p{color:var(--text-2);max-width:62ch}
+.qlist{display:grid;gap:18px;padding:26px 0 120px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+.qnum{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}
+.q h3{font-family:var(--f-sans);font-weight:600;font-size:17px;line-height:1.45;margin:7px 0 16px;color:var(--text);
+  text-transform:none;letter-spacing:0}
+.subbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);
+  box-shadow:0 -4px 20px rgba(0,0,0,.07)}
+.subbar-in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+.subbar .status{margin-right:auto;font-size:14px;color:var(--text-2)}
+
+/* results */
+.resulthead{padding:48px 0 0;text-align:center}
+.scorering{width:132px;height:132px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
+  font-family:var(--f-mono);font-size:34px;font-weight:600;font-variant-numeric:tabular-nums}
+.scorering.pass{background:var(--good-soft);color:var(--good);border:3px solid var(--good)}
+.scorering.fail{background:var(--bad-soft);color:var(--bad);border:3px solid var(--bad)}
+.resulthead h1{font-size:clamp(28px,4.2vw,40px);margin-bottom:.35em}
+.resulthead p{color:var(--text-2);max-width:56ch;margin:0 auto}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:28px 0 40px}
+.review{display:grid;gap:14px;padding-bottom:60px}
+.rev{background:var(--surface);border:1px solid var(--line);border-left-width:3px;border-radius:var(--radius);padding:18px 20px}
+.rev.ok{border-left-color:var(--good)}.rev.no{border-left-color:var(--bad)}
+.rev .tag{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.rev.ok .tag{color:var(--good)}.rev.no .tag{color:var(--bad)}
+.rev h4{font-family:var(--f-sans);font-size:16px;font-weight:600;margin:6px 0 10px;line-height:1.45}
+.rev .yours,.rev .theirs{font-size:14.5px;line-height:1.55;margin-bottom:5px}
+.rev .lbl{color:var(--text-3);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.rev .whyr{font-size:14.5px;color:var(--text-2);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);line-height:1.6}
+
+.cert{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:clamp(30px,5vw,56px);text-align:center;box-shadow:var(--shadow);margin-bottom:34px;position:relative}
+.cert::before{content:"";position:absolute;inset:10px;border:1px solid var(--line);border-radius:6px;pointer-events:none}
+.cert .cert-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.cert h2{font-family:var(--f-display);font-size:clamp(26px,4vw,38px);margin:16px 0 6px}
+.cert .name{font-family:var(--f-display);font-size:clamp(28px,4.6vw,44px);font-weight:700;margin:22px 0 6px;letter-spacing:-.01em}
+.cert .under{width:min(340px,80%);height:1px;background:var(--line-strong);margin:0 auto 18px}
+.cert .body{font-size:15.5px;color:var(--text-2);max-width:56ch;margin:0 auto 26px;line-height:1.65}
+.certmeta{display:flex;justify-content:center;gap:clamp(20px,6vw,56px);flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
+.certmeta .k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);font-weight:600}
+.certmeta .v{font-size:16px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums}
+.summarybox{background:var(--surface-2);border-radius:var(--radius);padding:20px 22px;margin-bottom:34px}
+.summarybox h3{font-family:var(--f-sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin:0 0 12px}
+.summarybox pre{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;white-space:pre-wrap;margin:0;color:var(--text-2)}
+
+@media print{
+  .topbar,.subbar,.actions,.review,.summarybox,.resulthead .btn{display:none!important}
+  body{background:#fff;color:#000}
+  .cert{border:2px solid #0F6F6C;box-shadow:none;page-break-inside:avoid}
+}
+@media(max-width:600px){
+  .stage-wrap{padding:14px 12px 0}
+  .controls,.transcript,.rail{padding-left:12px;padding-right:12px}
+  .topbar-in{padding:10px 12px;gap:10px}
+  .who{display:none}
+  .qcard{padding:22px 18px}
+  .slide{padding:20px 18px}
+}
+</style>
+
+<div id="app">
+
+<section class="screen on" id="s-welcome">
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Louisiana HCBS · Direct Service Worker Competency Training</div>
+        <h1>Infection Control &amp; Incident Reporting</h1>
+        <p class="lede">A narrated, self-paced competency course for Direct Support Workers: how infections spread and how to stop them, and what to do, who to call, and how to write it up when something happens.</p>
+        <div class="updatebox"><b>Part of your required annual training.</b> Louisiana licensing standards require every direct service worker in Home and Community Based Services to complete a minimum of eight hours of training each year to maintain competence, and to demonstrate that competence by examination. This course covers three required subject areas — infection control, critical incident reporting, and detecting and reporting abuse and neglect — and the final test is the competency check.</div>
+        <div class="rule"></div>
+        <dl class="facts">
+          <div class="fact"><dt>Length</dt><dd><span id="fslides">37</span> narrated slides — about 35–45 minutes</dd></div>
+          <div class="fact"><dt>Narration</dt><dd>Every slide is read aloud. The <b>Next</b> button unlocks when the narration finishes.</dd></div>
+          <div class="fact"><dt>Checkpoints</dt><dd><span id="fcp">12</span> questions during the training. You must answer each correctly to continue.</dd></div>
+          <div class="fact"><dt>Final test</dt><dd><span id="ftest">18</span> questions · <span id="fpass">15</span> correct to pass · unlimited retakes</dd></div>
+          <div class="fact"><dt>Counts toward</dt><dd>Your annual 8-hour competency training — infection control · critical incident reporting · abuse and neglect</dd></div>
+          <div class="fact"><dt>On passing</dt><dd>A printable certificate for your training file, with your name, date and score</dd></div>
+        </dl>
+      </div>
+      <div class="card0">
+        <h2>Sign in to begin</h2>
+        <p class="s">Your name goes on the certificate at the end.</p>
+        <label class="fld" for="learner">Your full name</label>
+        <input type="text" id="learner" placeholder="e.g. Kim Kennedy" autocomplete="name">
+        <label class="fld" for="agency">Agency</label>
+        <input type="text" id="agency" value="Heaven-On-Earth Network of Mamou, LLC.">
+        <button class="btn btn-primary btn-lg" id="start" style="width:100%">Start the training</button>
+        <p class="note-small"><b>Before you start:</b> turn your sound on, and stay on this page until you finish — your progress is not saved if you close the tab. You can change the narration voice and speed once you begin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="s-train">
+  <div class="topbar">
+    <div class="topbar-in">
+      <div class="brandmark"><span class="pip"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/></svg></span> Infection Control &amp; Incident Reporting</div>
+      <div class="topmeta"><span class="who" id="who"></span><span class="counter" id="counter">01 / 37</span></div>
+    </div>
+    <div class="rail" id="rail"></div>
+  </div>
+  <div class="stage-wrap"><div class="slide" id="slide"></div></div>
+  <div class="controls">
+    <div class="playgroup">
+      <button class="iconbtn" id="playpause" aria-label="Pause narration" title="Pause / resume"><svg viewBox="0 0 24 24" id="ppicon"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button>
+      <button class="iconbtn" id="replay" aria-label="Replay narration" title="Replay this slide"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+      <button class="speed" id="speed" title="Playback speed">1.0×</button>
+      <select class="speed voicesel" id="voicesel" title="Narration voice" aria-label="Narration voice" hidden></select>
+      <span class="gatepill" id="gatebadge"><span class="dot live" id="gatedot"></span><span id="gatetext">Narrating</span></span>
+      <span class="status" id="status">0 of 0</span>
+    </div>
+    <div class="navgroup">
+      <button class="btn" id="prev">Back</button>
+      <button class="btn btn-primary" id="next" disabled>Next</button>
+    </div>
+  </div>
+  <div class="transcript"><div class="tbox"><h3>Narration</h3><div class="tbody" id="tbody"></div></div></div>
+</section>
+
+<section class="screen" id="s-test">
+  <div class="topbar"><div class="topbar-in">
+    <div class="brandmark"><span class="pip"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/></svg></span> Final Test</div>
+    <div class="topmeta"><span class="who" id="who2"></span></div>
+  </div></div>
+  <div class="wrap">
+    <div class="testhead">
+      <div class="eyebrow">Infection Control &amp; Incident Reporting</div>
+      <h1>Final test</h1>
+      <p id="testintro"></p>
+    </div>
+    <div class="qlist" id="qlist"></div>
+  </div>
+  <div class="subbar"><div class="subbar-in">
+    <span class="status" id="teststatus">0 answered</span>
+    <button class="btn btn-primary btn-lg" id="submit" disabled>Submit test</button>
+  </div></div>
+</section>
+
+<section class="screen" id="s-result">
+  <div class="wrap">
+    <div class="resulthead">
+      <div class="scorering" id="ring">0%</div>
+      <h1 id="resulttitle">Result</h1>
+      <p id="resultsub"></p>
+      <div class="actions" id="resultactions"></div>\n      <p id="saveStatus" class="fine" style="text-align:center;margin:-22px auto 28px;max-width:58ch"></p>
+    </div>
+    <div id="certwrap"></div>
+    <div id="summarywrap"></div>
+    <div class="review" id="review"></div>
+  </div>
+</section>
+
+<div class="overlay" id="overlay">
+  <div class="qcard" role="dialog" aria-modal="true" aria-labelledby="cpq">
+    <div class="eyebrow" id="cplabel">Checkpoint</div>
+    <h2 id="cpq"></h2>
+    <div class="opts" id="cpopts"></div>
+    <div class="feedback" id="cpfb"></div>
+    <div class="qfoot"><button class="btn btn-primary" id="cpcontinue" style="display:none">Continue</button></div>
+  </div>
+</div>
+</div>
+
+<script>
+const SLIDES = [{"eyebrow": "Louisiana HCBS · Direct Service Worker Competency Training", "title": "Infection Control &amp; Incident Reporting", "layout": "title", "html": "<p class='lead'>A required competency course for Direct Support Workers providing Home and Community Based Services in Louisiana.</p><div class='banner'><b>This course counts toward your annual training.</b> Louisiana licensing standards require every direct service worker to complete a minimum of eight hours of training each year to maintain competence, and to demonstrate that competence by examination. This course covers three of the required subject areas — infection control, critical incident reporting, and detecting and reporting abuse and neglect — and the test at the end is your competency check.</div><p class='tagline'>Protect the people you support. Protect yourself. Write it down.</p>", "narration": "Welcome to Infection Control and Incident Reporting for Direct Support Workers. This is a required competency course for direct support workers providing Home and Community Based Services in Louisiana. Here is where it fits. Louisiana licensing standards require every direct service worker to complete a minimum of eight hours of training each year to maintain competence, and to demonstrate that competence by examination. This course covers three of the required subject areas: infection control, critical incident reporting, and detecting and reporting abuse and neglect. The test at the end is your competency check. Three ideas run through all of it. Protect the people you support. Protect yourself. And write it down."}, {"eyebrow": "Overview", "title": "What we'll cover", "layout": "agenda", "html": "<ol class='agenda'><li><b>Infection control basics</b><span>How germs spread, who is most at risk, and the words you need to know.</span></li><li><b>Standard Precautions</b><span>The foundation you use with every person, every time — and what it means on your shift.</span></li><li><b>Hand hygiene</b><span>When sanitizer beats soap and water, when only soap and water will do, and how to do both properly.</span></li><li><b>Gloves and other PPE</b><span>When to wear, when to change, how to take them off without contaminating yourself.</span></li><li><b>Spills, linens, sharps and exposures</b><span>Cleaning up safely, and what to do the moment you are exposed.</span></li><li><b>Incident reporting</b><span>What counts as a critical incident, who you call, and the deadlines that apply.</span></li><li><b>Writing the report</b><span>What to include, what to leave out, and practice on real scenarios.</span></li></ol>", "narration": "Here is what we will cover. First, infection control basics: how germs spread, who is most at risk, and the words you need to know. Second, Standard Precautions, the foundation you use with every person on every shift. Third, hand hygiene: when sanitizer beats soap and water, when only soap and water will do, and how to do both properly. Fourth, gloves and other protective equipment. Fifth, spills, linens, sharps and exposures, including what to do the moment you are exposed. Then we move to incident reporting: what counts as a critical incident, who you call, and the deadlines that apply. And finally, writing the report itself, with practice on real scenarios."}, {"eyebrow": "Part 1 · Infection control", "title": "Why this matters where you work", "layout": "cards", "html": "<div class='cards c3'><div class='card'><div class='num'>1</div><h3>You move between people and places</h3><p>You may support more than one person, in their homes and out in the community. What you carry on your hands travels with you.</p></div><div class='card'><div class='num'>2</div><h3>The people you support may be more vulnerable</h3><p>Age, existing conditions, medications and mobility can all lower a person's ability to fight off an infection.</p></div><div class='card'><div class='num'>3</div><h3>An infection is often preventable</h3><p>Most of what spreads infection in home and community settings is stopped by hand hygiene and gloves used correctly.</p></div></div><div class='note'>Infection control is not a hospital-only concern. Every kitchen, bathroom and car you share with someone is part of it.</div>", "narration": "Why does this matter where you work? Three reasons. First, you move between people and places. You may support more than one person, in their homes and out in the community, and what you carry on your hands travels with you. Second, the people you support may be more vulnerable. Age, existing conditions, medications and mobility can all lower a person's ability to fight off an infection. Third, an infection is often preventable. Most of what spreads infection in home and community settings is stopped by hand hygiene and gloves used correctly. Infection control is not a hospital only concern. Every kitchen, bathroom and car you share with someone is part of it."}, {"eyebrow": "Part 1 · Infection control", "title": "The words you need", "layout": "defs", "html": "<dl class='defs'><div><dt>Infection control</dt><dd>The set of methods used to control and prevent the spread of disease.</dd></div><div><dt>Pathogen</dt><dd>A germ — a bacterium, virus or fungus — that can cause disease.</dd></div><div><dt>Communicable disease</dt><dd>A disease that spreads from one person to another.</dd></div><div><dt>Contaminated</dt><dd>Soiled or unclean — carrying pathogens, whether or not you can see anything.</dd></div><div><dt>Disinfection</dt><dd>Cleaning in a way that destroys pathogens on a surface.</dd></div><div><dt>Mode of transmission</dt><dd>The way germs get from one person to another.</dd></div><div><dt>Mucous membrane</dt><dd>The lining of body openings — eyes, nose, mouth, and others.</dd></div><div><dt>Body fluids</dt><dd>Blood, urine, feces, vomit, saliva, mucus, wound drainage, semen and vaginal secretions. Sweat is the one exception.</dd></div></dl>", "narration": "Here are the words you need. Infection control is the set of methods used to control and prevent the spread of disease. A pathogen is a germ — a bacterium, a virus or a fungus — that can cause disease. A communicable disease spreads from one person to another. Contaminated means soiled or unclean: carrying pathogens, whether or not you can see anything. Disinfection means cleaning in a way that destroys pathogens on a surface. Mode of transmission is the way germs get from one person to another. A mucous membrane is the lining of a body opening — eyes, nose, mouth, and others. And body fluids means blood, urine, feces, vomit, saliva, mucus, wound drainage, semen and vaginal secretions. Sweat is the one exception, and we will come back to why that matters."}, {"eyebrow": "Part 1 · Infection control", "title": "How germs travel", "layout": "cards", "html": "<div class='cards c2'><div class='card'><h3>Contact — direct</h3><p>Touching an infected person or their body fluids. Helping with toileting, wound care, or cleaning up vomit without gloves.</p></div><div class='card'><h3>Contact — indirect</h3><p>Touching something the germ landed on first: a doorknob, a phone, a bed rail, a remote control, a steering wheel.</p></div><div class='card'><h3>Droplet</h3><p>Coughing, sneezing, talking, laughing or spitting sends droplets a short distance through the air onto another person.</p></div><div class='card'><h3>Airborne</h3><p>Some germs — tuberculosis and measles among them — travel on much smaller particles that hang in the air and drift further.</p></div></div><div class='note'><b>Then it needs a way in.</b> Pathogens enter through the nose, mouth, eyes, rectum, genitals and other mucous membranes — or through any cut, scrape, crack or break in the skin. Broken skin on <i>your</i> hands is a doorway too.</div>", "narration": "Germs travel in four main ways. Direct contact means touching an infected person or their body fluids: helping with toileting, wound care, or cleaning up vomit without gloves. Indirect contact means touching something the germ landed on first — a doorknob, a phone, a bed rail, a remote control, a steering wheel. Droplet spread happens when coughing, sneezing, talking, laughing or spitting sends droplets a short distance through the air onto another person. And airborne spread involves germs like tuberculosis and measles that travel on much smaller particles which hang in the air and drift further. But traveling is not enough. The germ still needs a way in. Pathogens enter through the nose, mouth, eyes, rectum, genitals and other mucous membranes, or through any cut, scrape, crack or break in the skin. And remember: broken skin on your own hands is a doorway too.", "checkpoint": {"q": "You wipe down a kitchen counter that someone with a stomach virus touched, then rub your eye. Which route did the germ take?", "options": ["Airborne", "Indirect contact, entering through a mucous membrane", "Direct contact, entering through broken skin", "Droplet spread"], "correct": 1, "why": "The germ was on a surface first — that is indirect contact — and your eye is a mucous membrane, one of the main portals of entry. This is exactly why hand hygiene after cleaning matters, and why you avoid touching your face."}}, {"eyebrow": "Part 1 · Infection control", "title": "Who is at higher risk", "layout": "split", "html": "<div class='split'><div><h3>Anything that lowers resistance</h3><ul class='blist'><li>Older age, and very young age</li><li>An existing illness or chronic condition</li><li>Medications that suppress the immune system</li><li>Poor nutrition or dehydration</li><li>Fatigue and prolonged stress</li><li>Recent surgery, a wound, or a catheter or feeding tube</li><li>Limited mobility, which affects skin integrity and lung function</li></ul></div><div><h3>What that means for your shift</h3><p>You will not always know a person's medical history, and you do not need to. The precautions in this course are designed to be used with <b>everyone, every time</b> — which is exactly why they work when you do not know.</p><div class='note tight'>People who are hospitalized or in a facility more often also have more exposure to resistant germs, and tend to recover more slowly when they do get sick.</div></div></div>", "narration": "Who is at higher risk? Anything that lowers a person's resistance. Older age, and very young age. An existing illness or chronic condition. Medications that suppress the immune system. Poor nutrition or dehydration. Fatigue and prolonged stress. Recent surgery, a wound, or a catheter or feeding tube. And limited mobility, which affects both skin integrity and lung function. Here is what that means for your shift. You will not always know a person's medical history, and you do not need to. The precautions in this course are designed to be used with everyone, every time, which is exactly why they work when you do not know. People who are hospitalized or in a facility more often also have more exposure to resistant germs, and tend to recover more slowly when they do get sick."}, {"eyebrow": "Part 1 · Infection control", "title": "Standard Precautions", "layout": "changed", "html": "<p class='lead'>Standard Precautions is the foundation. You use it with every person you support, on every shift, whether or not anyone is known to be sick.</p><div class='cards c2 tight'><div class='card'><h3>The core assumption</h3><p>Treat all blood, all body fluids, broken skin and mucous membranes as if they could carry infection — because you cannot tell by looking at someone whether they are carrying something.</p></div><div class='card'><h3>No judgment call required</h3><p>You are never asked to decide which fluids count or who might be infectious. Sweat is the only exception — everything else gets the same care, from everyone, on every shift.</p></div></div>", "narration": "Standard Precautions is the approach C D C sets for all care settings. It covers all body fluids except sweat, whether or not blood is visible, and it includes respiratory hygiene and safe handling of equipment. You may hear the older term Universal Precautions used for the same idea. Standard Precautions is broader, and it is the standard you work to. Standard Precautions is the foundation. You use it with every person you support, on every shift, whether or not anyone is known to be sick. The core assumption is this: treat all blood, all body fluids, broken skin and mucous membranes as if they could carry infection, because you cannot tell by looking at someone whether they are carrying something. And it asks no judgment call of you. You never have to decide which fluids count or who might be infectious. Sweat is the only exception. Everything else gets the same care, from everyone, on every shift.", "checkpoint": {"q": "Which statement matches Standard Precautions?", "options": ["They apply only when you know a person has an infection", "They apply to blood only; other body fluids follow a separate rule", "They apply to all body fluids except sweat, with every person, every time", "They apply only during personal care tasks"], "correct": 2, "why": "Standard Precautions apply to everyone, every time, covering all body fluids except sweat — regardless of whether blood is visible or whether anyone is known to be sick."}}, {"eyebrow": "Part 1 · Infection control", "title": "What Standard Precautions include", "layout": "cards", "html": "<div class='cards c3'><div class='card'><div class='num'>1</div><h3>Hand hygiene</h3><p>The single most important thing you do. Before and after contact, and after gloves come off.</p></div><div class='card'><div class='num'>2</div><h3>Personal protective equipment</h3><p>Gloves, and where the task calls for it, a mask, eye protection or a gown — chosen for the exposure you expect.</p></div><div class='card'><div class='num'>3</div><h3>Respiratory hygiene and cough etiquette</h3><p>Cover coughs and sneezes, dispose of tissues, clean your hands afterward, and keep distance when someone is coughing.</p></div><div class='card'><div class='num'>4</div><h3>Safe handling of sharps</h3><p>Never recap a needle. Sharps go straight into a sharps container, never a trash bag.</p></div><div class='card'><div class='num'>5</div><h3>Clean equipment and surfaces</h3><p>Disinfect what gets touched and shared, and never reuse single-use items.</p></div><div class='card'><div class='num'>6</div><h3>Safe handling of laundry and waste</h3><p>Contain soiled linens and contaminated waste so they do not spread on the way to the bin.</p></div></div>", "narration": "Standard Precautions has six parts. One, hand hygiene: the single most important thing you do, before and after contact, and after gloves come off. Two, personal protective equipment: gloves, and where the task calls for it, a mask, eye protection or a gown, chosen for the exposure you expect. Three, respiratory hygiene and cough etiquette: cover coughs and sneezes, dispose of tissues, clean your hands afterward, and keep your distance when someone is coughing. Four, safe handling of sharps: never recap a needle, and sharps go straight into a sharps container, never a trash bag. Five, clean equipment and surfaces: disinfect what gets touched and shared, and never reuse single use items. And six, safe handling of laundry and waste: contain soiled linens and contaminated waste so they do not spread on the way to the bin."}, {"eyebrow": "Part 1 · Hand hygiene", "title": "Sanitizer or soap and water?", "layout": "changed", "html": "<div class='split'><div class='panelbox good'><h3>Alcohol-based sanitizer — your default</h3><p>Must be at least <b>60% alcohol</b>. Use it for routine hand hygiene before and after most contact.</p><ul class='blist tight'><li>Before and after helping someone</li><li>After touching surfaces in the home</li><li>After removing gloves</li><li>Out in the community, where a sink is not close</li></ul></div><div class='panelbox warn'><h3>Soap and water — required when</h3><ul class='blist tight'><li>Your hands are <b>visibly dirty</b> or greasy</li><li><b>After using the restroom</b></li><li><b>Before eating</b> or handling food</li><li>After caring for someone with <b>diarrhea or vomiting</b></li><li>After known contact with body fluids</li></ul><p class='fine'>Sanitizer does not remove dirt, and it does not reliably kill the germs behind many stomach illnesses.</p></div></div>", "narration": "Sanitizer, or soap and water? People get this backwards, so it is worth being precise. C D C recommends alcohol based hand sanitizer as the primary method in most care situations. It is faster, it is more accessible, and it is gentler on the skin, which means people actually do it. But there are five situations where only soap and water will do. Your default is alcohol based sanitizer with at least sixty percent alcohol. Use it before and after helping someone, after touching surfaces in the home, after removing gloves, and out in the community where a sink is not close. But soap and water is still required in five situations. When your hands are visibly dirty or greasy. After using the restroom. Before eating or handling food. After caring for someone with diarrhea or vomiting. And after known contact with body fluids. The reason is simple: sanitizer does not remove dirt, and it does not reliably kill the germs behind many stomach illnesses.", "checkpoint": {"q": "You have just helped someone who has been vomiting all morning. Your hands look clean. What do you use?", "options": ["Hand sanitizer — it is the primary method now", "Soap and water", "Either one; they are equivalent", "Sanitizer first, then gloves"], "correct": 1, "why": "Sanitizer is the default for routine hand hygiene, but not here. The germs that cause vomiting and diarrhea are not reliably killed by alcohol — soap and water physically removes them. Hands looking clean does not change the answer."}}, {"eyebrow": "Part 1 · Hand hygiene", "title": "Washing your hands properly", "layout": "steps", "html": "<ol class='steps'><li><b>Wet your hands</b> with clean running water. Warm or cold — whichever you prefer.</li><li><b>Apply soap</b> and lather well.</li><li><b>Scrub for at least 20 seconds.</b> Backs of hands, between fingers, thumbs, fingertips, and under your nails. Humming Happy Birthday twice gets you there.</li><li><b>Rinse</b> under running water, fingers pointing down.</li><li><b>Dry</b> with a clean towel or paper towel.</li><li><b>Turn off the faucet with the towel</b>, and use it on the door handle on your way out.</li></ol><div class='note'>Twenty seconds is much longer than it feels. Most people stop at seven or eight without a timer in their head.</div>", "narration": "Here is how to wash your hands properly. One, wet your hands with clean running water. Warm or cold, whichever you prefer — water temperature does not affect germ removal. Hot water dries and irritates your skin, and irritated skin holds more germs, so there is no advantage to it. Two, apply soap and lather well. Three, scrub for at least twenty seconds: backs of hands, between fingers, thumbs, fingertips, and under your nails. Humming Happy Birthday twice gets you there. Four, rinse under running water with your fingers pointing down. Five, dry with a clean towel or paper towel. And six, turn off the faucet with the towel, and use it on the door handle on your way out. Twenty seconds is much longer than it feels. Most people stop at seven or eight without a timer in their head."}, {"eyebrow": "Part 1 · Hand hygiene", "title": "Using sanitizer properly", "layout": "steps", "html": "<ol class='steps'><li><b>Check your hands are not visibly soiled.</b> If they are, sanitizer will not work — go and wash them.</li><li><b>Apply enough</b> to cover all surfaces of both hands. For most products that is a palmful, not a dab.</li><li><b>Rub it over every surface</b> — palms, backs, between fingers, thumbs, fingertips and nails.</li><li><b>Keep rubbing until your hands are completely dry</b>, about 20 seconds. Do not wipe it off and do not fan your hands.</li></ol><div class='note'><b>Check the label for at least 60% alcohol.</b> Products below that, and alcohol-free products, do not reliably kill germs — they may only slow their growth.</div>", "narration": "And here is how to use sanitizer properly. One, check that your hands are not visibly soiled. If they are, sanitizer will not work, so go and wash them. Two, apply enough to cover all surfaces of both hands. For most products that is a palmful, not a dab. Three, rub it over every surface: palms, backs, between fingers, thumbs, fingertips and nails. And four, keep rubbing until your hands are completely dry, which takes about twenty seconds. Do not wipe it off and do not fan your hands, because the alcohol needs that contact time to work. One more thing: check the label for at least sixty percent alcohol. Products below that, and alcohol free products, do not reliably kill germs. They may only slow their growth."}, {"eyebrow": "Part 1 · Hand hygiene", "title": "When to clean your hands", "layout": "moments", "html": "<div class='moments'><div class='moment'><span class='mk'>Before</span><p>Before you touch a person, and before any clean task — preparing food, giving medication, handling a clean dressing.</p></div><div class='moment'><span class='mk'>After</span><p>After touching a person, their belongings, or surfaces in their home. After body fluid contact, even if you wore gloves.</p></div><div class='moment'><span class='mk'>Around gloves</span><p>Before you put gloves on, and immediately after you take them off — every time, without exception.</p></div><div class='moment'><span class='mk'>Routine</span><p>Arriving and leaving a shift. Before and after eating. After using the restroom. After coughing, sneezing or blowing your nose.</p></div></div><div class='note'><b>Gloves are not a substitute for hand hygiene.</b> Gloves can have tiny holes you cannot see, and hands get contaminated during removal — which is why hand hygiene after glove removal is not optional.</div>", "narration": "When should you clean your hands? Think in four groups. Before: before you touch a person, and before any clean task like preparing food, giving medication, or handling a clean dressing. After: after touching a person, their belongings, or surfaces in their home, and after body fluid contact even if you wore gloves. Around gloves: before you put gloves on, and immediately after you take them off, every time, without exception. And routine moments: arriving and leaving a shift, before and after eating, after using the restroom, and after coughing, sneezing or blowing your nose. One thing worth saying plainly. Gloves are not a substitute for hand hygiene. Gloves can have tiny holes you cannot see, and your hands get contaminated during removal. That is why hand hygiene after glove removal is not optional.", "checkpoint": {"q": "You wore gloves for the whole task and they did not tear. Do you still clean your hands after taking them off?", "options": ["No — the gloves protected your hands", "Only if you saw fluid on the outside", "Yes, every time — gloves can have unseen holes and hands are contaminated during removal", "Only if you are about to eat"], "correct": 2, "why": "Always. Gloves can have pinholes you cannot see, and the act of removing them transfers contamination to your hands. Hand hygiene after glove removal is part of Standard Precautions every single time."}}, {"eyebrow": "Part 1 · Gloves", "title": "When to wear gloves", "layout": "split", "html": "<div class='split'><div><h3>Put gloves on when you may touch</h3><ul class='blist'><li>Blood or any body fluid</li><li>Mucous membranes — mouth care, eye care</li><li>Broken skin, wounds, rashes or sores</li><li>Soiled linens, clothing, briefs or pads</li><li>Contaminated equipment or surfaces</li></ul><h3 class='mt'>And for these tasks</h3><ul class='blist'><li>Perineal care and toileting support</li><li>Shaving someone</li><li>Emptying a catheter bag or commode</li><li>Cleaning up a spill of any body fluid</li></ul></div><div><h3>Always wear gloves when</h3><div class='panelbox warn tight'><p><b>You have a cut, scrape, hangnail or open sore on your own hands.</b> Broken skin is a way in for germs, and a way out for yours. Cover it with a bandage <i>and</i> wear gloves.</p></div><h3 class='mt'>A note on latex</h3><p>Some people are allergic to latex — including you. Nitrile or vinyl gloves are widely used alternatives. If gloves make your hands itch, burn, redden or swell, say so; do not push through it.</p></div></div>", "narration": "When do you wear gloves? Put gloves on when you may touch blood or any body fluid, mucous membranes such as during mouth care or eye care, broken skin, wounds, rashes or sores, soiled linens, clothing, briefs or pads, or contaminated equipment and surfaces. And for these specific tasks: perineal care and toileting support, shaving someone, emptying a catheter bag or commode, and cleaning up a spill of any body fluid. There is one more situation where gloves are always required. When you have a cut, a scrape, a hangnail or an open sore on your own hands. Broken skin is a way in for germs and a way out for yours. Cover it with a bandage and wear gloves. A note on latex. Some people are allergic to latex, and that includes you. Nitrile or vinyl gloves are widely used alternatives. If gloves make your hands itch, burn, redden or swell, say so. Do not push through it."}, {"eyebrow": "Part 1 · Gloves", "title": "When to change gloves", "layout": "cards", "html": "<div class='cards c2'><div class='card'><h3>Between people — always</h3><p>One person, one pair. Never carry a pair of gloves from one person to the next.</p></div><div class='card'><h3>Between a dirty task and a clean one</h3><p>After toileting support, before helping with a meal. After wound care, before handling clean laundry. Same person, new gloves.</p></div><div class='card'><h3>The moment they are damaged</h3><p>Wet inside, torn, punctured or worn thin — stop, remove them, clean your hands, put on a fresh pair.</p></div><div class='card'><h3>Before touching anything clean</h3><p>Do not open the fridge, answer your phone or touch a light switch with contaminated gloves. Everything you touch becomes contaminated too.</p></div></div><div class='note'><b>Gloves are single use.</b> Never wash, disinfect or reuse a pair — washing damages the material and does not make them safe.</div>", "narration": "When do you change gloves? Four situations. Between people, always: one person, one pair, and never carry a pair of gloves from one person to the next. Between a dirty task and a clean one: after toileting support and before helping with a meal, or after wound care and before handling clean laundry. Same person, new gloves. The moment they are damaged: wet inside, torn, punctured or worn thin — stop, remove them, clean your hands, and put on a fresh pair. And before touching anything clean. Do not open the fridge, answer your phone, or touch a light switch with contaminated gloves, because everything you touch becomes contaminated too. And gloves are single use. Never wash, disinfect or reuse a pair. Washing damages the material and does not make them safe.", "checkpoint": {"q": "You finish helping someone in the bathroom and they ask you to make them a sandwich. What do you do with your gloves?", "options": ["Keep them on — they are not torn and it is the same person", "Rinse them at the sink and carry on", "Remove them, clean your hands, and put on a fresh pair", "Take one glove off and use the clean hand for the food"], "correct": 2, "why": "Same person, but you are moving from a dirty task to a clean one — and food is involved. Remove the gloves, clean your hands, and start fresh. Gloves are never rinsed and reused."}}, {"eyebrow": "Part 1 · Gloves", "title": "Putting gloves on", "layout": "changed", "html": "<ol class='steps'><li><b>Take off rings with sharp edges</b> and anything that could tear the glove.</li><li><b>Clean your hands</b> and let them dry fully — damp hands make gloves difficult to put on and can tear them.</li><li><b>Check the box</b> for the right size, and choose nitrile or vinyl if latex is a problem for you or the person you support.</li><li><b>Take one glove out</b>, touching only what you need to.</li><li><b>Slide your hand in</b> and work your fingers into place; repeat with the other hand.</li><li><b>Check for tears</b> before you start the task.</li></ol>", "narration": "Putting gloves on. One thing to know before the steps. Powdered examination gloves and powdered surgeon's gloves are banned in the United States, because the powder caused airway inflammation, wound complications and allergic reactions. If you find powdered gloves in a supply closet, take them out of service and tell your supervisor. Now the steps. One, take off rings with sharp edges and anything that could tear the glove. Two, clean your hands and let them dry fully, because damp hands make gloves difficult to put on and can tear them. Three, check the box for the right size, and choose nitrile or vinyl if latex is a problem for you or the person you support. Four, take one glove out, touching only what you need to. Five, slide your hand in and work your fingers into place, then repeat with the other hand. And six, check for tears before you start the task.", "checkpoint": {"q": "You find a box of powdered latex exam gloves in the supply closet. What should you do?", "options": ["Use them — powder makes gloves easier to put on", "Use them only for non-medical tasks", "Take them out of service and tell your supervisor — powdered exam gloves have been banned since 2017", "Remove the powder by rinsing the gloves first"], "correct": 2, "why": "The FDA banned powdered patient examination gloves effective January 18, 2017, over airway inflammation, wound complications and allergic reactions. They should not be in use. Take them out of service and tell your supervisor."}}, {"eyebrow": "Part 1 · Gloves", "title": "Taking gloves off without contaminating yourself", "layout": "steps", "html": "<div class='lead'>The outside of a used glove is dirty. The whole technique exists to keep it from touching your skin.</div><ol class='steps'><li><b>Pinch the outside of one glove</b> at the palm or wrist, away from your body. Do not touch your bare wrist.</li><li><b>Peel it off, turning it inside out</b> as it comes.</li><li><b>Hold that glove balled up</b> in your still-gloved hand.</li><li><b>Slide a bare finger under the cuff</b> of the remaining glove — under, not on the outside.</li><li><b>Peel that glove off over the first one</b>, so the used pair ends up inside out and bundled together.</li><li><b>Drop them straight into the waste container</b> — do not set them down.</li><li><b>Clean your hands.</b> This step is part of the technique, not an afterthought.</li></ol>", "narration": "Now taking gloves off without contaminating yourself. Remember: the outside of a used glove is dirty. The whole technique exists to keep it from touching your skin. One, pinch the outside of one glove at the palm or wrist, away from your body, and do not touch your bare wrist. Two, peel it off, turning it inside out as it comes. Three, hold that glove balled up in your still gloved hand. Four, slide a bare finger under the cuff of the remaining glove — under it, not on the outside. Five, peel that glove off over the first one, so the used pair ends up inside out and bundled together. Six, drop them straight into the waste container. Do not set them down. And seven, clean your hands. That step is part of the technique, not an afterthought."}, {"eyebrow": "Part 1 · Other PPE", "title": "Masks, eye protection and gowns", "layout": "split", "html": "<div class='split'><div><h3>Choose by what might reach you</h3><ul class='blist'><li><b>Splash or spray toward your face</b> — mask and eye protection</li><li><b>Coughing, sneezing, respiratory illness</b> — mask</li><li><b>Splash toward your clothes or arms</b> — gown</li><li><b>Any body fluid on your hands</b> — gloves</li></ul><div class='note tight'>Your agency's policy and the person's care plan may require more. Follow them.</div></div><div><h3>The order matters</h3><div class='orderbox'><div><span class='ol'>Putting on</span><ol class='inline'><li>Gown</li><li>Mask</li><li>Eye protection</li><li>Gloves</li></ol></div><div><span class='ol'>Taking off</span><ol class='inline'><li>Gloves</li><li>Gown</li><li>Eye protection</li><li>Mask</li></ol></div></div><p class='fine'>Gloves go on last and come off first, because they are the dirtiest thing you are wearing. Clean your hands after everything is off — and any time your hands touch a used item along the way.</p></div></div>", "narration": "Masks, eye protection and gowns. Gloves are not the only protective equipment you may need. Standard Precautions expects you to choose protection based on the exposure you expect. Choose by what might reach you. If there is a risk of splash or spray toward your face, wear a mask and eye protection. If someone is coughing, sneezing or has a respiratory illness, wear a mask. If a splash could reach your clothes or arms, wear a gown. And if any body fluid could reach your hands, wear gloves. Your agency's policy and the person's care plan may require more, so follow them. The order matters. Putting on: gown, then mask, then eye protection, then gloves. Taking off: gloves, then gown, then eye protection, then mask. Gloves go on last and come off first, because they are the dirtiest thing you are wearing. Clean your hands after everything is off, and any time your hands touch a used item along the way."}, {"eyebrow": "Part 1 · Infection control", "title": "Coughs, sneezes, and staying home", "layout": "cards", "html": "<div class='cards c2'><div class='card'><h3>Cover it</h3><p>Cough or sneeze into a tissue, or into your upper sleeve or elbow — never into your hand. Throw the tissue away straight after.</p></div><div class='card'><h3>Clean your hands</h3><p>Every time you cough, sneeze or blow your nose, whether or not you caught it in a tissue.</p></div><div class='card'><h3>Keep your distance</h3><p>When someone is coughing, stay back where you can, and offer them a tissue and a mask if your agency provides them.</p></div><div class='card'><h3>Do not bring it to work</h3><p>Fever, vomiting, diarrhea or a new cough — tell your supervisor before your shift, not after. The people you support are the ones who pay for a shift you should not have worked.</p></div></div><div class='note'>Calling in is not letting the team down. Bringing an illness into someone's home is.</div>", "narration": "Coughs, sneezes, and staying home. Cover it: cough or sneeze into a tissue, or into your upper sleeve or elbow, never into your hand, and throw the tissue away straight after. Clean your hands every time you cough, sneeze or blow your nose, whether or not you caught it in a tissue. Keep your distance: when someone is coughing, stay back where you can, and offer them a tissue and a mask if your agency provides them. And do not bring it to work. Fever, vomiting, diarrhea or a new cough — tell your supervisor before your shift, not after. The people you support are the ones who pay for a shift you should not have worked. Calling in is not letting the team down. Bringing an illness into someone's home is."}, {"eyebrow": "Part 1 · Infection control", "title": "Soiled linens and waste", "layout": "split", "html": "<div class='split'><div><h3>Linens and clothing</h3><ul class='blist'><li>Wear gloves to handle anything soiled</li><li><b>Do not shake</b> dirty linen or clothing — shaking sends germs into the air and onto you</li><li>Roll or fold it so the soiled part is on the <b>inside</b></li><li>Carry it <b>away from your body</b>, not hugged against your uniform</li><li>Take it straight to the laundry or the hamper — do not set it on a clean surface on the way</li><li>Wash on the warmest setting the fabric allows, and dry completely</li></ul></div><div><h3>Waste</h3><ul class='blist'><li>Bag contaminated disposable supplies</li><li>Use the container your agency designates — do not improvise</li><li><b>Never reach into a disposal container</b></li><li>Never reuse single-use equipment</li><li>Never use reusable equipment again until it has been properly cleaned and disinfected</li></ul><div class='note tight'>If your agency has a container for regulated medical waste, know where it is <i>before</i> you need it.</div></div></div>", "narration": "Soiled linens and waste. For linens and clothing: wear gloves to handle anything soiled. Do not shake dirty linen or clothing, because shaking sends germs into the air and onto you. Roll or fold it so the soiled part is on the inside. Carry it away from your body, not hugged against your uniform. Take it straight to the laundry or the hamper, and do not set it on a clean surface along the way. Wash on the warmest setting the fabric allows, and dry it completely. For waste: bag contaminated disposable supplies. Use the container your agency designates, and do not improvise. Never reach into a disposal container. Never reuse single use equipment. And never use reusable equipment again until it has been properly cleaned and disinfected. If your agency has a container for regulated medical waste, know where it is before you need it."}, {"eyebrow": "Part 1 · Infection control", "title": "Cleaning up a spill", "layout": "steps", "html": "<ol class='steps'><li><b>Put on gloves</b> — and a mask, eye protection or gown if there is any chance of splashing.</li><li><b>Contain it and deal with it promptly.</b> Keep others away from the area.</li><li><b>Absorb the bulk</b> with paper towels and dispose of them in the designated bag.</li><li><b>Clean from the outside in</b> — start at the cleanest edge and work toward the dirtiest point so you do not spread it.</li><li><b>Disinfect</b> with an EPA-registered product, following the label's contact time. Keep the surface wet for the full time.</li><li><b>Never pick up broken glass by hand</b>, gloved or not. Use a dustpan, tongs or stiff cardboard, and put it in a sharps or puncture-resistant container.</li><li><b>Remove gloves, dispose of everything, and clean your hands.</b></li></ol>", "narration": "Cleaning up a spill. One thing first, because it is the step most often done wrong. Use an E P A registered disinfectant rated for the job, or a fresh bleach solution, and respect the contact time printed on the label. The surface must stay visibly wet for that long or the disinfection does not actually happen. Now the steps. One, put on gloves, and add a mask, eye protection or gown if there is any chance of splashing. Two, contain it and deal with it promptly, keeping others away from the area. Three, absorb the bulk with paper towels and dispose of them in the designated bag. Four, clean from the outside in: start at the cleanest edge and work toward the dirtiest point, so you do not spread it. Five, disinfect with an E P A registered product, following the label's contact time, and keep the surface wet for the full time. Six, never pick up broken glass by hand, gloved or not — use a dustpan, tongs or stiff cardboard, and put it in a sharps or puncture resistant container. And seven, remove gloves, dispose of everything, and clean your hands.", "checkpoint": {"q": "You are cleaning a blood spill and there is broken glass in it. How do you pick up the glass?", "options": ["Carefully, with gloved hands", "With a dustpan, tongs or stiff cardboard — never by hand", "With a paper towel folded over several times", "Wrap it in the soiled linen and bag it"], "correct": 1, "why": "Never pick up glass by hand, gloved or not — gloves do not stop a cut, and a cut during a blood spill cleanup is exactly the exposure you are trying to prevent. Use a mechanical means and a puncture-resistant container."}}, {"eyebrow": "Part 1 · Infection control", "title": "Sharps and exposures", "layout": "split", "html": "<div class='split'><div><h3>Preventing a sharps injury</h3><ul class='blist'><li><b>Never recap a needle.</b> Most needlesticks happen during recapping</li><li>Never bend or break a needle</li><li>Put sharps <b>directly</b> into a sharps container — not a pocket, tray or trash bag</li><li>Never push sharps down into a full container; replace it</li><li>Know where the sharps container is before the task starts</li></ul></div><div class='panelbox warn'><h3>If you are exposed</h3><p>A needlestick, a cut from something contaminated, or blood or body fluid in your eyes, nose, mouth or on broken skin.</p><ol class='steps tight'><li><b>Wash the area right away</b> with soap and water. Flush eyes, nose or mouth with water or saline for several minutes.</li><li><b>Tell your supervisor immediately</b> — do not wait until the end of your shift.</li><li><b>Get medical evaluation the same day.</b> Some preventive treatments only work if started within hours.</li><li><b>Complete an incident report</b> — which is where the second half of this course begins.</li></ol></div></div>", "narration": "Sharps and exposures. This is the highest risk moment in infection control, and it is the one where every minute counts. First, preventing a sharps injury. Never recap a needle — most needlesticks happen during recapping. Never bend or break a needle. Put sharps directly into a sharps container, not a pocket, a tray or a trash bag. Never push sharps down into a full container; replace it instead. And know where the sharps container is before the task starts. Now, if you are exposed. That means a needlestick, a cut from something contaminated, or blood or body fluid in your eyes, nose, mouth or on broken skin. One, wash the area right away with soap and water, and flush eyes, nose or mouth with water or saline for several minutes. Two, tell your supervisor immediately. Do not wait until the end of your shift. Three, get medical evaluation the same day, because some preventive treatments only work if they are started within hours. And four, complete an incident report, which is where the second half of this course begins.", "checkpoint": {"q": "You are stuck by a used needle while cleaning up. What is the order of what you do?", "options": ["Finish the task, then report it at the end of your shift", "Wash the area, tell your supervisor immediately, get medical evaluation the same day, file an incident report", "Put a bandage on it and mention it at your next supervision meeting", "Report it only if the person is known to have an infection"], "correct": 1, "why": "Wash, report immediately, get seen the same day, document. Some preventive treatments only work if started within hours, so waiting until the end of a shift can cost you that window — regardless of what you know about the person's health."}}, {"eyebrow": "Part 2 · Incident reporting", "title": "Why your report matters", "layout": "cards", "html": "<div class='cards c2'><div class='card'><div class='num'>1</div><h3>It protects the person</h3><p>A pattern nobody writes down is a pattern nobody sees. Reports are how repeated injuries, medication problems and unsafe situations get caught.</p></div><div class='card'><div class='num'>2</div><h3>It protects you</h3><p>Your report is the record of what actually happened and what you did about it. Without it, the account of your shift is whatever someone else remembers later.</p></div><div class='card'><div class='num'>3</div><h3>It is a legal document</h3><p>Incident reports are used in investigations, licensing reviews and court. Write every one as though it will be read aloud by someone who was not there.</p></div><div class='card'><div class='num'>4</div><h3>It is required</h3><p>Louisiana sets specific deadlines for reporting critical incidents. Missing them is a finding against your provider — and in some cases a crime.</p></div></div>", "narration": "Part two. Incident reporting. Why does your report matter? Four reasons. First, it protects the person. A pattern nobody writes down is a pattern nobody sees. Reports are how repeated injuries, medication problems and unsafe situations get caught. Second, it protects you. Your report is the record of what actually happened and what you did about it. Without it, the account of your shift is whatever someone else remembers later. Third, it is a legal document. Incident reports are used in investigations, licensing reviews and court, so write every one as though it will be read aloud by someone who was not there. And fourth, it is required. Louisiana sets specific deadlines for reporting critical incidents. Missing them is a finding against your provider, and in some cases a crime."}, {"eyebrow": "Part 2 · Incident reporting", "title": "The words you need", "layout": "defs", "html": "<dl class='defs'><div><dt>Incident</dt><dd>An event or occurrence involving the person you support.</dd></div><div><dt>Accident</dt><dd>An event that happens unexpectedly, without a deliberate plan or cause.</dd></div><div><dt>Abuse</dt><dd>Causing physical or mental injury to a person — including sexual abuse, abandonment, isolation, or exploitation — to the extent that their health, self-determination or emotional wellbeing is endangered.</dd></div><div><dt>Neglect</dt><dd>Failure by a caregiver, or by another party, to provide the support, medical care or other care necessary for a person's wellbeing.</dd></div><div><dt>Exploitation</dt><dd>Illegal or improper use or management of the funds, assets or property of an aged person or an adult with a disability.</dd></div><div><dt>Extortion</dt><dd>Obtaining something of value from an unwilling or reluctant adult through physical force, intimidation, or abuse of legal authority.</dd></div><div><dt>Misappropriation</dt><dd>Intentional, illegal use of another person's property or funds for your own use or another unauthorized purpose.</dd></div></dl>", "narration": "The words you need. These are the Louisiana definitions used in critical incident reporting, and each one names something you are required to report. An incident is an event or occurrence involving the person you support. An accident is an event that happens unexpectedly, without a deliberate plan or cause. Abuse means causing physical or mental injury to a person, including sexual abuse, abandonment, isolation or exploitation, to the extent that their health, self determination or emotional wellbeing is endangered. Neglect is failure by a caregiver, or by another party, to provide the support, medical care or other care necessary for a person's wellbeing. Exploitation is the illegal or improper use or management of the funds, assets or property of an aged person or an adult with a disability. Extortion is obtaining something of value from an unwilling or reluctant adult through physical force, intimidation, or abuse of legal authority. And misappropriation is the intentional, illegal use of another person's property or funds for your own use or another unauthorized purpose."}, {"eyebrow": "Part 2 · Incident reporting", "title": "What counts as a critical incident", "layout": "grid", "html": "<div class='catgrid'><div class='cat'>Abuse</div><div class='cat'>Neglect</div><div class='cat'>Exploitation</div><div class='cat'>Extortion</div><div class='cat'>Death</div><div class='cat'>Fall</div><div class='cat'>Major illness</div><div class='cat'>Major injury</div><div class='cat'>Major medication incident</div><div class='cat'>Major behavioral incident</div><div class='cat'>Law enforcement involvement</div><div class='cat'>Loss or destruction of the home</div><div class='cat'>Restraint use</div></div><div class='note big'><b>And the rule that catches everything else:</b> any incident or action that results in a visit to an emergency room, an urgent care center or an acute care facility is a critical incident and must be reported.</div>", "narration": "What counts as a critical incident? Louisiana O I D D defines specific reportable categories in Operational Instruction number F five, and they are what your provider is measured against. The categories are: abuse. Neglect. Exploitation. Extortion. Death. Fall. Major illness. Major injury. Major medication incident. Major behavioral incident. Law enforcement involvement. Loss or destruction of the home. And restraint use — personal, mechanical or chemical. Then there is the rule that catches everything else. Any incident or action that results in a visit to an emergency room, an urgent care center or an acute care facility is a critical incident and must be reported. If you remember one sentence from this section, make it that one.", "checkpoint": {"q": "Someone you support goes to the emergency room after feeling faint. They are checked over and sent home with no diagnosis. Is this a critical incident?", "options": ["No — nothing was found, so there is nothing to report", "Only if they were admitted to the hospital", "Yes — any visit to an ER, urgent care or acute care facility is a critical incident", "Only if it happened during your shift"], "correct": 2, "why": "Any incident resulting in a visit to an emergency room, urgent care center or acute care facility is reportable, regardless of what the visit found or whether the person was admitted."}}, {"eyebrow": "Part 2 · Incident reporting", "title": "What the categories actually mean", "layout": "defs", "html": "<dl class='defs two'><div><dt>Fall</dt><dd>An unwitnessed fall where the person is found on the floor or ground, or any witnessed unintentional fall.</dd></div><div><dt>Major illness</dt><dd>An illness requiring treatment at an emergency room, urgent care centre or acute care facility.</dd></div><div><dt>Major injury</dt><dd>A wound or injury needing attention from a licensed medical provider.</dd></div><div><dt>Major medication incident</dt><dd>Medication given incorrectly, given to the wrong person, or not given at all.</dd></div><div><dt>Major behavioral incident</dt><dd>Suicidal statements or threats, a missing person, self-injury, non-consensual sexual behavior, or physical aggression.</dd></div><div><dt>Law enforcement involvement</dt><dd>Police called or involved for any reason — whether the person was the subject, a victim, or a bystander.</dd></div><div><dt>Restraint use</dt><dd>Any personal, mechanical or chemical restraint. All restraint use is reportable.</dd></div><div><dt>Loss of home</dt><dd>Fire, flood, eviction or any event that makes the person's home unusable.</dd></div></dl>", "narration": "What do those categories actually mean? A fall is an unwitnessed fall where the person is found on the floor or ground, or any witnessed unintentional fall. A major illness is one requiring treatment at an emergency room, urgent care centre or acute care facility. A major injury is a wound or injury needing attention from a licensed medical provider. A major medication incident means medication given incorrectly, given to the wrong person, or not given at all — and note that missing a dose counts. A major behavioral incident covers suicidal statements or threats, a missing person, self injury, non consensual sexual behavior, or physical aggression. Law enforcement involvement means police called or involved for any reason, whether the person was the subject, a victim, or a bystander. Restraint use means any personal, mechanical or chemical restraint, and all restraint use is reportable. And loss of home means fire, flood, eviction or any event that makes the person's home unusable."}, {"eyebrow": "Part 2 · Incident reporting", "title": "The deadlines", "layout": "timeline", "html": "<div class='timeline'><div class='tl'><span class='when'>Immediately</span><div><b>Make the person safe. Then call protective services</b> if you suspect abuse, neglect, exploitation or extortion. This call is not delayed for anything.</div></div><div class='tl'><span class='when'>Within 24 hours</span><div><b>The provider and the support coordinator notify each other</b> of the incident. Your part is telling your supervisor right away so this clock can start.</div></div><div class='tl'><span class='when'>Within 48 hours</span><div><b>The incident is entered into SIMS</b> — counted from when it was discovered, not from when it was convenient.</div></div><div class='tl'><span class='when'>Within 6 business days</span><div><b>Follow-up notes are entered</b>, and then updated as the situation develops.</div></div><div class='tl'><span class='when'>Within 30 days</span><div><b>The case is closed</b>, unless an extension is granted.</div></div></div><div class='note'><b>Where you fit:</b> most DSWs do not enter SIMS themselves — your agency does. But the 48-hour clock starts at discovery, so a report you sit on for a day burns half of your agency's window. Tell your supervisor the moment the person is safe.</div>", "narration": "The deadlines. These are not, as soon as you get to it. Louisiana sets specific clock times, and reports are tracked in the Statewide Incident Management System, called S I M S. Immediately: make the person safe, then call protective services if you suspect abuse, neglect, exploitation or extortion. That call is not delayed for anything. Within twenty four hours: the provider and the support coordinator notify each other of the incident. Your part is telling your supervisor right away so this clock can start. Within forty eight hours: the incident is entered into S I M S, counted from when it was discovered, not from when it was convenient. Within six business days: follow up notes are entered, and then updated as the situation develops. And within thirty days: the case is closed, unless an extension is granted. Here is where you fit. Most direct support workers do not enter S I M S themselves — your agency does. But the forty eight hour clock starts at discovery, so a report you sit on for a day burns half of your agency's window. Tell your supervisor the moment the person is safe.", "checkpoint": {"q": "You discover an incident at the start of your shift on Monday. When does the 48-hour SIMS clock start?", "options": ["When your supervisor reads your report", "At the end of your shift", "When you discovered it on Monday", "On the next business day"], "correct": 2, "why": "The clock runs from discovery. Every hour you wait before telling your supervisor is an hour off your agency's window to get it into SIMS."}}, {"eyebrow": "Part 2 · Incident reporting", "title": "Who you call", "layout": "split", "html": "<div class='contacts'><div class='contact'><span class='age'>Age 18–59</span><b>Adult Protective Services</b><span class='num'>1-800-898-4910</span><p>Adults with disabilities and emancipated minors.</p></div><div class='contact'><span class='age'>Age 60+</span><b>Elderly Protective Services</b><span class='num'>1-844-945-2377</span><p>Also reachable as 1-844-94LAEPS. Available 24/7.</p></div><div class='contact'><span class='age'>Under 18</span><b>Child Protective Services</b><span class='num'>1-855-452-5437</span><p>Louisiana DCFS hotline, also 1-855-4LA-KIDS. Available 24/7.</p></div></div><div class='note big'>You do not need proof, and you are not the investigator. <b>Suspicion is the threshold for reporting.</b> Make the call, then tell your supervisor — and write down who you called and when.</div>", "narration": "Who you call. These contact details and the age split are current. And Louisiana law — revised statute fourteen, four oh three point two — makes every citizen a mandatory reporter of abuse, neglect, exploitation and extortion of adults with disabilities. Reporting in good faith gives you legal immunity. Knowing about it and failing to report carries criminal penalties. For adults aged eighteen to fifty nine, including adults with disabilities and emancipated minors, call Adult Protective Services at one, eight hundred, eight nine eight, four nine one zero. For anyone aged sixty and over, call Elderly Protective Services at one, eight four four, nine four five, two three seven seven. That is also reachable as one, eight four four, nine four L A E P S, and it is available twenty four hours a day. For anyone under eighteen, call Child Protective Services at one, eight five five, four five two, five four three seven. Now the most important sentence on this slide. You do not need proof, and you are not the investigator. Suspicion is the threshold for reporting. Make the call, then tell your supervisor, and write down who you called and when.", "checkpoint": {"q": "You suspect — but cannot prove — that a family member is taking money from the 45-year-old man you support. What do you do?", "options": ["Investigate quietly until you have proof, then report", "Report your suspicion to Adult Protective Services and tell your supervisor", "Mention it to your supervisor only, and let them decide whether to report", "Nothing — money handled by family is not your business"], "correct": 1, "why": "Suspicion is the threshold, not proof, and you are not the investigator. He is 45, so that is Adult Protective Services. Louisiana law makes every citizen a mandatory reporter, gives you immunity for reporting in good faith, and penalizes failing to report."}}, {"eyebrow": "Part 2 · Writing the report", "title": "What goes in an incident report", "layout": "split", "html": "<div class='split'><div><h3>Answer the same six questions</h3><ul class='blist'><li><b>Who</b> was involved — full names, and their role</li><li><b>What</b> happened — the actual event, in order</li><li><b>Where</b> it happened — the room, the address, the street</li><li><b>When</b> it happened — the real time, not \"this morning\"</li><li><b>How</b> you responded — what you did, in what order</li><li><b>What's next</b> — follow-up, who was notified, what is still open</li></ul><div class='note tight'>These are the same six questions as your progress notes. The standard does not change because the paperwork does.</div></div><div><h3>And the report needs</h3><ul class='blist'><li>The type of incident, marked or named</li><li>Objective facts — what you <b>saw, heard, smelled and did</b></li><li>Direct quotes where the words matter, in quotation marks</li><li>Action you took, including first aid or calls made</li><li>Notification of your supervisor — who, when</li><li>Any follow-up required</li><li>Your <b>signature, job title, date and time</b></li></ul></div></div>", "narration": "What goes in an incident report? Answer the same six questions you use for progress notes. Who was involved — full names, and their role. What happened — the actual event, in order. Where it happened — the room, the address, the street. When it happened — the real time, not this morning. How you responded — what you did, in what order. And what's next — follow up, who was notified, and what is still open. These are the same six questions as your progress notes, because the standard does not change because the paperwork does. The report also needs the type of incident, marked or named. Objective facts: what you saw, heard, smelled and did. Direct quotes where the words matter, in quotation marks. The action you took, including first aid or calls made. Notification of your supervisor, with who and when. Any follow up required. And your signature, job title, date and time."}, {"eyebrow": "Part 2 · Writing the report", "title": "What to leave out", "layout": "compare2", "html": "<div class='cmprow'><div class='cmp bad'><span class='tag'>Leave out</span><ul class='blist tight'><li><b>Opinions and conclusions</b> — \"he was angry,\" \"she was faking\"</li><li><b>Blame</b> — \"the night staff should have caught this\"</li><li><b>Guesses about cause</b> — \"she must have tripped on the rug\"</li><li><b>Diagnoses</b> — \"he had a seizure,\" unless a medical provider said so</li><li><b>Vague time</b> — \"a little while later\"</li><li><b>Other people's private information</b> not relevant to this incident</li></ul></div><div class='cmp good'><span class='tag'>Write instead</span><ul class='blist tight'><li><b>What you observed</b> — \"he raised his voice and said 'leave me alone'\"</li><li><b>What happened</b> — \"the bathroom light was off when I arrived at 6:10am\"</li><li><b>What you found</b> — \"I found her on the floor beside the bed; the rug was folded back\"</li><li><b>What you saw</b> — \"his arms and legs stiffened and shook for about 40 seconds\"</li><li><b>Real times</b> — \"at 2:15pm\"</li><li><b>Only what belongs</b> to this incident</li></ul></div></div><div class='note'>If you did not see it, you cannot write it as fact. You can write what you were told, and say who told you: <i>\"CJ told me Phil pushed him first.\"</i></div>", "narration": "What to leave out. This is where most incident reports go wrong, so look carefully at the difference between the two columns. Leave out opinions and conclusions, like he was angry, or she was faking. Leave out blame, like the night staff should have caught this. Leave out guesses about cause, like she must have tripped on the rug. Leave out diagnoses, like he had a seizure, unless a medical provider said so. Leave out vague time, like a little while later. And leave out other people's private information that is not relevant to this incident. Write these instead. What you observed: he raised his voice and said, quote, leave me alone. What happened: the bathroom light was off when I arrived at six ten a m. What you found: I found her on the floor beside the bed, and the rug was folded back. What you saw: his arms and legs stiffened and shook for about forty seconds. Real times: at two fifteen p m. And only what belongs to this incident. Here is the rule that ties it together. If you did not see it, you cannot write it as fact. You can write what you were told, and say who told you. For example: C J told me Phil pushed him first.", "checkpoint": {"q": "Which sentence belongs in an incident report?", "options": ["\"Marcus got angry and threw the plate because he didn't want to eat.\"", "\"Marcus threw a plate across the kitchen at 12:20pm. He said 'I'm not eating that.'\"", "\"Marcus had one of his episodes at lunch.\"", "\"Marcus threw a plate — the morning staff must have upset him.\""], "correct": 1, "why": "It gives the observable action, the real time, and his exact words in quotation marks. The others state a motive you cannot know, use a vague label, or assign blame — none of which you witnessed."}}, {"eyebrow": "Part 2 · Writing the report", "title": "A report scored well", "layout": "example", "html": "<div class='exhead'><span class='badge good'>Good</span><span class='meta'>Type of incident: Major behavioral incident · Law enforcement: No · Injury: Yes</span></div><div class='quote'>At 3:45pm I arrived at the home for my shift. I knocked and no one answered. I heard shouting inside and used the emergency key to open the door. I found Phil and CJ on the living room floor. Phil was on top of CJ with his right fist raised. Phil's nose was bleeding. I said \"stop\" loudly and Phil turned toward me and lowered his arm. CJ pushed Phil off, got up and went to his bedroom and closed the door.<br><br>I checked Phil first. His nose was bleeding from the left nostril; I gave him a clean towel and had him lean forward. Bleeding stopped by 3:52pm. No other injuries were visible and he declined further first aid. I then knocked on CJ's door. He said he was not hurt and did not want to come out. I could see no injuries when he opened the door.<br><br>I called my supervisor, Angela Broussard, at 3:55pm and reported both the fight and Phil's nosebleed. She instructed me to stay with both men, keep them in separate rooms for the rest of the shift, and complete this report. Phil told me \"CJ took my headphones.\" CJ did not give an account. Both ate dinner separately and were calm by 6:00pm. Angela is contacting the support coordinator.</div><div class='why'><b>Why it works:</b> real times throughout, full names, exactly what was seen, the first aid given and when the bleeding stopped, the supervisor named with the time she was called and what she instructed, quotes marked as quotes, and the state of both men at the end of the shift.</div>", "narration": "Here is a report scored well. The incident type is a major behavioral incident, no law enforcement, injury yes. The narrative reads: At three forty five p m I arrived at the home for my shift. I knocked and no one answered. I heard shouting inside and used the emergency key to open the door. I found Phil and C J on the living room floor. Phil was on top of C J with his right fist raised. Phil's nose was bleeding. I said stop loudly and Phil turned toward me and lowered his arm. C J pushed Phil off, got up and went to his bedroom and closed the door. I checked Phil first. His nose was bleeding from the left nostril. I gave him a clean towel and had him lean forward. Bleeding stopped by three fifty two p m. No other injuries were visible and he declined further first aid. I then knocked on C J's door. He said he was not hurt and did not want to come out. I could see no injuries when he opened the door. I called my supervisor, Angela Broussard, at three fifty five p m and reported both the fight and Phil's nosebleed. She instructed me to stay with both men, keep them in separate rooms for the rest of the shift, and complete this report. Phil told me, quote, C J took my headphones. C J did not give an account. Both ate dinner separately and were calm by six p m. Angela is contacting the support coordinator. Why does it work? Real times throughout. Full names. Exactly what was seen. The first aid given and when the bleeding stopped. The supervisor named, with the time she was called and what she instructed. Quotes marked as quotes. And the state of both men at the end of the shift."}, {"eyebrow": "Part 2 · Writing the report", "title": "The same incident, written badly", "layout": "compare2", "html": "<div class='cmprow'><div class='cmp bad'><span class='tag'>Poor</span><div class='quote small'>Phil and CJ got into it again this afternoon. Phil has been agitated all week and finally lost it. His nose was bleeding but it wasn't bad. I separated them and everything calmed down. Called the supervisor.</div><ul class='blist tight fine'><li>No times anywhere</li><li>\"Got into it again\" — a conclusion about history you did not witness</li><li>\"Agitated all week,\" \"finally lost it\" — opinion and motive</li><li>\"Wasn't bad\" is your judgment of an injury</li><li>No first aid described, no supervisor named, no instructions recorded</li><li>Nothing about the rest of the shift</li></ul></div><div class='cmp warn'><span class='tag'>Adequate</span><div class='quote small'>At about 3:45pm I found Phil and CJ fighting on the floor. Phil's nose was bleeding. I told them to stop and CJ went to his room. I gave Phil a towel for his nose. I called my supervisor and she said to keep them apart. Both were fine by dinner.</div><ul class='blist tight fine'><li>A reader can follow it, but the detail is thin</li><li>\"About 3:45\" — and no other times at all</li><li>Supervisor not named; the call has no time on it</li><li>No description of what was actually seen on arrival</li><li>\"Both were fine\" is a conclusion, not an observation</li></ul></div></div><div class='note'>Same incident, three reports. Only the writing changed.</div>", "narration": "Now the same incident written badly. The poor version says: Phil and C J got into it again this afternoon. Phil has been agitated all week and finally lost it. His nose was bleeding but it wasn't bad. I separated them and everything calmed down. Called the supervisor. What is wrong with it? No times anywhere. Got into it again is a conclusion about a history you did not witness. Agitated all week and finally lost it are opinion and motive. Wasn't bad is your judgment of an injury. There is no first aid described, no supervisor named, and no instructions recorded. And nothing about the rest of the shift. The adequate version says: At about three forty five p m I found Phil and C J fighting on the floor. Phil's nose was bleeding. I told them to stop and C J went to his room. I gave Phil a towel for his nose. I called my supervisor and she said to keep them apart. Both were fine by dinner. A reader can follow that, but the detail is thin. About three forty five, and no other times at all. The supervisor is not named and the call has no time on it. There is no description of what was actually seen on arrival. And both were fine is a conclusion, not an observation. Same incident, three reports. Only the writing changed."}, {"eyebrow": "Part 2 · Practice", "title": "Practice: the store", "layout": "scenario", "html": "<div class='scenario'><p>You and Nicole walk two blocks to the store so she can buy a few personal items. While she shops you look at the magazines. Nicole goes through the checkout and signals to you that she is done. As you both reach the door, the manager stops Nicole and asks her to come back inside, saying he is going to call the police. You ask why. He says Nicole has taken items without paying, and that you were with her, so he will press charges against you too.</p></div><div class='qbox'><b>Before you move on, think it through:</b> Is this a critical incident? Which category or categories? Who do you contact, and when? And what will you need to have written down?</div>", "narration": "Let's practice. Here is the scenario. You and Nicole walk two blocks to the store so she can buy a few personal items. While she shops you look at the magazines. Nicole goes through the checkout and signals to you that she is done. As you both reach the door, the manager stops Nicole and asks her to come back inside, saying he is going to call the police. You ask why. He says Nicole has taken items without paying, and that you were with her, so he will press charges against you too. Before you move on, think it through. Is this a critical incident? Which category, or categories? Who do you contact, and when? And what will you need to have written down? Take a moment with it."}, {"eyebrow": "Part 2 · Practice", "title": "Practice: the store — worked through", "layout": "answer", "html": "<div class='ansgrid'><div class='ans'><h3>Is it critical? Yes.</h3><p><b>Law enforcement involvement</b> is a reportable category the moment police are called — it does not matter whether anyone is arrested or charged.</p></div><div class='ans'><h3>What you do first</h3><p>Stay with Nicole. Stay calm and do not argue the accusation or try to settle it. Do not speak for her about what happened. Call your supervisor <b>from the store</b>, not after you get home.</p></div><div class='ans'><h3>Who else</h3><p>Your supervisor and the agency handle notification of the support coordinator within 24 hours and the SIMS entry within 48. This is not an abuse or neglect situation, so there is no protective services call.</p></div><div class='ans'><h3>What you write</h3><p>The store name and address. The time you arrived and the time the manager stopped you. What the manager said, in quotes. What Nicole said, in quotes. Whether police came, when, and what they did. Who you called and when. What Nicole did and how she was at the end of the shift.</p></div></div><div class='note'><b>One thing to be careful about:</b> you did not see Nicole take anything. Write that you did not observe it. Do not write that she stole, and do not write that she didn't — write what the manager said, what she said, and what you saw.</div>", "narration": "Let's work it through. Is it critical? Yes. Law enforcement involvement is a reportable category the moment police are called. It does not matter whether anyone is arrested or charged. What you do first: stay with Nicole. Stay calm, do not argue the accusation, and do not try to settle it. Do not speak for her about what happened. Call your supervisor from the store, not after you get home. Who else? Your supervisor and the agency handle notification of the support coordinator within twenty four hours and the S I M S entry within forty eight. This is not an abuse or neglect situation, so there is no protective services call. What do you write? The store name and address. The time you arrived and the time the manager stopped you. What the manager said, in quotes. What Nicole said, in quotes. Whether police came, when, and what they did. Who you called and when. And what Nicole did and how she was at the end of the shift. One thing to be careful about. You did not see Nicole take anything. Write that you did not observe it. Do not write that she stole, and do not write that she didn't. Write what the manager said, what she said, and what you saw."}, {"eyebrow": "Part 2 · Incident reporting", "title": "Confidentiality", "layout": "cards", "html": "<div class='cards c2'><div class='card'><h3>The report goes up, not sideways</h3><p>Your supervisor, the agency, the support coordinator, protective services and investigators. Not other staff who were not involved, not the person's neighbors, not your family.</p></div><div class='card'><h3>Not on social media. Ever.</h3><p>Not the person's name, not a description, not a photo, not \"you would not believe my shift.\" This ends careers and it harms people.</p></div><div class='card'><h3>Other people in the report</h3><p>If another person you support was present, include only what is necessary to describe the incident. Their full history is not relevant.</p></div><div class='card'><h3>Where the report lives</h3><p>Follow your agency's rules for where reports are stored and sent. Do not leave one on a counter, in your car, or in a photo on your phone.</p></div></div>", "narration": "Confidentiality. The report goes up, not sideways. That means your supervisor, the agency, the support coordinator, protective services and investigators. It does not mean other staff who were not involved, the person's neighbors, or your family. Not on social media, ever. Not the person's name, not a description, not a photo, not you would not believe my shift. This ends careers, and more importantly, it harms people. Other people in the report: if another person you support was present, include only what is necessary to describe the incident. Their full history is not relevant. And where the report lives: follow your agency's rules for where reports are stored and sent. Do not leave one on a counter, in your car, or in a photo on your phone."}, {"eyebrow": "Before you sign", "title": "The 10-point check", "layout": "checklist", "html": "<ol class='check'><li>The person is safe, and any needed care has been given</li><li>Protective services called, if you suspect abuse, neglect, exploitation or extortion</li><li>Supervisor notified — with the time you called and what they told you to do</li><li>Type of incident marked</li><li>Full names for everyone involved, and their roles</li><li>Real times and real dates throughout — no \"about,\" no \"later\"</li><li>Only what you saw, heard and did; anything you were told is attributed to who said it</li><li>No opinions, no blame, no guesses at cause</li><li>Action taken and follow-up still needed, both written down</li><li>Signed, with your job title, the date and the time</li></ol><div class='note'>Two minutes on this list is the difference between a report that protects the person and one that raises questions about you.</div>", "narration": "Before you sign, run the ten point check. One, the person is safe, and any needed care has been given. Two, protective services called, if you suspect abuse, neglect, exploitation or extortion. Three, supervisor notified, with the time you called and what they told you to do. Four, type of incident marked. Five, full names for everyone involved, and their roles. Six, real times and real dates throughout — no about, no later. Seven, only what you saw, heard and did, and anything you were told is attributed to who said it. Eight, no opinions, no blame, no guesses at cause. Nine, action taken and follow up still needed, both written down. And ten, signed, with your job title, the date and the time. Two minutes on this list is the difference between a report that protects the person and one that raises questions about you."}, {"eyebrow": "Quick reference", "title": "Keep this one", "layout": "quickref", "html": "<div class='qr'><div class='qrbox'><h3>Hand hygiene</h3><p><b>Sanitizer</b> (60%+) is the default.<br><b>Soap and water</b> when: hands visibly dirty · after the restroom · before food · after diarrhea or vomiting · after body fluid contact.<br>20 seconds either way. Any water temperature.</p></div><div class='qrbox'><h3>Gloves</h3><p>New pair for every person, and between a dirty task and a clean one.<br>Never washed, never reused.<br>Hand hygiene before <i>and</i> after — every time.<br>Powdered exam gloves: banned since 2017.</p></div><div class='qrbox'><h3>PPE order</h3><p><b>On:</b> gown · mask · eye protection · gloves<br><b>Off:</b> gloves · gown · eye protection · mask</p></div><div class='qrbox'><h3>Exposure</h3><p>Wash or flush immediately → tell your supervisor now → medical evaluation the same day → incident report.</p></div><div class='qrbox'><h3>Critical incident</h3><p>Abuse · neglect · exploitation · extortion · death · fall · major illness · major injury · major medication incident · major behavioral incident · law enforcement · loss of home · restraint.<br><b>Plus any ER, urgent care or acute care visit.</b></p></div><div class='qrbox'><h3>Deadlines</h3><p>Protective services — <b>immediately</b><br>Provider and coordinator notify each other — <b>24 hours</b><br>Entered in SIMS — <b>48 hours from discovery</b><br>Follow-up notes — <b>6 business days</b></p></div><div class='qrbox'><h3>Who you call</h3><p>18–59 — APS <b>1-800-898-4910</b><br>60+ — EPS <b>1-844-945-2377</b><br>Under 18 — CPS <b>1-855-452-5437</b><br>Suspicion is enough. You are not the investigator.</p></div><div class='qrbox'><h3>Every report answers</h3><p>Who · What · Where · When · How you responded · What's next<br><b>Banned:</b> \"got into it again\" · \"wasn't bad\" · \"about 3pm\" · \"he was angry\" · \"seemed fine\"</p></div></div>", "narration": "Here is your quick reference. Hand hygiene: sanitizer at sixty percent or more is the default. Soap and water when hands are visibly dirty, after the restroom, before food, after diarrhea or vomiting, and after body fluid contact. Twenty seconds either way, and any water temperature. Gloves: a new pair for every person, and between a dirty task and a clean one. Never washed, never reused. Hand hygiene before and after, every time. And powdered exam gloves have been banned since two thousand seventeen. P P E order — on: gown, mask, eye protection, gloves. Off: gloves, gown, eye protection, mask. Exposure: wash or flush immediately, tell your supervisor now, medical evaluation the same day, incident report. Critical incidents: abuse, neglect, exploitation, extortion, death, fall, major illness, major injury, major medication incident, major behavioral incident, law enforcement, loss of home, and restraint — plus any emergency room, urgent care or acute care visit. Deadlines: protective services immediately, provider and coordinator notify each other within twenty four hours, entered in S I M S within forty eight hours from discovery, and follow up notes within six business days. Who you call: eighteen to fifty nine, Adult Protective Services, one eight hundred, eight nine eight, four nine one zero. Sixty and over, Elderly Protective Services, one eight four four, nine four five, two three seven seven. Under eighteen, Child Protective Services, one eight five five, four five two, five four three seven. Suspicion is enough, and you are not the investigator. And every report answers who, what, where, when, how you responded, and what's next."}, {"eyebrow": "", "title": "Clean hands. Clear records.", "layout": "closing", "html": "<p class='lead center'>Both halves of this course come down to the same habit: do the careful thing while nobody is watching, and write down what actually happened.</p><div class='closerow'><div><b>Infection control</b><span>You cannot tell by looking who is carrying something. So you use the same precautions with everyone, every time.</span></div><div><b>Incident reporting</b><span>You were there and the reader was not. Give them the times, the names, and only what you saw.</span></div></div><p class='tagline'>Questions about a specific situation? Ask your supervisor before you sign — not after the report is reviewed.</p><div class='banner'><b>Next: your competency check.</b> The test is 18 questions and you need 15 correct. Passing produces a certificate naming the competency areas you covered, for your training file.</div>", "narration": "Clean hands. Clear records. Both halves of this course come down to the same habit: do the careful thing while nobody is watching, and write down what actually happened. For infection control: you cannot tell by looking who is carrying something, so you use the same precautions with everyone, every time. For incident reporting: you were there and the reader was not, so give them the times, the names, and only what you saw. Questions about a specific situation? Ask your supervisor before you sign, not after the report is reviewed. That is the end of the training. Next is your competency check: eighteen questions, and you need fifteen correct to pass. Passing produces a certificate naming the competency areas you covered, for your training file. Good luck."}];
+const TEST = [{"q": "Standard Precautions apply to:", "options": ["Only people known to have an infection", "Only blood and visibly bloody fluids", "Every person you support, every time — all body fluids except sweat", "Only tasks involving wound care"], "correct": 2, "why": "Standard Precautions apply to everyone, every time, covering all body fluids except sweat — whether or not blood is visible and whether or not anyone is known to be sick."}, {"q": "For routine hand hygiene during care, what does CDC now recommend as the primary method?", "options": ["Soap and water — sanitizer is only a substitute", "Alcohol-based hand sanitizer with at least 60% alcohol", "Antibacterial wipes", "Either one, but only if hands look dirty"], "correct": 1, "why": "CDC recommends alcohol-based hand sanitizer as the primary method in most care situations. It is faster and gentler on skin, so it actually gets done. Soap and water is still required in specific situations."}, {"q": "Which situation requires soap and water rather than sanitizer?", "options": ["After removing gloves at the end of a clean task", "Before helping someone into a chair", "After caring for someone with vomiting or diarrhea", "After touching a doorknob"], "correct": 2, "why": "Alcohol does not reliably kill the germs behind many stomach illnesses, and sanitizer does not remove soil. Visibly dirty hands, after the restroom, before food, and after body fluid contact are the others."}, {"q": "How long should you scrub when washing with soap and water, and at what water temperature?", "options": ["10 seconds, hot water", "20 seconds, warm water only", "20 seconds, whatever temperature is comfortable", "As long as it takes to rinse the soap off"], "correct": 2, "why": "At least 20 seconds. CDC now says water temperature does not affect germ removal — and hot water dries and irritates skin, which makes it hold more germs."}, {"q": "You wore gloves for a task and they did not tear. Do you clean your hands afterward?", "options": ["No — the gloves did that job", "Only if the gloves looked soiled", "Yes, every time — gloves can have unseen holes and hands are contaminated during removal", "Only before eating"], "correct": 2, "why": "Always. Gloves can have pinholes you cannot see, and removing them transfers contamination to your hands. Hand hygiene after glove removal is never optional."}, {"q": "You find powdered latex exam gloves in the supply closet. What is the correct action?", "options": ["Use them — the powder makes them easier to put on", "Use them for cleaning tasks only", "Take them out of service and tell your supervisor", "Rinse the powder off before using them"], "correct": 2, "why": "The FDA banned powdered patient examination gloves and powdered surgeon's gloves effective January 18, 2017, because the powder caused airway inflammation, wound complications and allergic reactions. They should not be in use anywhere."}, {"q": "You finish helping someone in the bathroom and they ask for a snack. What do you do about your gloves?", "options": ["Keep them on — same person, no tears", "Rinse them and continue", "Remove them, clean your hands, put on a fresh pair", "Remove one glove and handle food with that hand"], "correct": 2, "why": "Moving from a dirty task to a clean one always means new gloves, even with the same person — and this one involves food. Gloves are single use and are never rinsed and reused."}, {"q": "What is the correct order for removing PPE?", "options": ["Mask, eye protection, gown, gloves", "Gloves, gown, eye protection, mask", "Gown, gloves, mask, eye protection", "Eye protection, mask, gloves, gown"], "correct": 1, "why": "Gloves come off first because they are the dirtiest thing you are wearing, then gown, eye protection and mask. Putting on runs the other way: gown, mask, eye protection, gloves."}, {"q": "You are cleaning up a blood spill that contains broken glass. How do you handle the glass?", "options": ["Pick it up carefully with gloved hands", "Use a dustpan, tongs or stiff cardboard — never your hands", "Wrap it in paper towels and pick it up", "Push it aside and clean around it"], "correct": 1, "why": "Never pick up glass by hand, gloved or not — gloves do not prevent a cut, and a cut during a blood spill cleanup is exactly the exposure you are trying to avoid. Use a mechanical means and a puncture-resistant container."}, {"q": "You are stuck by a used needle. What is the right sequence?", "options": ["Bandage it and report at the end of your shift", "Wash the area, tell your supervisor immediately, get medical evaluation the same day, file an incident report", "Report it only if the person has a known infection", "Wash it and finish the task, then decide whether to report"], "correct": 1, "why": "Wash, report immediately, get seen the same day, document. Some preventive treatments only work if started within hours, so waiting until the end of a shift can cost you that window."}, {"q": "Someone you support is taken to the emergency room, examined, and sent home with no diagnosis. Is it reportable?", "options": ["No — nothing was found", "Only if they were admitted", "Yes — any ER, urgent care or acute care visit is a critical incident", "Only if it happened on your shift"], "correct": 2, "why": "Any incident resulting in a visit to an emergency room, urgent care center or acute care facility is a critical incident, regardless of the outcome or whether the person was admitted."}, {"q": "Which of these is NOT one of Louisiana OIDD's reportable critical incident categories?", "options": ["Restraint use", "Loss or destruction of the home", "A change in the person's daily routine", "Major medication incident"], "correct": 2, "why": "A routine change is not a critical incident. The categories are abuse, neglect, exploitation, extortion, death, fall, major illness, major injury, major medication incident, major behavioral incident, law enforcement involvement, loss or destruction of home, and restraint use."}, {"q": "Within how long must a critical incident be entered into SIMS, and from when?", "options": ["24 hours from the end of the shift", "48 hours from discovery of the incident", "72 hours from the supervisor being told", "5 business days from discovery"], "correct": 1, "why": "48 hours, counted from discovery — not from when the supervisor was told or when it was convenient. That is why telling your supervisor promptly matters: delay eats your agency's window."}, {"q": "You suspect a family member is taking money from the 45-year-old man you support, but you have no proof. What do you do?", "options": ["Gather proof first, then report", "Report your suspicion to Adult Protective Services and tell your supervisor", "Tell only your supervisor and let them decide", "Nothing — family finances are not your concern"], "correct": 1, "why": "Suspicion is the threshold, not proof, and you are not the investigator. At 45 he falls under Adult Protective Services. Louisiana R.S. 14:403.2 makes every citizen a mandatory reporter, gives immunity for good-faith reports, and penalizes failure to report."}, {"q": "Which protective services agency covers an adult with a disability who is 62 years old?", "options": ["Adult Protective Services", "Elderly Protective Services", "Child Protective Services", "Whichever the supervisor prefers"], "correct": 1, "why": "Elderly Protective Services covers age 60 and over — 1-844-945-2377. Adult Protective Services covers ages 18 to 59 at 1-800-898-4910."}, {"q": "Which sentence belongs in an incident report?", "options": ["\"She was upset about the schedule change and refused her medication.\"", "\"At 8:10am she said 'I'm not taking those' and turned away. The 8:00am dose was not taken.\"", "\"She had one of her difficult mornings.\"", "\"She refused her meds — the night staff must have upset her.\""], "correct": 1, "why": "It gives the real time, her exact words in quotation marks, and the observable fact of the missed dose. The others state a motive you cannot know, use a vague label, or assign blame for something you did not witness."}, {"q": "A police officer is called to the home after a dispute, but nobody is arrested or charged. Is this reportable?", "options": ["No — no arrest was made", "Only if someone was injured", "Yes — law enforcement involvement is reportable whenever police are involved", "Only if the person you support called them"], "correct": 2, "why": "Law enforcement involvement is a reportable category the moment police are involved, for any reason, whether the person was the subject, a victim or a bystander. An arrest is not required."}, {"q": "You witnessed part of an incident and were told about the rest. How do you write the part you were told?", "options": ["Write it as fact — you trust the person who told you", "Leave it out entirely", "Write it and say who told you, for example: \"CJ told me Phil pushed him first.\"", "Write it as your own conclusion about what happened"], "correct": 2, "why": "If you did not see it, you cannot write it as fact — but you can and should record what you were told, attributed to who said it. That keeps the report truthful about what is observation and what is account."}];
+const PASS_MARK = 15;
+
+const S = {name:"",agency:"",i:0,maxUnlocked:0,rate:1,
+  done:new Array(SLIDES.length).fill(false),cpPassed:{},
+  answers:new Array(TEST.length).fill(null),attempt:0,
+  speechOK:("speechSynthesis" in window),voice:null,timer:null,watchdog:null,
+  sentences:[],sIdx:0,playing:false,finished:false,lastLabel:"Next"};
+const $ = id => document.getElementById(id);
+
+$("fslides").textContent=SLIDES.length;
+$("fcp").textContent=SLIDES.filter(s=>s.checkpoint).length;
+$("ftest").textContent=TEST.length;
+$("fpass").textContent=PASS_MARK;
+$("testintro").textContent=TEST.length+" questions. You need "+PASS_MARK+" correct to pass. Answer every question, then submit. If you don't pass, you can review what you missed and take it again.";
+
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0);}
+function shuffleQ(q){
+  const idx=q.options.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {q:q.q,why:q.why,options:idx.map(i=>q.options[i]),correct:idx.indexOf(q.correct)};
+}
+
+/* ---------- speech ---------- */
+// Narration uses the voices installed on the learner's own device, so the list
+// differs between a Mac, a Windows PC and a phone. Offer whatever is there.
+function voicePool(){
+  if(!S.speechOK) return [];
+  const vs=speechSynthesis.getVoices();
+  const en=vs.filter(v=>/^en(-|_|$)/i.test(v.lang));
+  return (en.length?en:vs).slice().sort((a,b)=>a.name.localeCompare(b.name));
+}
+function pickVoice(){
+  const pool=voicePool(); if(!pool.length) return null;
+  let saved=null; try{ saved=sessionStorage.getItem("icir_voice"); }catch(e){}
+  if(saved){ const m=pool.find(v=>v.voiceURI===saved); if(m) return m; }
+  const pref=["Samantha","Google US English","Microsoft Aria","Microsoft Jenny","Microsoft Zira","Karen","Moira","Daniel"];
+  for(const p of pref){ const m=pool.find(v=>v.name.indexOf(p)>-1); if(m) return m; }
+  return pool[0];
+}
+function niceName(v){
+  return v.name.replace(/^(Microsoft|Google)\s+/,"")
+              .replace(/\s*[-—]?\s*English.*$/i,"")
+              .replace(/\s*\(.*\)$/,"").trim() || v.name;
+}
+function fillVoices(){
+  const sel=$("voicesel"), pool=voicePool();
+  if(pool.length<2){ sel.hidden=true; return; }
+  const cur=S.voice&&S.voice.voiceURI;
+  sel.innerHTML="";
+  pool.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=v.voiceURI; o.textContent=niceName(v);
+    if(v.voiceURI===cur) o.selected=true;
+    sel.appendChild(o);
+  });
+  sel.hidden=false;
+}
+if(S.speechOK){
+  speechSynthesis.onvoiceschanged=()=>{ if(!S.voice) S.voice=pickVoice(); fillVoices(); };
+  S.voice=pickVoice();
+}
+function splitSentences(t){ return t.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g)||[t]; }
+function stopSpeech(){
+  if(S.speechOK){try{speechSynthesis.cancel();}catch(e){}}
+  if(S.timer){clearTimeout(S.timer);S.timer=null;}
+  if(S.watchdog){clearTimeout(S.watchdog);S.watchdog=null;}
+  S.playing=false;
+}
+function renderTranscript(){
+  const box=$("tbody"); box.innerHTML="";
+  S.sentences.forEach((s,k)=>{const el=document.createElement("span");el.className="sent";el.id="sent"+k;el.textContent=s;box.appendChild(el);});
+}
+function markSentence(k){
+  S.sentences.forEach((_,j)=>{const el=$("sent"+j); if(!el) return;
+    el.classList.toggle("on",j===k); el.classList.toggle("past",j<k);});
+}
+function speakFrom(k){
+  S.sIdx=k; S.playing=true; setStatus();
+  if(k>=S.sentences.length){narrationDone();return;}
+  markSentence(k);
+  if(S.speechOK&&S.voice!==null){
+    const u=new SpeechSynthesisUtterance(S.sentences[k]);
+    u.voice=S.voice;u.rate=S.rate*0.98;u.pitch=1;
+    let moved=false;
+    const advance=()=>{if(moved)return;moved=true;
+      if(S.watchdog){clearTimeout(S.watchdog);S.watchdog=null;}
+      if(S.playing) speakFrom(k+1);};
+    u.onend=advance;u.onerror=advance;
+    const words=S.sentences[k].trim().split(/\s+/).length;
+    S.watchdog=setTimeout(advance,Math.max(6000,(words/1.7)*1000/S.rate+4000));
+    try{speechSynthesis.speak(u);}catch(e){if(S.watchdog){clearTimeout(S.watchdog);S.watchdog=null;}timedFrom(k);}
+  } else { timedFrom(k); }
+}
+function timedFrom(k){
+  const words=S.sentences[k].trim().split(/\s+/).length;
+  S.timer=setTimeout(()=>{if(S.playing)speakFrom(k+1);},Math.max(1200,(words/2.6)*1000/S.rate));
+}
+function narrationDone(){
+  S.playing=false;S.finished=true;markSentence(-1);S.done[S.i]=true;
+  const cp=SLIDES[S.i].checkpoint;
+  if(cp&&!S.cpPassed[S.i]) openCheckpoint(); else unlockNext();
+  setStatus();
+}
+function setNextLabel(locked){
+  const b=$("next");
+  b.innerHTML=locked?'<svg class="lock" viewBox="0 0 24 24"><path d="M17 9V7a5 5 0 0 0-10 0v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>':"";
+  b.appendChild(document.createTextNode(S.lastLabel));
+  b.title=locked?"Unlocks when the narration finishes":"";
+}
+function unlockNext(){
+  $("next").disabled=false;
+  if(S.i+1>S.maxUnlocked)S.maxUnlocked=S.i+1;
+  drawRail();
+  $("gatedot").className="dot";
+  $("gatebadge").className="gatepill ready";
+  $("gatetext").textContent=(S.i===SLIDES.length-1)?"Training complete":"Ready";
+  setNextLabel(false);
+}
+function setStatus(){
+  const st=$("status"),pp=$("ppicon");
+  st.textContent=(S.finished?S.sentences.length:Math.min(S.sIdx+1,S.sentences.length))+" of "+S.sentences.length;
+  if(!S.finished&&!S.playing){$("gatebadge").className="gatepill hold";$("gatetext").textContent="Paused";$("gatedot").className="dot";}
+  else if(!S.finished&&S.playing&&!$("overlay").classList.contains("on")){
+    $("gatebadge").className="gatepill";$("gatetext").textContent=S.speechOK?"Narrating":"Reading time";$("gatedot").className="dot live";}
+  pp.innerHTML=S.playing?'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>':'<path d="M7 4l13 8-13 8z"/>';
+  $("playpause").setAttribute("aria-label",S.playing?"Pause narration":"Resume narration");
+}
+function drawRail(){
+  const rail=$("rail");
+  if(rail.children.length!==SLIDES.length){
+    rail.innerHTML="";
+    SLIDES.forEach((sl,k)=>{const d=document.createElement("button");d.className="seg";d.type="button";
+      d.title="Slide "+(k+1)+" · "+sl.title;
+      d.setAttribute("aria-label","Slide "+(k+1)+": "+sl.title);
+      d.onclick=()=>{if(k<=S.maxUnlocked)goto(k);};rail.appendChild(d);});
+  }
+  [...rail.children].forEach((d,k)=>{
+    d.className="seg"+(S.done[k]?" done":"")+(k===S.i?" cur":"")+(SLIDES[k].checkpoint?" gate":"");
+    d.disabled=k>S.maxUnlocked;});
+}
+function renderSlide(sl){
+  let h="";
+  if(sl.eyebrow) h+='<div class="s-eyebrow">'+sl.eyebrow+"</div>";
+  h+='<h2 class="s-title">'+sl.title+"</h2>";
+  h+=sl.html;
+  $("slide").innerHTML=h;
+}
+function goto(k){
+  stopSpeech();
+  S.i=Math.max(0,Math.min(SLIDES.length-1,k));
+  S.finished=false;
+  const sl=SLIDES[S.i];
+  renderSlide(sl);
+  $("counter").textContent=String(S.i+1).padStart(2,"0")+" / "+SLIDES.length;
+  S.sentences=splitSentences(sl.narration);
+  renderTranscript();
+  $("prev").disabled=S.i===0;
+  $("next").disabled=true;
+  S.lastLabel=(S.i===SLIDES.length-1)?"Go to the final test":"Next";
+  $("gatebadge").className="gatepill";$("gatedot").className="dot live";
+  $("gatetext").textContent=S.speechOK?"Narrating":"Reading time";
+  setNextLabel(true);
+  drawRail();
+  const already=S.done[S.i]&&(!sl.checkpoint||S.cpPassed[S.i]);
+  speakFrom(0);
+  if(already) setTimeout(unlockNext,50);
+}
+
+/* ---------- checkpoint ---------- */
+function openCheckpoint(){
+  const cp=shuffleQ(SLIDES[S.i].checkpoint); S.cpView=cp;
+  $("cplabel").textContent="Checkpoint · Slide "+(S.i+1);
+  $("cpq").textContent=cp.q;
+  $("cpfb").className="feedback";
+  $("cpcontinue").style.display="none";
+  const box=$("cpopts"); box.innerHTML="";
+  cp.options.forEach((o,k)=>{
+    const b=document.createElement("button");b.className="opt";b.type="button";
+    b.innerHTML='<span class="key">'+String.fromCharCode(65+k)+'</span><span></span>';
+    b.lastChild.textContent=o; b.onclick=()=>answerCheckpoint(k,b); box.appendChild(b);});
+  $("overlay").classList.add("on");
+  $("gatebadge").className="gatepill hold";
+  $("gatetext").textContent="Answer to continue";
+  $("gatedot").className="dot";
+}
+function answerCheckpoint(k,btn){
+  const cp=S.cpView,fb=$("cpfb");
+  if(k===cp.correct){
+    btn.classList.add("right");
+    [...$("cpopts").children].forEach(o=>o.disabled=true);
+    fb.className="feedback on ok"; fb.innerHTML="<b>Correct.</b> "+cp.why;
+    $("cpcontinue").style.display="inline-flex"; S.cpPassed[S.i]=true;
+  } else {
+    btn.classList.add("wrong"); btn.disabled=true;
+    fb.className="feedback on no";
+    fb.innerHTML="<b>Not quite.</b> Look at the slide again and try another answer.";
+  }
+}
+$("cpcontinue").onclick=()=>{$("overlay").classList.remove("on");unlockNext();};
+
+/* ---------- controls ---------- */
+$("start").onclick=()=>{
+  const n=$("learner").value.trim();
+  if(!n){$("learner").focus();$("learner").style.borderColor="var(--bad)";return;}
+  S.name=n;S.agency=$("agency").value.trim();
+  $("who").textContent=S.name;$("who2").textContent=S.name;
+  show("s-train");
+  let waited=0;
+  (function waitVoices(){
+    if(S.speechOK&&!S.voice)S.voice=pickVoice();
+    if(S.voice||waited>=900||!S.speechOK){fillVoices();goto(0);return;}
+    waited+=150;setTimeout(waitVoices,150);
+  })();
+};
+$("learner").addEventListener("keydown",e=>{if(e.key==="Enter")$("start").click();});
+$("next").onclick=()=>{ if(S.i===SLIDES.length-1){stopSpeech();buildTest();show("s-test");} else goto(S.i+1); };
+$("prev").onclick=()=>{if(S.i>0)goto(S.i-1);};
+$("replay").onclick=()=>{const a=S.done[S.i]&&(!SLIDES[S.i].checkpoint||S.cpPassed[S.i]);
+  stopSpeech();S.finished=false;speakFrom(0); if(a)setTimeout(unlockNext,50);};
+$("playpause").onclick=()=>{
+  if(S.finished){const a=S.done[S.i]&&(!SLIDES[S.i].checkpoint||S.cpPassed[S.i]);
+    stopSpeech();S.finished=false;speakFrom(0);if(a)setTimeout(unlockNext,50);return;}
+  if(S.playing){stopSpeech();setStatus();} else speakFrom(S.sIdx);
+};
+$("speed").onclick=()=>{
+  const steps=[0.8,0.9,1,1.15,1.3];
+  S.rate=steps[(steps.indexOf(S.rate)+1)%steps.length];
+  $("speed").textContent=S.rate.toFixed(2).replace(/(\.\d)0$/,"$1")+"×";
+  if(S.playing){stopSpeech();speakFrom(S.sIdx);}
+};
+$("voicesel").onchange=()=>{
+  const v=voicePool().find(x=>x.voiceURI===$("voicesel").value);
+  if(!v) return;
+  S.voice=v;
+  try{ sessionStorage.setItem("icir_voice",v.voiceURI); }catch(e){}
+  const wasFinished=S.finished, at=S.sIdx;
+  stopSpeech();
+  if(wasFinished){                       // already unlocked — just sample the new voice
+    try{ const u=new SpeechSynthesisUtterance("This is how the narration will sound.");
+         u.voice=v; u.rate=S.rate*0.98; speechSynthesis.speak(u); }catch(e){}
+  } else {
+    S.finished=false; speakFrom(at);     // pick up where it was, in the new voice
+  }
+};
+setInterval(()=>{if(S.speechOK&&S.playing&&speechSynthesis.paused){try{speechSynthesis.resume();}catch(e){}}},5000);
+window.addEventListener("beforeunload",stopSpeech);
+
+
+/* ---------- completion tracking ---------- */
+const SUPABASE_URL = "https://hubvxtzwmgigmvhyygae.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1YnZ4dHp3bWdpZ212aHl5Z2FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDk5MjQsImV4cCI6MjEwMzQyNTkyNH0.UJSW_ibGs3G5OK-9iI80lDMLD7IXD9c9-lk5L_Wpc6M";
+
+function makeCertificateNumber(){
+  const d=new Date(),p=n=>String(n).padStart(2,"0");
+  const stamp=d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+"-"+p(d.getHours())+p(d.getMinutes())+p(d.getSeconds());
+  return "ICIR-"+stamp+"-"+Math.random().toString(36).slice(2,7).toUpperCase();
+}
+async function saveCompletion({name,correct,total,attempts,certificate_number}){
+  const employeeName=(name || $("learner")?.value || "").trim();
+  if(!employeeName) throw new Error("Employee name is missing.");
+  const score=Math.round((correct/total)*100);
+  const res=await fetch(SUPABASE_URL+"/rest/v1/training_completions",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "apikey":SUPABASE_ANON_KEY,
+      "Authorization":"Bearer "+SUPABASE_ANON_KEY,
+      "Prefer":"return=minimal"
+    },
+    body:JSON.stringify({
+      employee_name:employeeName,
+      training_name:"Infection Control & Incident Reporting",
+      score,
+      passed:true,
+      attempts:attempts || 1,
+      certificate_number
+    })
+  });
+  if(!res.ok) throw new Error("Completion log error "+res.status+": "+await res.text());
+  return "saved";
+}
+
+/* ---------- test ---------- */
+function buildTest(){
+  const list=$("qlist");list.innerHTML="";
+  S.testView=TEST.map(shuffleQ);
+  S.testView.forEach((q,k)=>{
+    const card=document.createElement("div");card.className="q";card.id="q"+k;
+    const num=document.createElement("div");num.className="qnum";num.textContent="Question "+(k+1)+" of "+TEST.length;
+    const h=document.createElement("h3");h.textContent=q.q;
+    const opts=document.createElement("div");opts.className="opts";
+    q.options.forEach((o,j)=>{
+      const b=document.createElement("button");b.className="opt";b.type="button";
+      b.innerHTML='<span class="key">'+String.fromCharCode(65+j)+'</span><span></span>';
+      b.lastChild.textContent=o;
+      b.onclick=()=>{S.answers[k]=j;
+        [...opts.children].forEach(c=>{c.style.borderColor="";c.style.background="";});
+        b.style.borderColor="var(--accent)";b.style.background="var(--accent-soft)";testStatus();};
+      opts.appendChild(b);});
+    card.append(num,h,opts);list.appendChild(card);});
+  testStatus();
+}
+function testStatus(){
+  const n=S.answers.filter(a=>a!==null).length;
+  $("teststatus").textContent=n+" of "+TEST.length+" answered";
+  $("submit").disabled=n<TEST.length;
+}
+$("submit").onclick=()=>{S.attempt++;
+  showResult(S.answers.reduce((a,v,k)=>a+(v===S.testView[k].correct?1:0),0));};
+
+/* ---------- results ---------- */
+function isoDate(){const d=new Date(),p=n=>String(n).padStart(2,"0");
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
+function fmtDate(){return new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});}
+function showResult(correct){
+  const total=TEST.length,pct=Math.round(correct/total*100),passed=correct>=PASS_MARK;
+  $("ring").textContent=pct+"%";
+  $("ring").className="scorering "+(passed?"pass":"fail");
+  $("resulttitle").textContent=passed?"You passed.":"Not a passing score yet.";
+  $("resultsub").textContent=passed
+    ? "You answered "+correct+" of "+total+" correctly. Your certificate is below — review anything you missed before your next shift."
+    : "You answered "+correct+" of "+total+" correctly. You need "+PASS_MARK+" of "+total+" to pass. Every question is explained below — read through them, then take the test again.";
+  const acts=$("resultactions");acts.innerHTML="";
+  const retake=document.createElement("button");
+  retake.className="btn"+(passed?"":" btn-primary")+" btn-lg";
+  retake.textContent=passed?"Take the test again":"Retake the test";
+  retake.onclick=()=>{S.answers=new Array(total).fill(null);buildTest();show("s-test");};
+  acts.appendChild(retake);
+  const back=document.createElement("button");
+  back.className="btn btn-lg";back.textContent="Review the slides";
+  back.onclick=()=>{show("s-train");goto(0);};
+  acts.appendChild(back);
+  if(passed){const pr=document.createElement("button");
+    pr.className="btn btn-primary btn-lg";pr.textContent="Print certificate";
+    pr.onclick=()=>window.print();acts.appendChild(pr);}
+
+  const cw=$("certwrap");cw.innerHTML="";
+  if(passed){
+    const cps=SLIDES.filter(s=>s.checkpoint).length;
+    cw.innerHTML='<div class="cert"><div class="cert-eyebrow">Louisiana HCBS · Direct Service Worker Competency Training</div>'+
+      '<h2>Certificate of Completion</h2><div class="body" style="margin:18px auto 0">This certifies that</div>'+
+      '<div class="name"></div><div class="under"></div>'+
+      '<div class="body">has completed <b>Infection Control &amp; Incident Reporting</b> for Direct Support Workers — all '+
+      SLIDES.length+' narrated slides, '+cps+' checkpoint questions, and the '+total+'-question competency examination.</div>'+
+      '<div class="body" style="font-size:14px">Competency areas covered: infection control · critical incident reporting · detecting and reporting abuse and neglect. '+
+      'Credit toward the annual training required of direct service workers in Home and Community Based Services.</div>'+
+      '<div class="certmeta"><div><div class="k">Score</div><div class="v">'+correct+' / '+total+' &middot; '+pct+'%</div></div>'+
+      '<div><div class="k">Date completed</div><div class="v">'+fmtDate()+'</div></div>'+
+      (S.agency?'<div><div class="k">Agency</div><div class="v">'+String(S.agency).replace(/[<>&]/g,"")+'</div></div>':'')+
+      '</div></div>';
+    cw.querySelector(".name").textContent=S.name;
+    const certificateNumber=makeCertificateNumber();
+    const certMeta=cw.querySelector(".certmeta");
+    if(certMeta){
+      certMeta.insertAdjacentHTML("beforeend",'<div><div class="k">Certificate #</div><div class="v">'+certificateNumber+'</div></div>');
+    }
+    const saveStatus=$("saveStatus");
+    saveStatus.textContent="Recording your completion…";
+    saveCompletion({name:S.name,correct,total,attempts:S.attempt,certificate_number:certificateNumber})
+      .then(()=>{
+        saveStatus.textContent="Completion recorded successfully.";
+        saveStatus.style.color="var(--good)";
+      })
+      .catch(err=>{
+        console.error(err);
+        saveStatus.textContent="Your certificate is ready, but the completion log did not save. Please notify your supervisor before closing this page.";
+        saveStatus.style.color="var(--bad)";
+      });
+  }
+
+  const missed=S.answers.map((a,k)=>a===S.testView[k].correct?null:(k+1)).filter(Boolean);
+  const lines=["INFECTION CONTROL & INCIDENT REPORTING — COMPETENCY RECORD",
+    "Areas:     Infection control | Critical incident reporting | Abuse and neglect",
+    "Name:      "+S.name,(S.agency?"Agency:    "+S.agency:null),"Date:      "+fmtDate(),
+    "Training:  "+SLIDES.length+"/"+SLIDES.length+" slides viewed, all checkpoints passed",
+    "Credit:    Counts toward the annual 8-hour competency requirement",
+    "Exam:      "+correct+"/"+total+" ("+pct+"%) — "+(passed?"PASS":"DID NOT PASS")+"  [attempt "+S.attempt+"]",
+    (missed.length?"Missed:    Q"+missed.join(", Q"):"Missed:    none")].filter(Boolean);
+  $("summarywrap").innerHTML='<div class="summarybox"><h3>Summary for your supervisor</h3><pre id="sumtext"></pre>'+
+    '<button class="btn" id="copysum" style="margin-top:14px">Copy summary</button></div>';
+  $("sumtext").textContent=lines.join("\n");
+  $("copysum").onclick=()=>{
+    if(navigator.clipboard)navigator.clipboard.writeText($("sumtext").textContent).then(()=>{
+      $("copysum").textContent="Copied";setTimeout(()=>$("copysum").textContent="Copy summary",1600);});
+  };
+
+  const rev=$("review");rev.innerHTML="";
+  S.testView.forEach((q,k)=>{
+    const ok=S.answers[k]===q.correct;
+    const d=document.createElement("div");d.className="rev "+(ok?"ok":"no");
+    d.innerHTML='<div class="tag">Question '+(k+1)+' · '+(ok?"Correct":"Incorrect")+'</div><h4></h4>'+
+      (ok?"":'<div class="yours"><span class="lbl">You chose</span><br></div>')+
+      '<div class="theirs"><span class="lbl">'+(ok?"Answer":"Correct answer")+'</span><br></div><div class="whyr"></div>';
+    d.querySelector("h4").textContent=q.q;
+    if(!ok)d.querySelector(".yours").appendChild(document.createTextNode(
+      S.answers[k]===null?"(not answered)":q.options[S.answers[k]]));
+    d.querySelector(".theirs").appendChild(document.createTextNode(q.options[q.correct]));
+    d.querySelector(".whyr").textContent=q.why;
+    rev.appendChild(d);});
+  show("s-result");
+}
+
+document.addEventListener("keydown",e=>{
+  if($("s-train").classList.contains("on")&&!$("overlay").classList.contains("on")){
+    if(e.key==="ArrowRight"&&!$("next").disabled){e.preventDefault();$("next").click();}
+    if(e.key==="ArrowLeft"&&!$("prev").disabled){e.preventDefault();$("prev").click();}
+    if(e.code==="Space"&&e.target.tagName!=="BUTTON"&&e.target.tagName!=="INPUT"){e.preventDefault();$("playpause").click();}
+  }});
+drawRail();
+</script>
