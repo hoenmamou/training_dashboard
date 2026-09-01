@@ -246,9 +246,23 @@ $('tbody').addEventListener('click', (e)=>{
 });
 
 function printCertificate(r){
-  const w=window.open('','_blank','width=1000,height=750');
   const completed = r.completed_at ? new Date(r.completed_at).toLocaleDateString([], {year:'numeric',month:'long',day:'numeric'}) : '';
-  w.document.write(`<!doctype html><html><head><title>Certificate - ${escapeHtml(r.employee_name)}</title>
+  let frame = document.getElementById('certificatePrintFrame');
+  if(!frame){
+    frame = document.createElement('iframe');
+    frame.id = 'certificatePrintFrame';
+    frame.style.position = 'fixed';
+    frame.style.right = '0';
+    frame.style.bottom = '0';
+    frame.style.width = '1px';
+    frame.style.height = '1px';
+    frame.style.border = '0';
+    frame.style.opacity = '0';
+    document.body.appendChild(frame);
+  }
+  const doc = frame.contentWindow.document;
+  doc.open();
+  doc.write(`<!doctype html><html><head><title>Certificate - ${escapeHtml(r.employee_name)}</title>
   <style>
     @page{size:landscape;margin:.4in}
     body{font-family:Georgia,serif;margin:0;background:white;color:#18302c}
@@ -261,7 +275,6 @@ function printCertificate(r){
     .meta{display:flex;justify-content:center;gap:60px;margin-top:38px;font:15px Arial,sans-serif}
     .meta b{display:block;margin-top:5px}
     .footer{margin-top:34px;font:700 15px Arial,sans-serif}
-    @media print{button{display:none}}
   </style></head><body>
   <div class="cert">
     <div class="ey">Certificate of Completion</div>
@@ -276,9 +289,12 @@ function printCertificate(r){
     </div>
     <div class="footer">Heaven-On-Earth Network of Mamou, LLC</div>
   </div>
-  <script>window.onload=()=>window.print()<\/script>
   </body></html>`);
-  w.document.close();
+  doc.close();
+  setTimeout(()=>{
+    frame.contentWindow.focus();
+    frame.contentWindow.print();
+  }, 250);
 }
 </script>
 </body>
