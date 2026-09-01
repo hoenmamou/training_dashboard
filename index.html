@@ -247,6 +247,8 @@ $('tbody').addEventListener('click', (e)=>{
 
 function printCertificate(r){
   const completed = r.completed_at ? new Date(r.completed_at).toLocaleDateString([], {year:'numeric',month:'long',day:'numeric'}) : '';
+  const trainingName = (r.training_name || '').toLowerCase();
+  const trainingHours = trainingName.includes('progress note') ? 1 : trainingName.includes('infection control') ? 2 : '';
   let frame = document.getElementById('certificatePrintFrame');
   if(!frame){
     frame = document.createElement('iframe');
@@ -285,6 +287,7 @@ function printCertificate(r){
     <div class="meta">
       <div>Completion Date<b>${escapeHtml(completed)}</b></div>
       <div>Final Score<b>${Number(r.score)||0}%</b></div>
+      <div>Training Hours<b>${trainingHours}</b></div>
       <div>Certificate Number<b>${escapeHtml(r.certificate_number||'')}</b></div>
     </div>
     <div class="footer">Heaven-On-Earth Network of Mamou, LLC</div>
