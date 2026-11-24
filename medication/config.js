@@ -1,0 +1,2 @@
+export const apiUrl = "https://hubvxtzwmgigmvhyygae.supabase.co";
+export const publicKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1YnZ4dHp3bWdpZ212aHl5Z2FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDk5MjQsImV4cCI6MjEwMzQyNTkyNH0.UJSW_ibGs3G5OK-9iI80lDMLD7IXD9c9-lk5L_Wpc6M";

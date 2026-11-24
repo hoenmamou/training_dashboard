@@ -1,0 +1,706 @@
+[
+  {
+    "title": "Who can give a medication?",
+    "minutes": 90,
+    "summary": "Decide what you may do when you are covering a shift, a participant asks for help or a medication order changes.",
+    "segments": [
+      {
+        "minutes": 20,
+        "title": "Follow one assignment from the office to the home",
+        "teaching": [
+          "A prescriber orders the medicine. The pharmacist dispenses and labels it. The registered nurse (RN) assesses the participant, decides what can be delegated and gives the direct service worker (DSW) exact written instructions. The DSW follows those instructions, observes, documents and reports.",
+          "A current plan of care, RN assessment and a stable, predictable condition are part of delegation in Louisiana home and community-based services. The participant must be able to direct services or have the daily monitoring specified in the rule. The agency verifies worker eligibility, retains records and arranges supervision.",
+          "A classroom certificate records general training. Before an assignment, confirm your own written authorization for that participant and task, where the in-home instructions are kept and how to reach the RN or on-call backup."
+        ],
+        "activity": "Use five minutes to introduce the roles. For ten minutes, follow the fictional case of a DSW assigned to cover a new home at supper. The office confirms the shift, a bottle is on the counter and the DSW has a course certificate. In pairs, identify what the DSW must verify before proceeding. In the final five minutes, rehearse the call to the office.",
+        "debrief": [
+          "Accepting the shift does not establish authorization for that participant. Ask who can safely cover the dose while the office and RN check the records.",
+          "A family member, another DSW or a certificate cannot give the RN’s authorization."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Recognize support, delegation and nursing judgment",
+        "teaching": [
+          "With independent self-administration, the participant selects, prepares and takes the medicine. Someone who needs a reminder may still know what the medicine is for and carry out the agreed steps independently. The plan and RN assessment describe the help this participant may receive.",
+          "If staff must decide what to take, when to take it or how much to prepare, tell the RN what help is needed. A participant who needs physical help and can guide each step also needs a clearly defined arrangement. Check the plan whenever the assistance being requested changes.",
+          "In this pathway, authorized tasks may include ordered oral or topical medicines, ointments, suppositories, or manufacturer-premeasured oral inhalant aerosol doses. Additional participant-specific training is needed for an established gastrostomy tube. Insulin injections and sliding-scale decisions are outside this delegation pathway."
+        ],
+        "activity": "Allow five minutes for the RN to explain the types of help. Spend fifteen minutes sorting three requests: “Remind me when my alarm rings,” “Pick which of my pills I should take,” and “My family showed me how to change the insulin amount.” Each learner explains what they may do today and what they would ask the RN. Use five minutes to revisit any disagreement.",
+        "debrief": [
+          "Support the agreed reminder as documented. Refer medication selection and decisions requiring nursing judgment to the RN.",
+          "A participant’s request or a family demonstration does not expand a DSW’s assignment."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Recognize when the assignment has changed",
+        "teaching": [
+          "A new order, strength, dose, procedure or change in health status needs prompt reporting to the agency and RN, who reassesses and provides additional training as appropriate. A first dose of a medicine the participant has never received needs RN assessment before delegation.",
+          "If the participant becomes unstable, stop the delegated task and get help appropriate to the situation. A finding on the DSW Registry also ends authorization under this rule. Notify the employer, RN and person receiving assistance as the rule directs.",
+          "The RN observes participant-specific performance, determines competency, certifies it in writing and evaluates authorized tasks at least annually. The RN may delegate appropriate components of training to an LPN, while retaining the competency decision."
+        ],
+        "activity": "Spend five minutes locating the escalation instructions on a blank agency form. Spend twelve minutes in groups working through a change at discharge, a first dose and a reassignment to a second participant. Each group gives a 30-second phone report. Use eight minutes for the RN to perform one report and have each learner try it again.",
+        "debrief": [
+          "Give the participant’s identity through the approved channel, what changed, when you learned of it, what is due and whether anything has been given.",
+          "Wait for the RN’s directions before performing the changed task. Follow the emergency response procedure immediately if there is an emergency."
+        ]
+      },
+      {
+        "minutes": 20,
+        "title": "Protect the participant’s choices and privacy",
+        "teaching": [
+          "Explain the purpose of the visit in a way the participant can understand. Ask permission, allow time for a response and use the communication method in the plan. A participant can decline a medicine.",
+          "Discuss a participant’s health only with people authorized to receive that information, using the agency’s approved channels. Protect records from visitors and avoid photographs or messages from personal accounts.",
+          "The May 2026 Louisiana Office for Citizens with Developmental Disabilities guidance describes Nurse Consult in the New Opportunities and Residential Options waivers as a participant-specific service. This general class is agency training and does not qualify for Nurse Consult billing."
+        ],
+        "activity": "For four minutes, model a respectful introduction. For ten minutes, role-play a visitor asking what a medicine is for and a participant asking to talk privately. Switch roles and repeat. Use six minutes for each learner to explain the difference between today’s class and the RN’s work with an individual participant.",
+        "debrief": [
+          "Move the discussion to a private setting, check who may be included and speak directly to the participant.",
+          "The RN’s authorization identifies one worker, one participant and the task. The office keeps that record separately from the classroom certificate."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "You are assigned to a different participant who takes a familiar medicine. What should you verify?",
+        "options": [
+          "That both medicines look alike",
+          "Your RN authorization for this participant and task",
+          "That a coworker has done it before"
+        ],
+        "answer": 1,
+        "feedback": "Delegation is specific to the participant, the worker and the task."
+      },
+      {
+        "question": "A discharge order changes the amount due tonight. What should you do?",
+        "options": [
+          "Use yesterday’s amount",
+          "Pick an amount between the two",
+          "Contact the RN and office promptly for directions"
+        ],
+        "answer": 2,
+        "feedback": "Report the change, explain what is due and wait for the RN to clarify the changed task."
+      }
+    ]
+  },
+  {
+    "title": "Read the order and the pharmacy label",
+    "minutes": 120,
+    "summary": "Identify the medicine, its strength, form, route and purpose. Recognize duplicate ingredients and instructions that need clarification.",
+    "segments": [
+      {
+        "minutes": 30,
+        "title": "Read every part of a label",
+        "teaching": [
+          "An order tells you what was prescribed. The pharmacy label identifies what was dispensed. The medication administration record (MAR) shows what is due and what has already been given. Use all three with the RN’s written directions.",
+          "Find the participant’s name, medication name, strength, amount per dose, route, frequency, timing, prescriber, prescription number if present, special directions and date limits. A strength describes what is in each tablet or each stated volume. A dose is the amount ordered at one time.",
+          "Read the label aloud to a partner using this fictional example: Jordan Lake, Practice Tablet A, 10 mg per tablet, take one tablet by mouth at 8 a.m. daily, practice prescriber Lee, Rx 101. The matching MAR is for Jordan Lake, Practice Tablet A 10 mg, one tablet by mouth, 8 a.m."
+        ],
+        "activity": "Use eight minutes to label the fields on that example. For twelve minutes, the RN changes one field at a time: Jordan Lane in place of Jordan Lake, 20 mg in place of 10 mg, or bedtime in place of 8 a.m. Pairs take turns locating the mismatch and making the clarification call. Use ten minutes for each person to explain strength, dose and timing in their own words.",
+        "debrief": [
+          "A similar name, different strength or different time needs clarification before giving the medicine.",
+          "A DSW can identify where documents differ. An authorized professional resolves the difference."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Identify names, classes and products",
+        "teaching": [
+          "A drug’s generic name identifies its active ingredient. Manufacturers may sell the same ingredient under a brand name. Acetaminophen is the generic name for the active ingredient in regular Tylenol. A combination product can contain that ingredient along with others.",
+          "A medicine’s class describes a common purpose or action. An analgesic can relieve pain, an antibiotic treats certain bacterial infections and an antihypertensive helps lower blood pressure. A class alone cannot identify a pill or tell you whether it belongs to this participant.",
+          "Two tablets can look alike while containing different medicines. A refill may look different after a manufacturer change. Keep the original labeled package and contact the RN or pharmacist through agency procedure when identity is unclear."
+        ],
+        "activity": "Give the class five minutes to examine mock packages. Use fifteen minutes to sort cards labeled acetaminophen, regular Tylenol, a cold medicine listing acetaminophen, and a loose white tablet. Have each pair identify which cards share an ingredient, which cannot be identified safely and what to tell the RN. Use ten minutes to repeat with a fictional prescription bottle and another person’s identical-looking bottle.",
+        "debrief": [
+          "Read the active ingredient and strength on each label. Flag potential duplicates for the RN or pharmacist.",
+          "The loose tablet and another participant’s bottle are unsafe choices even when their appearance seems familiar."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Turn medical terms into plain directions",
+        "teaching": [
+          "Oral or PO means by mouth. Topical means applied to the designated body surface. PRN means as needed under the written order and RN directions. NPO means nothing by mouth. Confirm the specific instructions if an oral medicine is scheduled for someone who is NPO.",
+          "BID means twice a day. The MAR and written order supply the actual schedule. An abbreviation, a route name or an old schedule never authorizes guessing at an interval. Use complete words when you document and approved terms when reading records.",
+          "QD is an error-prone abbreviation for daily. Write “daily.” QOD can be mistaken for daily or four times a day. Write “every other day.” Ask for clarification if a direction is hard to read or unfamiliar."
+        ],
+        "activity": "Spend seven minutes matching route and frequency cards to plain words. For fifteen minutes, have partners read back “one tablet by mouth each morning,” “apply to the left forearm,” and an unclear handwritten direction to a mock supervisor. Use eight minutes for the RN to add an NPO instruction to the oral example and hear each learner’s response.",
+        "debrief": [
+          "Name exactly what is uncertain. Obtain clarified instructions through the agency’s approved process.",
+          "A twice-daily order and an every-twelve-hours order should not be treated as interchangeable without checking the exact schedule."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Find interaction and allergy concerns",
+        "teaching": [
+          "Two drugs, a drug and a food or supplement, or a drug and a health condition can affect how a medicine works. A new over-the-counter medicine, “natural” sleep product or vitamin belongs in the conversation with the RN or pharmacist.",
+          "Look for the participant’s allergy record before a dose and ask about new concerns using their communication method. Report a new symptom in the words used and describe what you see. The RN or prescriber evaluates the cause.",
+          "Over-the-counter medicines still need the appropriate order, plan and RN direction when a DSW administers them. A cousin’s recommendation or an advertisement cannot substitute for that authorization."
+        ],
+        "activity": "Spend eight minutes comparing a fictional medication list with a bag of a new supplement, a cold product and an unlabeled bag. Allow twelve minutes for partners to rehearse what they would tell the participant and call in to the RN. Use ten minutes to repeat after the participant says, “The medicine made me itchy last time.”",
+        "debrief": [
+          "Identify the product, ingredients if known, who bought it, whether any was taken, symptoms and timing. Bring the container to the RN or pharmacist’s attention.",
+          "Pause the affected administration until the RN addresses an allergy concern. Call 911 for severe swelling, difficulty breathing or another emergency."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "The bottle says 20 mg per tablet and the written record lists 10 mg per tablet. What comes next?",
+        "options": [
+          "Stop and ask the RN to resolve the difference",
+          "Give the usual number",
+          "Rewrite the label"
+        ],
+        "answer": 0,
+        "feedback": "A strength mismatch requires clarification before any administration."
+      },
+      {
+        "question": "Which wording is clearest on a record?",
+        "options": [
+          "QD",
+          "Daily",
+          "QOD"
+        ],
+        "answer": 1,
+        "feedback": "Write “daily.” These look-alike abbreviations can cause medication errors."
+      }
+    ]
+  },
+  {
+    "title": "Prepare a dose and check the six rights",
+    "minutes": 135,
+    "summary": "Use a practice order, label and MAR to verify a dose, handle an interruption and measure a prescribed volume.",
+    "segments": [
+      {
+        "minutes": 35,
+        "title": "Check the right participant, medication and dose",
+        "teaching": [
+          "The six rights are the right individual, medication, dose, route, time and documentation. Say each one and show the information you use to verify it. Check current instructions, allergies and the last recorded dose.",
+          "Use agency-approved identifiers, such as full name and date of birth. Ask the participant to identify themselves if able. Use the approved method in the plan for a participant who communicates without speech. A room location, appearance or a yes-or-no name question is unreliable.",
+          "Make three label comparisons with the MAR: when selecting the container, immediately before opening or measuring, and when returning it or making the final check before administration according to the packaging procedure. Prepare one participant’s medicine at a time."
+        ],
+        "activity": "Use eight minutes for the RN to demonstrate with two labeled empty packages. For seventeen minutes, pairs repeat the checks while the RN introduces a look-alike name, different strength and an interruption between checks. Use ten minutes for each learner to restart safely after the interruption and say what they will document.",
+        "debrief": [
+          "Restart the necessary checks after an interruption. Keep the selected package and record under your control.",
+          "If identity, medication or dose cannot be verified, pause, maintain supervision and contact the RN."
+        ]
+      },
+      {
+        "minutes": 35,
+        "title": "Measure the volume that is actually ordered",
+        "teaching": [
+          "Use a marked oral syringe or medication cup suitable for the ordered amount and units. Read the written amount and the device markings. A kitchen spoon or an unmarked cap cannot reliably measure medication.",
+          "For a calibrated cup, rest it on a level surface and read the mark at eye level. With a marked oral syringe, follow the manufacturer’s instructions for the plunger and read the marking at eye level. Use water and training equipment for this exercise.",
+          "The LDH/LSBN guideline limits delegated dose calculation. A DSW may measure an already prescribed volume of liquid or break a tablet as instructed by the RN. A different concentration, a conversion from mg to mL, or a missing volume must be clarified with the RN."
+        ],
+        "activity": "Use eight minutes to show a 5 mL mark on an oral syringe and a 10 mL mark on a cup. Give pairs fifteen minutes to measure water, switch devices, compare at eye level and identify a cup with unreadable markings. Allow twelve minutes for a second round with a practice order listing only milligrams and a bottle with a different concentration.",
+        "debrief": [
+          "Each learner shows the exact marked line for a stated volume before filling. Choose a device that can accurately show the amount.",
+          "When the volume is missing or strength differs, put the container down and request matching, explicit directions."
+        ]
+      },
+      {
+        "minutes": 35,
+        "title": "Verify route and dosage form",
+        "teaching": [
+          "The route describes where the medicine goes. A tablet taken by mouth, an ointment applied to a named skin site and an inhaled product are different preparations. A site, such as the left forearm, matters as much as the general route.",
+          "A score line does not establish permission to split a tablet. Some tablets and capsules are unsafe to split, open or crush. Ask the RN for participant-specific directions and product-specific pharmacy confirmation before altering any form.",
+          "If a participant develops trouble swallowing, protect their airway and stop the oral administration. Contact the RN. If breathing is impaired, choking is severe or the participant becomes unresponsive, call 911 and follow trained emergency procedures."
+        ],
+        "activity": "Use eight minutes to compare a mock ointment label with an oral label. For fifteen minutes, match three practice orders to packages and exact sites. Then introduce a capsule the family wants opened and a participant who coughs and cannot safely swallow. In the final twelve minutes, pairs practice what to say to the family and when to get emergency help.",
+        "debrief": [
+          "The route, exact location and dosage form must match the current directions.",
+          "Changing the form or hiding a medicine in food can cause harm. The RN or pharmacist must clarify how a specific product can be safely given."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Give on time and complete the final checks",
+        "teaching": [
+          "Use the exact schedule and allowable window in the current order, MAR and RN instructions. For the classroom example only, the written directions give a 30-minute window before or after 8 a.m. That example runs from 7:30 to 8:30 a.m. Other orders require different or exact timing.",
+          "Rapid-acting insulin is an example of a time-sensitive medicine whose timing can be tied to meals. Insulin injections, including sliding-scale insulin, are not delegated to DSWs under this Louisiana HCBS pathway. Alert the responsible nurse promptly to a timing concern.",
+          "Look for the last administration entry. If a time has passed or it is unclear whether someone already gave a dose, call the RN before giving anything. Stay with the participant through the authorized administration and document what actually happened."
+        ],
+        "activity": "Give learners six minutes to mark the example window on a clock. Spend fourteen minutes sorting an arrival at 7:45, an arrival at 8:35, and an unsigned 8 a.m. MAR after a shift change. Ask which facts still need checking in each. Allow ten minutes for a role-play in which a participant asks for the tablets to be left at the bedside.",
+        "debrief": [
+          "Even within the written window, verify all six rights and any special instructions. At 8:35 or after an unclear handoff, ask the RN what to do.",
+          "Keep medication secure and report any delay or refusal. Never leave a delegated dose for later or give a second dose on a guess."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "Which device is appropriate for a written dose of 5 mL?",
+        "options": [
+          "Kitchen teaspoon",
+          "Unmarked bottle cap",
+          "Marked oral syringe that measures 5 mL"
+        ],
+        "answer": 2,
+        "feedback": "Match the units and ordered volume to a calibrated medication-measuring device."
+      },
+      {
+        "question": "A participant has trouble swallowing a tablet. What should you do?",
+        "options": [
+          "Crush it right away",
+          "Pause the oral dose and contact the RN",
+          "Leave the tablet at the bedside"
+        ],
+        "answer": 1,
+        "feedback": "A change in swallowing and any change to the dosage form require RN direction. Activate emergency help for severe choking or breathing difficulty."
+      }
+    ]
+  },
+  {
+    "title": "Prevent infection and protect the medicine supply",
+    "minutes": 135,
+    "summary": "Set up a clean work area, demonstrate hand hygiene, and make safe decisions about storage, refills and disposal in the home.",
+    "segments": [
+      {
+        "minutes": 35,
+        "title": "Show hand hygiene to the RN",
+        "teaching": [
+          "Use standard precautions with every participant. Clean your hands before preparing or giving medicines, after contact with body fluids or contaminated surfaces, after removing gloves and before moving from a dirty task to a clean task.",
+          "With soap and water, wet hands, lather, rub all surfaces, rinse and dry. Include fingertips, thumbs, backs of hands and between fingers. CDC clinical guidance specifies at least 15 seconds of rubbing and accepts 20 seconds. Practice a full 20-second scrub here.",
+          "Use soap and water when visibly soiled, after using the restroom or when infection-control directions call for it. For routine care when appropriate, apply alcohol-based hand rub in the recommended amount and rub all surfaces until dry."
+        ],
+        "activity": "Use eight minutes for the RN to model the sequence at a sink or with simulation supplies. Allow seventeen minutes to rotate as demonstrator and observer using a timer and note commonly missed areas. Use ten minutes for each DSW to physically or verbally demonstrate the steps to the RN and correct any missed step.",
+        "debrief": [
+          "Observe whether the learner cleaned the thumbs, fingertips and finger webs and avoided touching contaminated items after cleaning.",
+          "Ask when hand hygiene must be repeated. Good technique and performing it at the right times both matter."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Choose protection and set up a clean surface",
+        "teaching": [
+          "Select gloves or other protective equipment based on the contact or splash expected and the agency’s precautions. Remove used gloves, discard them appropriately and clean your hands. Use a fresh pair when the next task calls for gloves.",
+          "Clear and prepare the work area according to agency procedure. Keep used items, pets, food, phones and household cleaners away from clean medication supplies. Maintain supervision when a visitor arrives or a phone rings.",
+          "For shared equipment, use the manufacturer’s cleaning directions and agency-approved products. Follow the stated contact time. Dispose of contaminated supplies according to agency procedure and report an exposure promptly."
+        ],
+        "activity": "Spend six minutes arranging a practice counter. In pairs for sixteen minutes, observe a setup with a phone beside a dosing cup, a used glove on the table and a thermometer that has not been cleaned. Correct it, switch roles and handle an interruption. Use eight minutes to repeat the clean-to-dirty transition in front of the RN.",
+        "debrief": [
+          "Identify which items are clean, which need cleaning or disposal and the next opportunity for hand hygiene.",
+          "Gloves can carry contamination. Touching a phone with a used glove and then touching a clean bottle transfers it."
+        ]
+      },
+      {
+        "minutes": 35,
+        "title": "Store, count and refill safely",
+        "teaching": [
+          "Keep each participant’s medication in the original labeled pharmacy packaging or authorized pharmacy-prepared system, separated from other people’s supply and secured as the participant’s plan and agency policy require. The label supplies temperature, light and other storage instructions.",
+          "Protect medicines from heat, humidity and access by children, visitors and pets. For a refrigerated product, use the labeled conditions, secure it and follow the plan if temperature control is interrupted. Ask the RN or pharmacist to advise on a product exposed to heat or a power failure.",
+          "Check expiration and pharmacy discard dates, integrity, readability and remaining supply. When a count or secured-storage procedure applies, follow its documentation and witness steps. Report discrepancies and arrange refills through the designated person before doses run out."
+        ],
+        "activity": "Give eight minutes to sketch a safe storage arrangement in a fictional home. In fifteen minutes, rotate through an original sealed package, a bottle with a smeared label, a refrigerated product after a power outage, and a refill due before a weekend. Use twelve minutes to rehearse the refill call and handoff of a count discrepancy.",
+        "debrief": [
+          "Keep questionable supplies secure and apart from usable products pending instructions. Preserve the label and packaging for review.",
+          "Give the product name, remaining quantity, next dose due and what changed when calling the RN or office."
+        ]
+      },
+      {
+        "minutes": 35,
+        "title": "Handle a damaged, lost or discontinued supply",
+        "teaching": [
+          "Keep expired, discontinued, damaged or unidentified medicines out of the active supply. Follow agency policy and obtain RN or pharmacist directions for documenting, returning or disposing of the product. Do not relabel, share, combine bottles or use another person’s supply.",
+          "Authorized take-back programs are a preferred route for most unused medications. Use the pharmacy, agency and product-specific instructions for controlled substances and exceptions. Keep a record or witness when required.",
+          "A dropped tablet or spill can make it impossible to know how much medicine was available or taken. Protect the participant, secure the area, notify the appropriate person and wait for instructions on replacement and documentation."
+        ],
+        "activity": "Use five minutes for the RN to model how to isolate a training container. For eighteen minutes, rotate the roles of participant, worker and on-call nurse through an illegible label, an expired cream and a spilled liquid. For twelve minutes, write a factual handoff for one case and have a partner identify what must happen before another dose.",
+        "debrief": [
+          "Do not return a dropped tablet to the bottle or use a kitchen estimate to replace a spill. Record what actually occurred.",
+          "Each learner should be able to point out where active and quarantined supplies would be kept securely until resolved."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "After removing used gloves, what should you do before touching a clean medication cup?",
+        "options": [
+          "Clean your hands",
+          "Wipe them on your uniform",
+          "Reuse the gloves"
+        ],
+        "answer": 0,
+        "feedback": "Hand hygiene after glove removal helps interrupt the spread of germs."
+      },
+      {
+        "question": "A pharmacy label has become unreadable. What is the safest action?",
+        "options": [
+          "Use the pill color",
+          "Copy the name from memory",
+          "Secure the container and contact the RN or pharmacist"
+        ],
+        "answer": 2,
+        "feedback": "Keep it out of use until the identity and directions are reliably established."
+      }
+    ]
+  },
+  {
+    "title": "Respond to refusals, reactions and errors",
+    "minutes": 120,
+    "summary": "Practice the first words and actions to use when a dose is refused, a participant’s condition changes or a mistake is discovered.",
+    "segments": [
+      {
+        "minutes": 30,
+        "title": "Respect a refusal and find out what happened",
+        "teaching": [
+          "Explain the scheduled medicine in familiar words and listen. A refusal may be spoken or shown by turning away, keeping the mouth closed or pushing the cup aside. Offer communication support and privacy. Respect the participant’s decision.",
+          "Avoid arguing, coercion or concealing the medicine in food. If the participant reports pain, nausea or trouble swallowing, tell the RN. Handle the refused dose according to policy and keep the medicine secure.",
+          "Report the refusal promptly to the RN or supervisor using agency procedure. Record the time, what was offered, the participant’s words or gesture, observations and directions received. Record it as refused in the MAR using the approved code and explanation."
+        ],
+        "activity": "For five minutes, the RN models a conversation with a participant who says, “That pill makes me sick.” For fifteen minutes, partners practice a spoken refusal, turning away and difficulty swallowing. Switch roles and avoid pressuring the participant. For ten minutes, prepare one brief call and one accurate MAR explanation.",
+        "debrief": [
+          "An open question such as “Can you tell me what worries you about it?” can help explain the refusal.",
+          "A refusal is never an administration entry. Follow any monitoring or follow-up directions from the RN."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Observe effects and act on emergency signs",
+        "teaching": [
+          "A therapeutic effect is the intended benefit of a medicine. A side effect is another effect it can cause. Follow the RN’s instructions for what to observe, when to recheck and what to report. People may respond differently to the same product.",
+          "A new itchy rash, unusual drowsiness or vomiting needs prompt reporting and directions. Compare with usual functioning and note when the medicine was taken, the symptoms first noticed and what the participant says. Describe the facts without diagnosing an allergy.",
+          "Trouble breathing, swelling of the tongue or throat, collapse or unresponsiveness requires an immediate 911 call. Stay with the participant, follow dispatcher instructions and trained emergency procedures, then notify the RN and office as soon as possible."
+        ],
+        "activity": "Allow six minutes to discuss expected relief and unexpected symptoms. For fifteen minutes, in trios, act out mild nausea and a separate case of tongue swelling and wheezing. A peer records the first action actually taken. In the last nine minutes, report the first case to the RN and rehearse the emergency call for the second case.",
+        "debrief": [
+          "Tell 911 where you are, what you see, whether the participant is responsive and breathing, and follow the dispatcher’s directions.",
+          "Do not wait for an office callback, routine recheck or chart entry before getting emergency help."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Respond when a dose may already have been given",
+        "teaching": [
+          "Common errors include giving the wrong medicine, person, dose, route or time and missing a scheduled dose. An unsigned MAR does not prove a dose was missed. A family recollection also cannot verify a dose by itself.",
+          "Protect the participant and check for immediate danger. For a suspected or confirmed error, promptly contact the RN and supervisor, even if the participant looks well. Give exact information, follow directions for monitoring or medical care and document the response.",
+          "Avoid independent corrections such as giving extra medicine, trying to make someone vomit, or moving later doses. Retain packaging and record what is known and what is uncertain. Complete any separate incident report under the agency’s policy."
+        ],
+        "activity": "For seven minutes examine a mock handoff in which the MAR is blank but the morning blister is empty. Spend thirteen minutes rehearsing actions before and after the outgoing worker is reached. The RN then reveals that a second dose was already given by another worker. Use ten minutes to practice immediate reporting and objective documentation.",
+        "debrief": [
+          "Hold off on repeating an uncertain dose. Report the name, strength, amount if known, exact timing and observations.",
+          "If an actual error is discovered, the participant’s condition and urgent directions take priority. Report it even if no harm is evident."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Make a clear call when a participant changes",
+        "teaching": [
+          "A clear report says who is calling, which participant is involved, what changed, what is usually expected, what happened and when, and what you need the nurse to clarify. Share information through the approved channel.",
+          "Report changes promptly, including changes to orders, medications and the participant’s health. The agency slide deck specifies notifying the supervisor within two hours of changes in health status or physician orders. An urgent change, refusal, suspected error or emergency requires earlier action according to the event and agency directions.",
+          "Read back instructions, ask who will do what and when, and record the person contacted, time and follow-up. If the first contact does not answer, use the agency’s on-call chain. Continue emergency action without delay if the participant worsens."
+        ],
+        "activity": "For eight minutes build a report from “They just don’t look right” using new details: the participant usually walks to breakfast, now needs help sitting up, and says the room is spinning. For twelve minutes partners practice the call and read-back. Use ten minutes to rehearse an unanswered call and a separate case of sudden severe breathing difficulty.",
+        "debrief": [
+          "Use specific observations, the time things changed and the current written instructions. Include measurements if available without delaying care.",
+          "Verify that someone responsible received the urgent report. Writing a note alone does not reach the RN."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "The participant refuses and pushes the cup away. What should you do?",
+        "options": [
+          "Hide the medicine in food",
+          "Respect the refusal, report it and document it",
+          "Mark the dose given"
+        ],
+        "answer": 1,
+        "feedback": "Respect the participant’s choice and document what actually happened."
+      },
+      {
+        "question": "A participant has tongue swelling and trouble breathing. What is your first action?",
+        "options": [
+          "Call 911 immediately",
+          "Wait for the next shift",
+          "Finish the MAR first"
+        ],
+        "answer": 0,
+        "feedback": "This is an emergency. Follow dispatcher instructions and notify the RN and office as soon as possible."
+      }
+    ]
+  },
+  {
+    "title": "Demonstrate vital signs and report changes",
+    "minutes": 150,
+    "summary": "Practice pulse, respirations, blood pressure and temperature with the RN. Record the reading and use the participant’s reporting instructions.",
+    "segments": [
+      {
+        "minutes": 30,
+        "title": "Count pulse and breathing",
+        "teaching": [
+          "Have the person rest when a resting measurement is indicated. For a radial pulse, place the pads of two fingers gently on the thumb side of the wrist. Feel and count the beats. A full minute is a straightforward count, particularly for an irregular rate.",
+          "One rise and fall of the chest is one breath. Count for a full minute in practice. Note the rate, rhythm and apparent effort. Severe breathing difficulty or unresponsiveness needs immediate emergency action.",
+          "Many healthy adults have a resting pulse of 60 to 100 beats a minute. A pulse of 115 at rest deserves a recheck and prompt report in the scenario. Individual baseline, written parameters, current symptoms and emergency signs guide the response."
+        ],
+        "activity": "Use six minutes for the RN to demonstrate counting using a clock. For fourteen minutes, learners take turns doing a full-minute practice pulse and a simulated respiratory count while a partner counts independently. In the last ten minutes, give the RN the reading, units, symptoms and conditions using the fictional resting pulse of 115.",
+        "debrief": [
+          "Report beats per minute for pulse and breaths per minute for respirations, with time, rhythm or unusual effort if observed.",
+          "Use the participant’s own reporting plan. If symptoms are severe, activate emergency help without delaying for a second count."
+        ]
+      },
+      {
+        "minutes": 40,
+        "title": "Set up a blood pressure measurement",
+        "teaching": [
+          "Choose the correct size upper-arm cuff and a functioning approved device. Expose the arm and position the cuff according to its instructions. Whenever practical for a routine reading, allow five minutes of quiet rest first.",
+          "Seat the participant with back supported, feet flat and legs uncrossed. Support the arm at heart level and ask the participant to remain quiet. Note limitations such as pain or inability to sit in the usual position, then follow the RN’s written directions.",
+          "Record both numbers in mm Hg, systolic first and diastolic second, together with time and arm or position as required. An ill-fitting cuff, talking or an unsupported arm can affect the reading."
+        ],
+        "activity": "For eight minutes the RN demonstrates on a willing adult or training arm. For twenty minutes rotate through reader, participant and observer roles. Start one round with crossed legs or an unsupported arm and ask the learner to correct the setup. In the final twelve minutes each learner performs or talks through the setup and reports a simulated reading to the RN.",
+        "debrief": [
+          "Watch positioning and cuff choice before accepting the reading. Both numbers and the measurement conditions matter.",
+          "If a standard position is impossible, follow the RN and equipment directions and record the actual circumstances."
+        ]
+      },
+      {
+        "minutes": 35,
+        "title": "Read the numbers and choose who to call",
+        "teaching": [
+          "For classroom examples in nonpregnant adults, 118/76 falls in the normal category. A reading of 135/88 falls in the stage 1 range. The top and bottom numbers can fall in different ranges. A single reading does not diagnose hypertension.",
+          "A systolic reading of 182 is very high. If the participant has chest pain, shortness of breath, new weakness, a change in vision or difficulty speaking, call 911 immediately. Serious new symptoms merit emergency action regardless of the reading.",
+          "For a very high reading without emergency symptoms, follow the participant’s plan, recheck promptly with correct technique and contact the RN or provider immediately for directions. The American Heart Association advises repeating a reading above 180 systolic or 120 diastolic after at least one minute if the person has no concerning symptoms."
+        ],
+        "activity": "Use seven minutes to locate systolic and diastolic values on practice cards. For eighteen minutes work through 118/76, 135/88, 182/96 without symptoms and 182/96 with new chest pain. Add a fictional RN instruction to call for a systolic value above 130 and revisit the 135/88 case. Use ten minutes for teach-back calls and choosing when a routine repeat would delay urgent help.",
+        "debrief": [
+          "A participant-specific threshold can require reporting even if a reading is below an emergency threshold.",
+          "A DSW reports readings and observations and follows the plan. Only a licensed clinician changes medication or diagnoses the condition."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Measure and record temperature at the correct site",
+        "teaching": [
+          "Use the device and site in the participant’s instructions. Oral means under the tongue, axillary means in the armpit and rectal is an invasive site. Consider privacy, the ability to cooperate, safe swallowing and the device instructions.",
+          "For oral use, check that the participant can hold the thermometer safely and account for recent food or drink per device directions. For an axillary reading, position the probe against skin as instructed. Keep oral and rectal equipment separate. Rectal technique requires explicit authorization, training and the designated device.",
+          "Read and record the actual display, unit, site and time, and the participant’s symptoms. Use the RN’s reporting directions. Do not add a fixed degree to an axillary result or silently convert one site to another."
+        ],
+        "activity": "Use five minutes to identify the devices and probe covers. For twelve minutes, practice or describe oral and axillary setups with training equipment. In the last eight minutes, verbally identify privacy, dedicated equipment, authorization and when to stop for a rectal measurement. Use a mannequin or verbal demonstration for an invasive site.",
+        "debrief": [
+          "An appropriate entry is “9:10 a.m., 100.4 °F, axillary” with symptoms and contacts as indicated.",
+          "If a site cannot safely be used or the order is unclear, ask the RN rather than improvising or adjusting the number."
+        ]
+      },
+      {
+        "minutes": 20,
+        "title": "Demonstrate and hand off observations",
+        "teaching": [
+          "Pain is whatever the participant reports. Ask in the way they prefer. For someone who communicates without words, describe observable changes such as guarding, grimacing or pulling away and use the tools specified in the plan.",
+          "Compare a new finding with the participant’s usual functioning and specific instructions. Include what you see, what the participant reports, the measured value and how and when you obtained it.",
+          "Each DSW demonstrates the applicable skill physically or verbally to the RN. If the method or report is incomplete, the RN coaches the DSW and hears or sees the skill again."
+        ],
+        "activity": "Use three minutes to assign each learner a station. Spend twelve minutes rotating short demonstrations of pulse, respirations, blood pressure, temperature and observation of symptoms. During the final five minutes the RN asks each learner to correct one measurement condition and repeat a concise handoff. Extend individual practice if needed.",
+        "debrief": [
+          "Record the exact reading and the participant’s words, including whether there were symptoms. Explain the next action and the reason for it.",
+          "The RN can identify skills for further practice. This classroom exercise is distinct from participant-specific authorization."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "Which position supports a routine seated blood pressure measurement?",
+        "options": [
+          "Feet crossed, arm hanging",
+          "Talking while standing",
+          "Feet flat, back supported and arm at heart level"
+        ],
+        "answer": 2,
+        "feedback": "Allow quiet rest and position the cuff and arm correctly."
+      },
+      {
+        "question": "Blood pressure is 182/96 and the participant has sudden chest pain. What should you do?",
+        "options": [
+          "Wait until the next scheduled check",
+          "Call 911 now",
+          "Give an extra blood pressure tablet"
+        ],
+        "answer": 1,
+        "feedback": "Emergency symptoms call for immediate emergency help. Do not delay for a repeat or adjust a dose."
+      },
+      {
+        "question": "You take an axillary temperature. What belongs in the record?",
+        "options": [
+          "The displayed value, units, site and time",
+          "A number adjusted upward by one degree",
+          "Only the word warm"
+        ],
+        "answer": 0,
+        "feedback": "The route helps the RN interpret the actual reading. Record the display as measured."
+      }
+    ]
+  },
+  {
+    "title": "Write a MAR entry and a clear progress note",
+    "minutes": 105,
+    "summary": "Use a fictional shift to record a dose, a refusal, an observation and a correction that the next worker can follow.",
+    "segments": [
+      {
+        "minutes": 25,
+        "title": "Find the right record and chart a routine dose",
+        "teaching": [
+          "The participant’s record may include the current plan, orders, allergy information, MAR, vital-sign log, progress notes, emergency contacts and the RN’s written instructions. Know where the current version and signature key are kept.",
+          "The MAR is a legal record. Document promptly after the authorized dose is actually taken. Record the participant, date, medication, dose, route, actual time and your own initials or signature as required. Include the site or other ordered observations when applicable.",
+          "A clear record helps prevent a second dose or a missed dose at shift change. Keep records private, use the approved system, and sign only your own work."
+        ],
+        "activity": "For six minutes locate the order, allergy, administration and signature fields on a blank training MAR. Spend twelve minutes documenting this fictional event: Jordan Lake took one 10 mg Practice Tablet A by mouth at 8:05 a.m. on the practice date. Enter your training initials and signature key. Use seven minutes for a peer to locate and read back every field.",
+        "debrief": [
+          "Record the actual 8:05 a.m. time even though the order was scheduled for 8 a.m.",
+          "Check the correct participant, date and medication row before signing. Record it after observing administration."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Chart refusals, omitted doses and follow-up",
+        "teaching": [
+          "If a dose is declined, held under direction or omitted, record the actual event using the agency’s approved MAR code and explanation. An empty space or administration initials alone can mislead the next worker.",
+          "Document who was notified, when, instructions received and follow-up. For a delegated PRN dose, verify the written indication, instructions and last dose. Follow the RN’s direction if judgment is needed. Document the reason, actual time and dose, and the participant’s reported or observed response at the instructed recheck.",
+          "A separate incident report may also be required. Complete the clinical record and notify the appropriate person under agency policy. One entry cannot replace another required action."
+        ],
+        "activity": "Use five minutes to show the agency’s blank MAR and its code key. For fifteen minutes use two cases: a scheduled 8 a.m. dose declined at 8:02 a.m. with the RN called at 8:04, and a simulated authorized PRN entry with an RN-directed recheck at 2:30 p.m. Partners add the missing facts needed to complete each record. Use ten minutes to hand the record to a second pair and check whether duplicate dosing would be prevented.",
+        "debrief": [
+          "A refusal is recorded as a refusal, using the participant’s words when useful. Never mark a dose as given when it was omitted.",
+          "For the PRN example, identify what support was requested, the authorized action and what the participant reported or you observed at follow-up."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Write what you observed and what was said",
+        "teaching": [
+          "An objective observation is something you can see, hear or measure. A subjective report is what the participant says they feel. Both belong in the record when relevant. Attribute the participant’s words and avoid a diagnosis or judgment about motive.",
+          "Use a timeline. Include the change from usual, measured values and how obtained, observed signs, contacts, directions and subsequent condition. Report urgent findings promptly, then chart as soon as the immediate response allows.",
+          "A practice note might read: “9:10 a.m. Jordan said, ‘I feel dizzy.’ Sat down with support. At 9:12, seated BP 118/76, right arm. At 9:14 I spoke with the on-call RN.” Add the actual directions and follow-up when known."
+        ],
+        "activity": "For five minutes compare “acting strange” with an observable detail. Spend twelve minutes rewriting “being difficult and did not want pills” using the fictional facts that the participant turned their face away, said “My stomach hurts,” and the RN returned the call at 8:10. Use eight minutes to have a partner distinguish the words reported, facts observed and information still missing.",
+        "debrief": [
+          "Do not invent a refusal reason, symptom, callback, direction or outcome. Document only what happened.",
+          "A correct record helps another worker recognize a change without labeling the participant’s behavior."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Correct an entry and complete the handoff",
+        "teaching": [
+          "Follow the agency’s correction process. For paper records, preserve the original entry, add the correction with date and identification according to policy, and avoid whiteout or erasing. For electronic records, use the authorized correction or addendum function.",
+          "For a late entry, identify when the event occurred and when the entry was made. Never backdate an entry, sign another worker’s initials or silently overwrite the record.",
+          "At shift change, communicate doses given, omitted or pending, unresolved questions, who has been contacted and any recheck due. Protect privacy during handoff and direct the next worker to the current record."
+        ],
+        "activity": "Allow six minutes to review a practice row entered under the wrong time. In twelve minutes, pairs describe or make a traceable correction and write a late-entry note for an event at 10:05 a.m. entered at 10:30. Use seven minutes for the outgoing DSW to hand off a pending RN response and ask the incoming DSW to repeat what remains open.",
+        "debrief": [
+          "Both times must remain clear. An electronic correction should preserve its audit trail.",
+          "A pending callback must have a named person responsible for follow-up. Use the on-call chain for urgent unresolved issues."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "When do you initial a delegated dose on the MAR?",
+        "options": [
+          "Before preparing it",
+          "After the participant actually takes it",
+          "When the next shift arrives"
+        ],
+        "answer": 1,
+        "feedback": "Prompt documentation of the actual event helps prevent repeat doses."
+      },
+      {
+        "question": "Which note best describes a change?",
+        "options": [
+          "The participant was difficult",
+          "The participant was probably faking",
+          "At 9:10 the participant said, ‘I feel dizzy,’ and sat down"
+        ],
+        "answer": 2,
+        "feedback": "Report the time, the participant’s own words and what you observed."
+      }
+    ]
+  },
+  {
+    "title": "Practice a complete shift with the RN",
+    "minutes": 105,
+    "summary": "Combine the six rights, communication, infection control and documentation in supervised practice, then review readiness with the RN.",
+    "segments": [
+      {
+        "minutes": 30,
+        "title": "Run a routine medication pass",
+        "teaching": [
+          "Use only training containers, water, a marked device, a blank MAR and fictional details. One person plays the participant, one the DSW and one observes. The RN listens for the exact checks and watches the sequence.",
+          "Practice case: At 8 a.m. Jordan Lake has an explicitly authorized order for 5 mL of Practice Liquid B by mouth. The practice label, MAR and identity record match. The last documented dose was yesterday at 8:03 a.m. There are no simulated symptoms or allergy concerns.",
+          "Work through the participant’s choice, clean setup, three label checks, six rights, measuring, observing the simulated administration, documentation and safe storage. In this class, use a verbal simulation of taking the dose."
+        ],
+        "activity": "Use five minutes to issue case cards and props. Allow eighteen minutes for small groups to run the entire case twice with different workers. Observers pause the second run at any missed check and let the DSW repeat it. Spend seven minutes comparing MAR entries and asking the RN to confirm the expected sequence.",
+        "debrief": [
+          "The DSW can show where each right was verified and say what would make them stop.",
+          "The written record gives the exact time and ordered volume, includes the worker’s identification and protects the participant’s privacy."
+        ]
+      },
+      {
+        "minutes": 30,
+        "title": "Work through two interrupted passes",
+        "teaching": [
+          "Case A: On a covering shift, a participant’s family says the clinic changed the dose after an appointment. The bottle and MAR still show the previous dose. The family asks you to give the new amount by memory.",
+          "Case B: A participant who is usually alert is now hard to wake and breathing abnormally. The next oral medicine is due and the supervisor’s line rings without an answer.",
+          "Use the same checks for every case, but let the participant’s condition determine the urgency. Clinical decisions and changes to authorized tasks return to the RN."
+        ],
+        "activity": "Use three minutes to assign roles. Give each pair ten minutes per case to handle the participant, choose the first call, give a handoff and make a brief entry. In the last seven minutes compare the cases and have each worker repeat the first action out loud.",
+        "debrief": [
+          "Case A requires clarification of the order and any updated person-specific instruction before administration. Do not independently change the dose or give the old one by default.",
+          "Case B is an emergency. Call 911 immediately, follow trained emergency procedures and dispatcher directions, and withhold oral medication while swallowing is unsafe. Notify the RN or office as soon as possible."
+        ]
+      },
+      {
+        "minutes": 25,
+        "title": "Demonstrate core skills and repeat any missed step",
+        "teaching": [
+          "The RN may ask for a physical or verbal demonstration of standard precautions and the applicable vital-sign skills. Give each DSW an opportunity to demonstrate individually and explain when a result must be reported.",
+          "Use a training kit and a written classroom scenario. Skills include hand hygiene and glove removal, counting pulse and respirations, positioning a blood pressure cuff and recording a temperature with its site.",
+          "For general course records, capture which skill was demonstrated, the method used, any coaching and the RN’s actual assessment. Participant-specific competency decisions belong with the participant’s assessment, task instructions and observed demonstration."
+        ],
+        "activity": "Allow five minutes for the RN to assign stations and describe the expected skills. Spend fifteen minutes hearing or observing individual demonstrations in this class, building on the earlier station work. In the last five minutes repeat missed steps and identify anyone who needs more practice. Extend the session or schedule follow-up when the RN needs additional observation.",
+        "debrief": [
+          "A correct multiple-choice answer cannot show whether the learner places the cuff correctly, counts a rate or recognizes a contaminated surface.",
+          "The RN uses professional judgment. Record actual performance and additional teaching when needed."
+        ]
+      },
+      {
+        "minutes": 20,
+        "title": "Teach back the handoff and prepare for the exam",
+        "teaching": [
+          "Take turns explaining in your own words what you do before a dose, what you do if it cannot be given safely and what the next worker needs to know. Point to the written information that supports your answer.",
+          "The agency’s 20-question written exam follows these general classes. The agency RN determines the passing score. The instructor verifies the instruction actually attended and the applicable general skill demonstrations. Breaks and personal time are outside these 16 instructional hours.",
+          "Before giving any participant a delegated medication, the RN must assess the participant, train the DSW for the specific task, observe performance and certify competency in writing. Obtain new direction for changed circumstances and complete the annual RN evaluation for authorized tasks."
+        ],
+        "activity": "Use eight minutes for partners to teach back one routine dose and one stop-and-call event. Use seven minutes for individual questions, including when a worker must ask for participant-specific training. In the last five minutes, have the RN identify any missed attendance or skills to make up and explain how learners will complete the individual online exam.",
+        "debrief": [
+          "The course certificate records 16 hours only for learners who completed the instruction. Any final exam grading and review follow the agency RN’s passing standard.",
+          "A worker completing the written exam still needs the separate written authorization before administering a medication to a participant."
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "question": "What does a 16-hour general course certificate document?",
+        "options": [
+          "General medication administration training completed",
+          "Authorization for every participant",
+          "Approval to teach another worker the participant’s task"
+        ],
+        "answer": 0,
+        "feedback": "Participant-specific training, observed competency and RN authorization are separate requirements."
+      },
+      {
+        "question": "A family member describes a new dose that conflicts with the MAR. What should you do?",
+        "options": [
+          "Give the family’s amount",
+          "Give half the old dose",
+          "Pause and get RN clarification before proceeding"
+        ],
+        "answer": 2,
+        "feedback": "The RN confirms the changed order and tells the DSW when and how a changed task can resume."
+      }
+    ]
+  }
+]
