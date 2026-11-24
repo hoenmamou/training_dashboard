@@ -1,0 +1,105 @@
+{
+  "retraining": [
+    {
+      "title": "Start with the reason for retraining",
+      "points": [
+        "Tell Ashley which step was unclear or what changed. Use the participant’s current plan and the RN’s written instructions.",
+        "If an order, dose or procedure changes, contact the RN. Wait for updated directions and any training Ashley requires before performing the changed task.",
+        "If a dose may already have been given, stop and call the RN before giving anything else."
+      ],
+      "notes": [1, 2]
+    },
+    {
+      "title": "Check before you give a dose",
+      "points": [
+        "Match the label to the medication administration record (MAR) three times. Check the right participant, medication, dose, route, time and documentation.",
+        "Clean your hands. Use the marked medication device. Read a dosing cup on a level surface at eye level.",
+        "Follow the written time window. If the label, time, dose or directions do not match, stop and ask the RN."
+      ],
+      "notes": [3, 4, 5, 6, 8]
+    },
+    {
+      "title": "Handle a refusal, error or reaction",
+      "points": [
+        "Respect a refusal. Keep the dose secure, notify the RN and document what happened. Never force or hide a dose.",
+        "Promptly report a missed, wrong, extra or uncertain dose, even if the participant feels well. Give the medication name, amount, time and what you observed.",
+        "Call 911 immediately for severe breathing trouble, throat swelling or unresponsiveness. Then notify the RN and office."
+      ],
+      "notes": [7, 9, 10]
+    },
+    {
+      "title": "Observe and document",
+      "points": [
+        "Follow the participant’s instructions for checking vital signs and reporting readings. Report new symptoms and changes from their usual condition.",
+        "Record the actual time, dose, route and your initials on the MAR after giving the medication. Record a refusal or missed dose accurately.",
+        "Tell the next worker what was given, what is pending and what the RN directed."
+      ],
+      "notes": [11, 12, 13, 14]
+    },
+    {
+      "title": "Show Ashley the corrected step",
+      "points": [
+        "Finish the written exam on this device. Ashley can review your result and work with you on the step that prompted retraining.",
+        "Show the corrected step as Ashley directs. Ask her to clarify anything you are unsure about.",
+        "Ashley records the task, outcome and any further training needed. Follow her instructions before performing the task again."
+      ],
+      "notes": []
+    }
+  ],
+  "annual": [
+    {
+      "title": "Review your participant’s current plan",
+      "points": [
+        "Review the current plan and RN instructions for each participant you support. Know which tasks Ashley has authorized you to perform for that person.",
+        "Tell the RN about changes in the participant’s condition, medications, doses or procedures.",
+        "If instructions have changed or are unclear, stop and contact the RN before performing the task."
+      ],
+      "notes": [1, 2]
+    },
+    {
+      "title": "Check the six medication rights",
+      "points": [
+        "Check the right participant, medication, dose, route, time and documentation. Compare the label with the medication administration record (MAR) three times.",
+        "Follow the ordered route and written time window. Ask the RN about a late or uncertain dose.",
+        "Stay with the participant until the dose is taken. Record what actually happened."
+      ],
+      "notes": [3, 4, 6]
+    },
+    {
+      "title": "Prepare and store medication safely",
+      "points": [
+        "Clean your hands, use clean equipment and measure with a marked medication device. Read a dosing cup at eye level on a level surface.",
+        "Keep medications in their labeled packaging and follow the temperature and storage instructions.",
+        "Ask the RN before crushing or splitting a medication. Set aside an unreadable or expired package and contact the RN or pharmacy."
+      ],
+      "notes": [5, 8, 9]
+    },
+    {
+      "title": "Check and report changes",
+      "points": [
+        "Use the vital-sign method Ashley taught for this participant. Compare readings with the participant’s usual readings and written reporting limits.",
+        "For a seated blood pressure, have the person rest quietly for five minutes with feet flat. Record both numbers and any symptoms.",
+        "Report new symptoms or possible reactions promptly. Call 911 for severe breathing trouble, throat swelling or unresponsiveness."
+      ],
+      "notes": [7, 11, 12, 13]
+    },
+    {
+      "title": "Document refusals, errors and given doses",
+      "points": [
+        "Respect a refusal. Tell the RN and document it. Report every medication error promptly, even if the participant looks well.",
+        "After a dose is given, record the medication, dose, route, actual time and your initials. For an as-needed dose, document the reason and response.",
+        "At shift change, communicate doses given, pending doses and follow-up instructions."
+      ],
+      "notes": [10, 14]
+    },
+    {
+      "title": "Complete your yearly skills evaluation",
+      "points": [
+        "Take the written exam on this device, then meet with Ashley for your participant-specific competency evaluation.",
+        "Show Ashley how you perform the authorized tasks for that participant, including how you check, document and report.",
+        "Ashley records the evaluation date, participant file reference, tasks and outcome. Follow the tasks and limits she authorizes for that participant."
+      ],
+      "notes": []
+    }
+  ]
+}

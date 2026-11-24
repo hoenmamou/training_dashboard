@@ -35,3 +35,21 @@ async function api(method,payload){
 export function rpc(auth,action,data={}){if(!auth?.key)throw Error('Open the private link provided by Ashley or the office.');return api('hoen_med_'+(auth.role==='rn'?'rn':'dsw'),{p_key:auth.key,p_action:action,p_data:data});}
 export const classRpc=(id,action,data={})=>api('hoen_med_class',{p_class:id,p_action:action,p_data:data});
 export function bindForm(id,handler){const f=el(id);if(!f)return;f.onsubmit=async e=>{e.preventDefault();const b=e.submitter;if(b?.disabled)return;if(b)b.disabled=true;tell('');try{await handler(f,new FormData(f));}catch(err){tell(err.message,true);}finally{if(b)b.disabled=false;}};}
+
+export const courseNames={initial:"Initial training",retraining:"Retraining",annual:"Yearly recertification"};
+function newCheckIn(name){
+ const bytes=crypto.getRandomValues(new Uint8Array(24));
+ return {id:crypto.randomUUID(),key:Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join(''),name};
+}
+export function checkInForm(title='Check in for your exam'){
+ return `<form id="join-class" class="checkin"><strong>${safe(title)}</strong><div class="checkin-fields"><label class="field">Full name for your certificate<input name="name" autocomplete="name" minlength="2" maxlength="100" required></label><button class="primary">Check in</button></div><label class="tick"><input name="remember" type="checkbox"><span>Remember me on this device</span></label></form>`;
+}
+export function bindCheckIn(room,onJoin){
+ bindForm('join-class',async(f,d)=>{
+   const name=String(d.get('name')).trim();if(name.length<2)throw Error('Enter your full name.');
+   const pendingKey='hoen.med.pending.'+room;let pending=getStored(sessionStorage,pendingKey);
+   if(!pending||pending.name!==name){pending=newCheckIn(name);setStored(sessionStorage,pendingKey,pending);}
+   await classRpc(room,'join',pending);const personal={role:'dsw',key:pending.key,classId:room};remember(personal,d.has('remember'));setStored(sessionStorage,pendingKey,null);
+   onJoin(personal);
+  });
+}

@@ -1,4 +1,4 @@
-import {main,el,safe,rpc,tell,bindForm,copyBox,privateLink,classLink,pageHead} from './common.js?v=basic1';
+import {main,el,safe,rpc,tell,bindForm,copyBox,privateLink,classLink,pageHead} from './common.js?v=review1';
 
 export function createClassroom(auth,isActive,back){
  let state,share=null,loadNo=0;

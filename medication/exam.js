@@ -1,4 +1,4 @@
-import {main,el,safe,dateTime,rpc,tell,pageHead,instructor} from './common.js?v=basic1';
+import {main,el,safe,dateTime,rpc,tell,pageHead,instructor,courseNames} from './common.js?v=review1';
 export function createExam(auth,isActive,openLessons){
  let state=null,paper=null,draft=null,step=0,loadNo=0;
  const req=(action,data)=>rpc(auth,action,data);
@@ -7,12 +7,21 @@ export function createExam(auth,isActive,openLessons){
  function clear(){try{sessionStorage.removeItem(storeName());}catch{}draft=null;paper=null;step=0;}
  async function load(){const n=++loadNo;const s=await req('state');if(!isActive()||n!==loadNo)return;state=s;if(s.last?.passed)clear();home();}
  function home(){
- const s=state,p=s.progress,last=s.last;
+ const s=state,p=s.progress,last=s.last, follow=!!s.course&&s.course!=='initial';
+ const courseTitle=follow?courseNames[s.course]:'DSW written exam';
+ let completion='Your 16-hour certificate is ready to print from the HOEN dashboard.';
+ let pending='Ashley can verify your classroom skills for your certificate.';
+ if(follow){
+  completion='Your '+courseTitle.toLowerCase()+' certificate is ready on the HOEN dashboard.';
+  pending=s.evaluation==='needs_review'?'Ashley recorded that further training is needed. Contact her for the next step.':
+   s.course==='annual'?'Contact Ashley for your participant-specific RN skills evaluation. Your yearly certificate will be available after she signs it.':
+   'Contact Ashley to complete the retraining follow-up. Your certificate will be available after she signs it.';
+ }
  const lastBox=last?`<div class="${last.passed?'note':'error'}"><strong>${last.passed?'Passed':'More review needed'} · ${last.points}/20 (${last.points*5}%)</strong><br>Attempt ${last.number} · ${safe(dateTime(last.submittedAt))} Central. Your graded exam is on the HOEN dashboard.</div>`:'';
  const ready=p.complete&&s.passItems!=null;
- main.innerHTML=`<div class="exam-wrap">${pageHead('DSW written exam','My medication exam',s.name)}<section class="panel"><p class="muted">Instructor · ${instructor}</p>${lastBox}
- ${last?.passed?`<p>${s.certificate?'Your 16-hour certificate is ready to print from the HOEN dashboard.':'Your exam is complete. Ashley can verify your classroom skills for your certificate.'}</p>`:ready?`<p>Choose one answer for each of the 20 questions. For question 18, select all that apply. Your passing score is <strong>${s.passItems}/20 (${s.passItems*5}%)</strong>.</p><button class="primary" id="take">${last?'Retake my exam':'Start my exam'}</button>`:'<div class="callout"><strong>Ashley will open your exam after class.</strong><p>Follow the slides on this device while she teaches.</p></div>'}
- <div class="actions" style="margin-top:1rem"><button class="secondary" id="my-lessons">Follow Ashley</button><button class="plain" id="my-refresh">Refresh exam status</button></div></section></div>`;
+ main.innerHTML=`<div class="exam-wrap">${pageHead(courseTitle,'My medication exam',s.name)}<section class="panel"><p class="muted">Instructor · ${instructor}</p>${lastBox}
+ ${last?.passed?`<p>${s.certificate?completion:pending}</p>`:ready?`<p>Choose one answer for each of the 20 questions. For question 18, select all that apply. Your passing score is <strong>${s.passItems}/20 (${s.passItems*5}%)</strong>.</p><button class="primary" id="take">${last?'Retake my exam':'Start my exam'}</button>`:follow?'<div class="callout"><strong>Finish the review slides to open your exam.</strong></div>':'<div class="callout"><strong>Ashley will open your exam after class.</strong><p>Follow the slides on this device while she teaches.</p></div>'}
+ <div class="actions" style="margin-top:1rem"><button class="secondary" id="my-lessons">${follow?'Review slides':'Follow Ashley'}</button><button class="plain" id="my-refresh">Refresh exam status</button></div></section></div>`;
  el('my-refresh').onclick=()=>load().catch(e=>tell(e.message,true));el('my-lessons').onclick=openLessons;
  if(el('take'))el('take').onclick=async e=>{const b=e.currentTarget;b.disabled=true;try{paper=await req('questions');if(!isActive())return;let old=null;try{old=JSON.parse(sessionStorage.getItem(storeName()))}catch{};if(old?.requestId&&old.requestId!==state.last?.requestId&&old.version===state.version&&typeof old.answers==='object'&&old.answers){draft=old;step=Math.max(0,Math.min(paper.length,Number(old.step)||0));}else{draft={requestId:crypto.randomUUID(),version:state.version,answers:{},step:0};step=0;}draw();}catch(err){tell(err.message,true)}finally{b.disabled=false}};
  }

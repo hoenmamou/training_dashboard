@@ -1,11 +1,7 @@
-import {main,el,safe,rpc,classRpc,classLink,privateLink,copyBox,bindForm,remember,getStored,setStored,tell,instructor} from './common.js?v=basic1';
-import {slideBody,slideControls} from './guide.js?v=basic1';
+import {main,el,safe,rpc,classRpc,classLink,privateLink,copyBox,checkInForm,bindCheckIn,remember,tell,instructor} from './common.js?v=review1';
+import {slideBody,slideControls} from './guide.js?v=review1';
 
-function newCheckIn(name){
- const bytes=crypto.getRandomValues(new Uint8Array(24));
- return {id:crypto.randomUUID(),key:Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join(''),name};
-}
-export function liveClass({slides,auth,room,openRoster,openExam,joined}){
+export function liveClass({slides,auth,room,openRoster,openExam,joined,initialPage}){
  const teaching=auth?.role==='rn',enrolled=auth?.role==='dsw';
  let page=null,timer=null,closed=false,loading=false,moving=false,frameBuilt=false;
  const position=()=>auth?rpc(auth,'position'):classRpc(room,'position');
@@ -44,7 +40,7 @@ export function liveClass({slides,auth,room,openRoster,openExam,joined}){
  function buildFrame(){
   frameBuilt=true;const publicJoin=!auth;
   main.innerHTML=`<div class="deck"><div class="slide-heading"><span class="cap">${teaching?'Instructor view':'Following Ashley'}</span><span>${instructor}</span></div>
-  ${publicJoin?`<form id="join-class" class="checkin"><strong>Check in for your exam</strong><div class="checkin-fields"><label class="field">Full name for your certificate<input name="name" autocomplete="name" minlength="2" maxlength="100" required></label><button class="primary">Check in</button></div><label class="tick"><input name="remember" type="checkbox"><span>Remember me on this device</span></label></form>`:''}
+  ${publicJoin?checkInForm():''}
   ${teaching?`<div class="actions class-tools"><button class="secondary" id="share-class">Copy staff link</button><button class="plain" id="show-share">Show link</button><span id="share-status" class="small" role="status"></span></div><div id="share-fallback" hidden>${copyBox('Staff follow-along link',classLink(page.classId))}</div>`:''}
   ${enrolled?`<div class="exam-now" id="exam-ready" hidden><strong id="exam-prompt"></strong><button class="primary" id="open-exam">Take my exam</button></div>`:''}
   <article id="class-slide" class="slide-paper" aria-live="polite"></article>
@@ -56,14 +52,8 @@ export function liveClass({slides,auth,room,openRoster,openExam,joined}){
    el('share-class').onclick=async()=>{try{await navigator.clipboard.writeText(classLink(page.classId));if(!closed)el('share-status').textContent='Staff link copied.';}catch{if(!closed){el('share-fallback').hidden=false;el('share-fallback').querySelector('input').select();}}};
   }
   if(enrolled)el('open-exam').onclick=openExam;
-  if(publicJoin)bindForm('join-class',async(f,d)=>{
-   const name=String(d.get('name')).trim();if(name.length<2)throw Error('Enter your full name.');
-   const pendingKey='hoen.med.pending.'+room;let pending=getStored(sessionStorage,pendingKey);
-   if(!pending||pending.name!==name){pending=newCheckIn(name);setStored(sessionStorage,pendingKey,pending);}
-   await classRpc(room,'join',pending);const personal={role:'dsw',key:pending.key,classId:room};remember(personal,d.has('remember'));setStored(sessionStorage,pendingKey,null);
-   if(!closed)joined(personal);
-  });
+  if(publicJoin)bindCheckIn(room,personal=>{if(!closed)joined(personal);});
  }
- document.addEventListener('visibilitychange',visibility);refresh();
+ document.addEventListener('visibilitychange',visibility);if(initialPage){updateSlide(initialPage);schedule();}else refresh();
  return {stop};
 }
