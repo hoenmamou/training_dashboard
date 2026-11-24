@@ -1,28 +1,37 @@
 import {apiUrl,publicKey} from './config.js';
-export const agency='Heaven-On-Earth Network of Mamou, LLC';
 export const instructor='Ashley Malbrough, RN';
 export const main=document.getElementById('main');
 export const el=id=>document.getElementById(id);
-export const safe=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-export function duration(minutes){const h=Math.floor(minutes/60),m=minutes%60;return [h?`${h} hr`:'',m?`${m} min`:''].filter(Boolean).join(' ')||'0 min';}
+export const safe=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const dateTime=value=>new Date(value).toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
-const keyName='hoen.med.classroom.v1';
-export function session(){
- const url=new URL(location.href);if(url.searchParams.get('present')==='1')return null;
- const params=new URLSearchParams(url.hash.slice(1));const role=params.has('rn')?'rn':params.has('dsw')?'dsw':null;
- if(role){const key=params.get(role);history.replaceState(null,'',url.pathname+url.search);if(!/^[a-f0-9]{48}$/.test(key)){try{sessionStorage.removeItem(keyName)}catch{};return {role,key:''}}const value={role,key};try{sessionStorage.setItem(keyName,JSON.stringify(value))}catch{}return value;}
- try{return JSON.parse(sessionStorage.getItem(keyName))}catch{return null;}
+export const pageHead=(label,title,body='')=>`<header class="page-head"><div class="eyebrow">${safe(label)}</div><h1>${safe(title)}</h1>${body?`<p>${safe(body)}</p>`:''}</header>`;
+const currentKey='hoen.med.classroom.v1';
+const savedKey=room=>'hoen.med.device.'+room;
+const validKey=key=>typeof key==='string'&&/^[a-f0-9]{48}$/.test(key);
+export function getStored(storage,key){try{return JSON.parse(storage.getItem(key));}catch{return null;}}
+export function setStored(storage,key,value){try{if(value===null)storage.removeItem(key);else storage.setItem(key,JSON.stringify(value));}catch{}}
+export function remember(auth,keep=false){setStored(sessionStorage,currentKey,auth);if(keep&&auth.classId)setStored(localStorage,savedKey(auth.classId),auth);}
+export function session(room){
+ const u=new URL(location.href);if(u.searchParams.has('present'))return null;
+ const frag=new URLSearchParams(u.hash.slice(1)),role=frag.has('rn')?'rn':frag.has('dsw')?'dsw':'';
+ if(role){const key=frag.get(role);history.replaceState(null,'',u.pathname+u.search);const a={role,key:validKey(key)?key:''};remember(a);return a;}
+ const a=getStored(sessionStorage,currentKey);
+ if(!room)return a;
+ if(a?.role==='dsw'&&a.classId===room)return a;
+ const saved=getStored(localStorage,savedKey(room));
+ if(saved?.role==='dsw'&&saved.classId===room&&validKey(saved.key)){remember(saved);return saved;}
+ return null;
 }
-export function clearSession(){try{sessionStorage.removeItem(keyName)}catch{};location.replace(location.pathname);}
-export function accessLink(role,key){const u=new URL('./',location.href);u.hash=`${role}=${key}`;return u.href;}
-export function tell(msg,error=false){const n=el('notice');n.innerHTML=msg?`<div class="${error?'error':'note'}">${safe(msg)}</div>`:'';}
-export function linkBox(role,key,recipient){return `<div class="linkbox"><strong>Private link for ${safe(recipient)}</strong><input aria-label="Private link for ${safe(recipient)}" type="text" readonly value="${safe(accessLink(role,key))}"><button type="button" class="secondary" data-copy>Copy link</button> <span class="small" data-copy-status></span></div>`;}
-document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const box=b.closest('.linkbox'),inp=box.querySelector('input');try{await navigator.clipboard.writeText(inp.value);box.querySelector('[data-copy-status]').textContent='Copied.';}catch{inp.focus();inp.select();box.querySelector('[data-copy-status]').textContent='The link is selected. Copy it to share.';}});
-export async function rpc(auth,action,data={}){
- if(!auth?.key)throw new Error('Open the personal link provided by your RN or the office.');
- const url=`${apiUrl}/rest/v1/rpc/hoen_med_${auth.role==='rn'?'rn':'dsw'}`;
- let response;try{response=await fetch(url,{method:'POST',cache:'no-store',referrerPolicy:'no-referrer',headers:{'Content-Type':'application/json',apikey:publicKey,...(publicKey.startsWith('eyJ')?{Authorization:`Bearer ${publicKey}`}:{})},body:JSON.stringify({p_key:auth.key,p_action:action,p_data:data})});}catch{throw new Error('The training server could not be reached. Check your connection and try again.');}
- const body=await response.json().catch(()=>null);if(!response.ok)throw new Error(body?.message||'The training server could not save the request. Try again.');return body;
+export function clearSession(auth){setStored(sessionStorage,currentKey,null);if(auth?.classId&&auth.role==='dsw')setStored(localStorage,savedKey(auth.classId),null);location.replace(location.pathname);}
+export function privateLink(role,key){const url=new URL('./',location.href);url.hash=role+'='+key;return url.href;}
+export function classLink(id){const url=new URL('./',location.href);url.searchParams.set('class',id);return url.href;}
+export function tell(msg,error=false){el('notice').innerHTML=msg?`<div class="${error?'error':'note'}">${safe(msg)}</div>`:'';}
+export function copyBox(label,url){return `<div class="linkbox"><label>${safe(label)}<input type="text" readonly value="${safe(url)}"></label><button type="button" class="secondary" data-copy>Copy link</button> <span class="small" data-copy-status role="status"></span></div>`;}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const box=b.closest('.linkbox'),input=box.querySelector('input'),status=box.querySelector('[data-copy-status]');try{await navigator.clipboard.writeText(input.value);status.textContent='Copied.';}catch{input.focus();input.select();status.textContent='Link selected. Copy to share.';}});
+async function api(method,payload){
+ let res;try{res=await fetch(apiUrl+'/rest/v1/rpc/'+method,{method:'POST',cache:'no-store',referrerPolicy:'no-referrer',headers:{'Content-Type':'application/json',apikey:publicKey,...(publicKey.startsWith('eyJ')?{Authorization:'Bearer '+publicKey}:{})},body:JSON.stringify(payload)});}catch{throw Error('Could not reach the training server. Check your connection and try again.');}
+ const value=await res.json().catch(()=>null);if(!res.ok)throw Error(value?.message||'The training server could not complete the request. Try again.');return value;
 }
-export function bindForm(id,callback){const form=el(id);if(!form)return;form.addEventListener('submit',async e=>{e.preventDefault();const btn=e.submitter;if(btn?.disabled)return;if(btn)btn.disabled=true;tell('');try{await callback(form,new FormData(form))}catch(err){tell(err.message,true)}finally{if(btn)btn.disabled=false}});}
-export function pageHead(kicker,title,body=''){return `<header class="page-head"><div class="eyebrow">${safe(kicker)}</div><h1>${safe(title)}</h1>${body?`<p>${safe(body)}</p>`:''}</header>`;}
+export function rpc(auth,action,data={}){if(!auth?.key)throw Error('Open the private link provided by Ashley or the office.');return api('hoen_med_'+(auth.role==='rn'?'rn':'dsw'),{p_key:auth.key,p_action:action,p_data:data});}
+export const classRpc=(id,action,data={})=>api('hoen_med_class',{p_class:id,p_action:action,p_data:data});
+export function bindForm(id,handler){const f=el(id);if(!f)return;f.onsubmit=async e=>{e.preventDefault();const b=e.submitter;if(b?.disabled)return;if(b)b.disabled=true;tell('');try{await handler(f,new FormData(f));}catch(err){tell(err.message,true);}finally{if(b)b.disabled=false;}};}

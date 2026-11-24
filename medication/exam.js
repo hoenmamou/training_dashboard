@@ -1,5 +1,5 @@
-import {main,el,safe,duration,dateTime,rpc,tell,pageHead,instructor} from './common.js';
-export function createExam(auth,mods,isActive,openLessons){
+import {main,el,safe,dateTime,rpc,tell,pageHead,instructor} from './common.js?v=basic1';
+export function createExam(auth,isActive,openLessons){
  let state=null,paper=null,draft=null,step=0,loadNo=0;
  const req=(action,data)=>rpc(auth,action,data);
  const storeName=()=>`hoen.med.draft.${state.id}.${state.version}`;
@@ -7,10 +7,12 @@ export function createExam(auth,mods,isActive,openLessons){
  function clear(){try{sessionStorage.removeItem(storeName());}catch{}draft=null;paper=null;step=0;}
  async function load(){const n=++loadNo;const s=await req('state');if(!isActive()||n!==loadNo)return;state=s;if(s.last?.passed)clear();home();}
  function home(){
- const s=state,p=s.progress,last=s.last;const earned=p.modules.filter((v,i)=>v>=mods[i].minutes).length;
- const lastBox=last?`<div class="${last.passed?'note':'error'}"><strong>${last.passed?'Passed':'More review needed'} · ${last.points}/20 (${last.points*5}%)</strong><br>Attempt ${last.number} · ${safe(dateTime(last.submittedAt))} Central. Your graded exam was saved to the HOEN dashboard.</div>`:'';
- main.innerHTML=`<div class="exam-wrap">${pageHead('DSW written exam','My medication exam',s.classLabel)}<section class="panel"><div class="rows"><h2>${safe(s.name)}</h2><span class="pill">${earned}/8 lessons</span></div><p class="muted">Instructor · ${instructor}</p>${lastBox}${last?.passed?`<p>${s.certificate?'Your 16-hour certificate is ready. The office can print it from the dashboard.':'Your written exam is complete. The office can print your 16-hour certificate once the RN verifies your classroom skills.'}</p>`:`<p>Answer 20 questions. Choose one answer for each, except question 18, which asks you to select all that apply. The passing score for this class is <strong>${s.passItems} of 20 (${s.passItems*5}%)</strong>.</p>${p.complete?`<button class="primary" id="take">${last?'Review and retake exam':'Open my exam'}</button>`:`<div class="callout"><strong>Waiting for RN attendance</strong><p>Check back after your RN records the full teaching time in each lesson. You can use your lesson guide while you wait.</p></div>`}`}
- <div class="actions" style="margin-top:1rem"><button class="secondary" id="my-lessons">Review lessons</button><button class="plain" id="my-refresh">Refresh my status</button></div></section><details class="resource"><summary>My attendance · ${duration(p.minutes)}</summary><ul>${mods.map((m,i)=>`<li>${safe(m.title)} · ${p.modules[i]} / ${m.minutes} min</li>`).join('')}</ul></details></div>`;
+ const s=state,p=s.progress,last=s.last;
+ const lastBox=last?`<div class="${last.passed?'note':'error'}"><strong>${last.passed?'Passed':'More review needed'} · ${last.points}/20 (${last.points*5}%)</strong><br>Attempt ${last.number} · ${safe(dateTime(last.submittedAt))} Central. Your graded exam is on the HOEN dashboard.</div>`:'';
+ const ready=p.complete&&s.passItems!=null;
+ main.innerHTML=`<div class="exam-wrap">${pageHead('DSW written exam','My medication exam',s.name)}<section class="panel"><p class="muted">Instructor · ${instructor}</p>${lastBox}
+ ${last?.passed?`<p>${s.certificate?'Your 16-hour certificate is ready to print from the HOEN dashboard.':'Your exam is complete. Ashley can verify your classroom skills for your certificate.'}</p>`:ready?`<p>Choose one answer for each of the 20 questions. For question 18, select all that apply. Your passing score is <strong>${s.passItems}/20 (${s.passItems*5}%)</strong>.</p><button class="primary" id="take">${last?'Retake my exam':'Start my exam'}</button>`:'<div class="callout"><strong>Ashley will open your exam after class.</strong><p>Follow the slides on this device while she teaches.</p></div>'}
+ <div class="actions" style="margin-top:1rem"><button class="secondary" id="my-lessons">Follow Ashley</button><button class="plain" id="my-refresh">Refresh exam status</button></div></section></div>`;
  el('my-refresh').onclick=()=>load().catch(e=>tell(e.message,true));el('my-lessons').onclick=openLessons;
  if(el('take'))el('take').onclick=async e=>{const b=e.currentTarget;b.disabled=true;try{paper=await req('questions');if(!isActive())return;let old=null;try{old=JSON.parse(sessionStorage.getItem(storeName()))}catch{};if(old?.requestId&&old.requestId!==state.last?.requestId&&old.version===state.version&&typeof old.answers==='object'&&old.answers){draft=old;step=Math.max(0,Math.min(paper.length,Number(old.step)||0));}else{draft={requestId:crypto.randomUUID(),version:state.version,answers:{},step:0};step=0;}draw();}catch(err){tell(err.message,true)}finally{b.disabled=false}};
  }

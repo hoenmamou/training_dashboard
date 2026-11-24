@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Know your role",
+    "points": [
+      "The prescriber orders the medicine. The pharmacist dispenses it. The RN decides what you may do for each participant and gives you written instructions.",
+      "Give medication only when the RN has authorized you in writing for that participant and task. The participant’s condition must be stable and predictable.",
+      "Report a change in condition, order or dose to the RN. The RN checks participant-specific competency at least annually."
+    ]
+  },
+  {
+    "title": "Read the pharmacy label",
+    "points": [
+      "Check the participant, medicine, strength, dose, route, schedule and special directions. Check allergies, expiration and the last recorded dose.",
+      "Match the label to the current order and the medication administration record (MAR). Stop and ask the RN about any difference.",
+      "The generic name identifies the drug. Its class describes what it does, such as relieving pain or lowering blood pressure. Color and shape alone cannot identify it."
+    ]
+  },
+  {
+    "title": "Understand the directions",
+    "points": [
+      "PO means by mouth. BID means twice a day. Follow the exact schedule on the order and MAR.",
+      "PRN means as needed. Follow the written reason, dose and timing. Ask the RN if a decision is unclear.",
+      "NPO means nothing by mouth. Check with the RN before giving an oral dose.",
+      "Write “daily” in full. The abbreviation QD can be misread."
+    ]
+  },
+  {
+    "title": "Check the six rights",
+    "points": [
+      "Right participant and right medication. Use the agency’s approved identifiers and match the label to the MAR.",
+      "Right dose and right route. Check how much to give, how to give it and the site if specified.",
+      "Right time and right documentation. Check when the last dose was given. Record this dose after the participant takes it.",
+      "Check the label against the MAR three times: when selecting it, when preparing the dose and at the final check before giving it."
+    ]
+  },
+  {
+    "title": "Measure the dose",
+    "points": [
+      "Use a marked medication cup or oral syringe. Household spoons vary in size.",
+      "Set the cup on a level surface and read the liquid at eye level. For an oral syringe, follow the device markings.",
+      "If the strength or units do not match the instructions, stop and contact the RN. Never calculate a new dose yourself.",
+      "Check with the RN before crushing, splitting or opening medication. If swallowing becomes unsafe, stop the oral dose and get help."
+    ]
+  },
+  {
+    "title": "Use the ordered route and time",
+    "points": [
+      "Follow the authorized route exactly. Oral, topical, suppository and approved premeasured inhaled medicines each require participant-specific instructions.",
+      "Follow the written time window. A 30-minute window applies only when specified. Contact the RN if a dose is late or may already have been given.",
+      "Rapid-acting insulin is time-sensitive. DSWs cannot give insulin injections, including sliding-scale insulin, under this Louisiana HCBS delegation rule.",
+      "Stay with the participant to confirm the dose was taken. Never leave a delegated dose at the bedside for later."
+    ]
+  },
+  {
+    "title": "Recognize side effects and reactions",
+    "points": [
+      "Know the expected effect. Report a new rash, vomiting, unusual drowsiness or other changes as directed.",
+      "Prescription drugs, over-the-counter products, supplements and foods can interact. Ask the RN before giving a new product.",
+      "For trouble breathing, swelling of the tongue or throat, or unresponsiveness, call 911 immediately. Follow dispatcher instructions and notify the RN and office."
+    ]
+  },
+  {
+    "title": "Clean your hands and equipment",
+    "points": [
+      "Clean your hands before preparing medicine and after removing gloves. Use soap and water when hands are visibly soiled.",
+      "For clinical handwashing, scrub all hand surfaces for at least 15 seconds. A full 20-second scrub meets this minimum. Rinse and dry.",
+      "When appropriate, rub hand sanitizer over all hand surfaces until dry.",
+      "Use gloves when contact with blood or body fluids is likely. Change gloves between dirty and clean tasks. Keep equipment and the preparation surface clean."
+    ]
+  },
+  {
+    "title": "Store medicines safely",
+    "points": [
+      "Keep each participant’s medicines in their own labeled packaging. Follow the label for temperature, light and refrigeration.",
+      "Store medication securely according to the plan. Keep it out of reach of children and pets.",
+      "Set aside expired, damaged, discontinued or unreadable supplies. Follow agency and pharmacy directions for refills, counts, returns and disposal."
+    ]
+  },
+  {
+    "title": "Handle a refusal or error",
+    "points": [
+      "A participant can refuse. Respect their decision, secure the medicine, notify the RN and document the refusal. Never force or hide a dose.",
+      "Report a wrong, missed, extra or uncertain dose promptly, even when the participant feels fine.",
+      "Tell the RN what was given, how much, when and what you observed. Follow directions and complete the required record. Call 911 for an emergency."
+    ]
+  },
+  {
+    "title": "Take and report blood pressure",
+    "points": [
+      "Have the participant sit quietly for five minutes, feet flat, back supported and legs uncrossed. Use the correct cuff on the bare arm supported at heart level.",
+      "Record both numbers. Systolic is the top number. Diastolic is the bottom number.",
+      "For adults, 118/76 is in the normal range and 135/88 is in the stage 1 range. Follow the participant’s written reporting instructions.",
+      "A top number above 180 or bottom number above 120 is very high. Without emergency symptoms, recheck after at least one minute and promptly report a confirmed high reading. With chest pain, weakness or trouble breathing, call 911."
+    ]
+  },
+  {
+    "title": "Count pulse and respirations",
+    "points": [
+      "With the participant at rest, use two fingers to feel the wrist pulse and count the beats. Count a full minute if the rhythm is irregular.",
+      "A usual adult resting pulse is 60–100 beats per minute. Recheck and report a resting pulse of 115 according to the participant’s plan.",
+      "One rise and fall of the chest is one breath. Count breaths per minute and watch for increased effort.",
+      "Record the reading, time and symptoms. Call 911 for severe breathing trouble."
+    ]
+  },
+  {
+    "title": "Check temperature and changes in condition",
+    "points": [
+      "Use the thermometer and site authorized by the RN. Oral means under the tongue. Axillary means in the armpit. Rectal measurement requires specific training, authorization and privacy.",
+      "Use the device as directed. Record its reading, unit, site and time. Do not add a degree to an underarm reading.",
+      "Report changes from the participant’s usual condition, including pain, dizziness or swallowing problems. Describe what you saw and what the participant said."
+    ]
+  },
+  {
+    "title": "Document the dose and give handoff",
+    "points": [
+      "The MAR is a legal record. After administration, enter the participant, date, medication, dose, route, actual time and your initials or signature.",
+      "For a refused or missed dose, record the reason using the agency’s procedure. For a PRN dose, document why it was given and the response at follow-up.",
+      "Record relevant vital signs, changes, who you notified and directions received. Chart promptly and use the approved correction process.",
+      "Protect privacy. At shift change, tell the next worker which doses were given, which are pending and who is following up."
+    ]
+  }
+]
